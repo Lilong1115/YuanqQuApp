@@ -7,6 +7,9 @@
 //
 
 #import "NavigationController.h"
+#import "MineController.h"
+#import "HomeController.h"
+#import "BusinessController.h"
 
 @interface NavigationController ()
 
@@ -25,7 +28,7 @@
     
     
     // MARK: - 1设置背景
-    navBar.backgroundColor = [UIColor redColor];
+    [navBar setBarTintColor:[UIColor blueColor]];
     
 //    navBar.translucent = NO;
     
@@ -56,7 +59,9 @@
     // 需要做一个判断,防止在显示根控制器的时候,隐藏底部的工具条
     // 判断的情况,仅仅是针对纯代码写的!
     if (self.viewControllers.count > 0) {
-        viewController.hidesBottomBarWhenPushed = YES;
+        //viewController.hidesBottomBarWhenPushed = YES;
+        
+        [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
         
         // 统一设置返回文字
         // 在上一级控制器,设置返回文字
@@ -69,8 +74,15 @@
 }
     
     
-    // 可以拦截pop操作!
+// 可以拦截pop操作!
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated {
+    
+    //设置tabbar不隐藏
+    if (([self.viewControllers.firstObject isKindOfClass:[HomeController class]] || [self.viewControllers.firstObject isKindOfClass:[MineController class]] || [self.viewControllers.firstObject isKindOfClass:[BusinessController class]]) && self.viewControllers.count == 2) {
+        
+        [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
+        
+    }
     
     return [super popViewControllerAnimated:animated];
 }
@@ -80,5 +92,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+    
+- (UIStatusBarStyle)preferredStatusBarStyle {
+
+    return UIStatusBarStyleLightContent;
+}
+    
 
 @end

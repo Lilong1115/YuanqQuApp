@@ -8,10 +8,10 @@
 
 #import "TabBarController.h"
 #import "NavigationController.h"
-#import "ViewController.h"
 #import <RDVTabBarItem.h>
 #import "HomeController.h"
 #import "MineController.h"
+#import "BusinessController.h"
 
 @interface TabBarController ()<RDVTabBarControllerDelegate>
 
@@ -38,14 +38,14 @@
     NavigationController *homeNav =[[NavigationController alloc]initWithRootViewController:homeController];
     
     //业务
-    ViewController *secondViewController = [[ViewController alloc] init];
-    NavigationController *secondNavigationController = [[NavigationController alloc]initWithRootViewController:secondViewController];
+    BusinessController *businessController = [[BusinessController alloc] init];
+    NavigationController *businessNav = [[NavigationController alloc]initWithRootViewController:businessController];
     
     //我的
     MineController *mineController = [[MineController alloc] init];
     NavigationController *minNav = [[NavigationController alloc]initWithRootViewController:mineController];
     
-    [self setViewControllers:@[homeNav, secondNavigationController, minNav]];
+    [self setViewControllers:@[homeNav, businessNav, minNav]];
     
 }
     
@@ -62,8 +62,19 @@
         UIImage *unselectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_selecte",
                                                         [tabBarItemImages objectAtIndex:index]]];
         [tabBarItem setFinishedSelectedImage:selectedimage withFinishedUnselectedImage:unselectedimage];
-        
-        [tabBarItem setTitle:@"首页"];
+        switch (index) {
+            case 0:
+                [tabBarItem setTitle:@"首页"];
+            break;
+            case 1:
+                [tabBarItem setTitle:@"业务"];
+            break;
+            case 2:
+                [tabBarItem setTitle:@"我的"];
+            break;
+            default:
+            break;
+        }
         
         //设置选中或者未选中状态文字颜色
         [tabBarItem setSelectedTitleAttributes:@{
@@ -100,6 +111,8 @@
      addAnimation:pulse forKey:nil];
     
 }
+
+
     
 
 @end
