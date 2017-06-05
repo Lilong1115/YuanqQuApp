@@ -8,14 +8,19 @@
 
 #import "SuggestionController.h"
 #import "ScrollToSwitchView.h"
-#import "SuggestionView.h"
+#import "ScrollToView.h"
 
 #pragma mark --宏定义
-//轮播图高度
+//上部滚动高度
 #define ScrollToSwitchViewHeight 40
 #define ScrollToSwitchViewWidth 300
 
 @interface SuggestionController ()
+
+//上部滚动视图
+@property (nonatomic, weak) ScrollToSwitchView *scrollToSwitchView;
+//下部滚动视图
+@property (nonatomic, weak) ScrollToView *scrollToView;
 
 @end
 
@@ -28,7 +33,7 @@
     
     [self setupNav];
     [self setupScrollToSwitchView];
-    [self setupSuggestionView];
+    [self setupScrollToView];
 }
     
 //设置nav
@@ -46,11 +51,22 @@
     
     ScrollToSwitchView *scrollToSwitchView = [[ScrollToSwitchView alloc]initWithFrame:CGRectMake(0, 64, ScrollToSwitchViewWidth, ScrollToSwitchViewHeight)];
     scrollToSwitchView.contentArray = @[@"填写意见", @"查询意见"];
+    //滚动回调
+    //防止循环引用
+    __weak SuggestionController *weakSelf = self;
+    scrollToSwitchView.scrollToViewBlock = ^(NSIndexPath *indexPath){
+        
+        __strong SuggestionController *strongSelf = weakSelf;
+        
+        [strongSelf.scrollToView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+    };
+    
     [self.view addSubview:scrollToSwitchView];
+    self.scrollToSwitchView = scrollToSwitchView;
 }
 
 //设置意见箱具体内容
-- (void)setupSuggestionView {
+- (void)setupScrollToView {
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
     flowLayout.itemSize = CGSizeMake(ScreenW, ScreenH - ScrollToSwitchViewHeight - 10);
@@ -58,9 +74,19 @@
     flowLayout.minimumLineSpacing = 0;
     flowLayout.minimumInteritemSpacing = 0;
     
-    SuggestionView *suggestionView = [[SuggestionView alloc]initWithFrame:CGRectMake(0, ScrollToSwitchViewHeight + 10 + 64, ScreenW, ScreenH - ScrollToSwitchViewHeight - 10) collectionViewLayout:flowLayout];
+    ScrollToView *scrollToView = [[ScrollToView alloc]initWithFrame:CGRectMake(0, ScrollToSwitchViewHeight + 10 + 64, ScreenW, ScreenH - ScrollToSwitchViewHeight - 10 - 64) collectionViewLayout:flowLayout];
+    //滚动回调
+    //防止循环引用
+    __weak SuggestionController *weakSelf = self;
+    scrollToView.scrollToViewBlock = ^(NSIndexPath *indexPath){
     
-    [self.view addSubview:suggestionView];
+        __strong SuggestionController *strongSelf = weakSelf;
+        
+        [strongSelf.scrollToSwitchView scrollToViewWithIndexPath:indexPath];
+    };
+    
+    [self.view addSubview:scrollToView];
+    self.scrollToView = scrollToView;
     
 }
 

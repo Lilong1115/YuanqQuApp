@@ -9,6 +9,9 @@
 #import "BusinessController.h"
 #import "BusinessCollectionView.h"
 #import "BusinessFlowLayout.h"
+#import "ToGuaranteeController.h"
+#import "HomeModel.h"
+#import "HandleController.h"
 
 @interface BusinessController ()
 
@@ -34,8 +37,44 @@
 
     //flowLayout
     BusinessFlowLayout *flowLayout = [[BusinessFlowLayout alloc]init];
+    flowLayout.businessColumns = 3;
+    
+    NSArray *array = [HomeModel getHomeModelArray];
     
     BusinessCollectionView *businessView = [[BusinessCollectionView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH - 49) collectionViewLayout:flowLayout];
+    
+    businessView.contentArray = array;
+    
+    //点击回调
+    __weak BusinessController *weakSelf = self;
+    businessView.selectedBlock = ^(NSIndexPath *indexPath) {
+        __strong BusinessController *strongSelf = weakSelf;
+        
+        HomeModel *model = array[indexPath.item];
+        
+        if ([model.title isEqualToString:@"报修"]) {
+            
+            ToGuaranteeController *ToGuaranteeVC = [[ToGuaranteeController alloc]init];
+            ToGuaranteeVC.navTitle = @"我要报修";
+            [strongSelf.navigationController pushViewController:ToGuaranteeVC animated:YES];
+        } else if ([model.title isEqualToString:@"报修处理"]) {
+        
+            HandleController *handleVC = [[HandleController alloc]init];
+            handleVC.navTitle = model.title;
+            [strongSelf.navigationController pushViewController:handleVC animated:YES];
+        } else if ([model.title isEqualToString:@"投诉"]) {
+            
+            ToGuaranteeController *ToGuaranteeVC = [[ToGuaranteeController alloc]init];
+            ToGuaranteeVC.navTitle = @"我要投诉";
+            [strongSelf.navigationController pushViewController:ToGuaranteeVC animated:YES];
+        } else if ([model.title isEqualToString:@"投诉处理"]) {
+            
+            HandleController *handleVC = [[HandleController alloc]init];
+            handleVC.navTitle = model.title;
+            [strongSelf.navigationController pushViewController:handleVC animated:YES];
+        }
+        
+    };
     
     [self.view addSubview:businessView];
 }

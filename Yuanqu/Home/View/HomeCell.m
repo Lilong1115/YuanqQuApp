@@ -36,6 +36,19 @@
     BusinessFlowLayout *flowLayout = [[BusinessFlowLayout alloc]init];
     //业务视图
     BusinessCollectionView *businessView = [[BusinessCollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+    
+    businessView.contentArray = self.contentArray;
+    
+    //点击业务回调
+    __weak HomeCell *weakSelf = self;
+    businessView.selectedBlock = ^(NSIndexPath *indexPath) {
+        __strong HomeCell *strongSelf = weakSelf;
+        
+        if (strongSelf.selectedBlock != nil) {
+            strongSelf.selectedBlock(indexPath);
+        }
+        
+    };
     [self.contentView addSubview:businessView];
     self.businessView = businessView;
     
@@ -44,6 +57,13 @@
         make.edges.mas_equalTo(self.contentView);
     }];
     
+}
+
+- (void)setContentArray:(NSArray *)contentArray {
+
+    _contentArray = contentArray;
+    self.businessView.contentArray = contentArray;
+
 }
 
 @end

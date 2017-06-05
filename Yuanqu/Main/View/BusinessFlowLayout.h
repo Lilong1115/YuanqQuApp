@@ -10,4 +10,6 @@
 
 @interface BusinessFlowLayout : UICollectionViewFlowLayout
 
+@property (nonatomic, assign) NSInteger businessColumns;
+
 @end

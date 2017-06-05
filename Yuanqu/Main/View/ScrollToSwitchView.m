@@ -106,8 +106,14 @@ static NSString * const kScrollToSwitchCellID = @"kScrollToSwitchCellID";
     self.selectedCell.isSelected = NO;
     cell.isSelected = YES;
     self.selectedCell = cell;
-}
     
+    //滚动回调
+    if (self.scrollToViewBlock != nil) {
+        self.scrollToViewBlock(indexPath);
+    }
+}
+
+//设置内容
 - (void)setContentArray:(NSArray *)contentArray {
 
     _contentArray = contentArray;
@@ -115,6 +121,17 @@ static NSString * const kScrollToSwitchCellID = @"kScrollToSwitchCellID";
     self.flowLayout.itemSize = CGSizeMake(self.frame.size.width / contentArray.count, self.frame.size.height);
     
     [self.collectionView reloadData];
+}
+
+//滚动到indexPath位置
+- (void)scrollToViewWithIndexPath:(NSIndexPath *)indexPath {
+
+    //获取当前cell
+    ScrollToSwitchCell *cell = (ScrollToSwitchCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    
+    self.selectedCell.isSelected = NO;
+    cell.isSelected = YES;
+    self.selectedCell = cell;
 }
     
 @end
@@ -190,6 +207,7 @@ static NSString * const kScrollToSwitchCellID = @"kScrollToSwitchCellID";
     }
     
 }
+
 
 @end
 

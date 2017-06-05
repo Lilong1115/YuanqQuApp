@@ -10,8 +10,11 @@
 #import "HomeView.h"
 #import "HomeCell.h"
 #import "HomeHeaderView.h"
+#import "HomeBaseModel.h"
+#import "HomeModel.h"
+#import "Calculate.h"
 
-#pragma mark --宏定义
+
 
 //cellid
 static NSString * const kHomeCellID = @"kHomeCellID";
@@ -30,9 +33,6 @@ static NSString * const kHomeCellID = @"kHomeCellID";
         self.dataSource = self;
         self.delegate = self;
         
-        //设置高度
-        self.rowHeight = ScreenW / 4 * 2;
-        
         //取消弹簧
         self.bounces = NO;
         
@@ -45,7 +45,7 @@ static NSString * const kHomeCellID = @"kHomeCellID";
 #pragma mark --dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 2;
+    return self.contentArray.count;
 }
     
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -57,10 +57,32 @@ static NSString * const kHomeCellID = @"kHomeCellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:kHomeCellID forIndexPath:indexPath];
+    
+    HomeBaseModel *baseModel = self.contentArray[indexPath.section];
+    NSArray *array = baseModel.content;
+    
+    cell.contentArray = array;
+    
+    //点击业务回调
+    __weak HomeView *weakSelf = self;
+    cell.selectedBlock = ^(NSIndexPath *indexPath) {
+        __strong HomeView *strongSelf = weakSelf;
+        
+        if (strongSelf.selectedBlock != nil) {
+            strongSelf.selectedBlock(indexPath);
+        }
+    };
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    HomeBaseModel *model = self.contentArray[indexPath.section];
+    
+    return ScreenW / BusinessColumns * [Calculate calculateRowsWithCount:model.content.count columns:BusinessColumns];
 }
 
 //设置头视图高度
@@ -74,9 +96,24 @@ static NSString * const kHomeCellID = @"kHomeCellID";
 
     HomeHeaderView *homeHeaderView = [[HomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, HomeHeaderViewHeight)];
     
+    HomeBaseModel *model = self.contentArray[section];
+    
+    homeHeaderView.headerStr = model.type;
+    
     return homeHeaderView;
 }
     
 #pragma mark --delegate
+
+
+
+
+
+
+- (void)setContentArray:(NSArray *)contentArray {
+
+    _contentArray = contentArray;
+    [self reloadData];
+}
 
 @end

@@ -8,6 +8,7 @@
 
 //业务cell
 #import "BusinessCell.h"
+#import "HomeModel.h"
 
 @interface BusinessCell()
     
@@ -40,13 +41,14 @@
     //text
     UILabel *textLabel = [[UILabel alloc]init];
     textLabel.text = @"123";
+    textLabel.textColor = [UIColor colorWithHexString:@"#969397"];
     [self.contentView addSubview:textLabel];
     self.textLabel = textLabel;
     
     //布局
     [iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.contentView);
-        make.width.mas_equalTo(ScreenW / 4 * 0.5);
+        make.width.mas_equalTo(ScreenW / BusinessColumns * 0.5);
         make.height.mas_equalTo(iconView.mas_width);
         make.centerY.mas_equalTo(self.contentView).mas_offset(-20);
     }];
@@ -55,6 +57,12 @@
         make.top.mas_equalTo(iconView.mas_bottom).mas_offset(10);
     }];
     
+}
+
+- (void)setModel:(HomeModel *)model {
+
+    _model = model;
+    self.textLabel.text = model.title;
 }
     
 @end

@@ -9,6 +9,7 @@
 //业务collection
 #import "BusinessCollectionView.h"
 #import "BusinessCell.h"
+#import "HomeModel.h"
 
 static NSString * const kBusinessCellID = @"kBusinessCellID";
 
@@ -48,17 +49,36 @@ static NSString * const kBusinessCellID = @"kBusinessCellID";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    return 8;
+    return self.contentArray.count;
 }
    
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     BusinessCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kBusinessCellID forIndexPath:indexPath];
     
+    HomeModel *model = self.contentArray[indexPath.item];
+//    NSLog(@"%@", model.title);
+    
+    cell.model = model;
+    
 //    cell.backgroundColor = RandomColor;
     
     return cell;
 }
 
+#pragma mark --delegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    //选中回调
+    if (self.selectedBlock != nil) {
+        self.selectedBlock(indexPath);
+    }
+}
+
+- (void)setContentArray:(NSArray *)contentArray {
+
+    _contentArray = contentArray;
+    [self reloadData];
+}
 
 @end

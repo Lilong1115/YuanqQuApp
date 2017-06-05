@@ -10,4 +10,7 @@
 
 @interface HomeHeaderView : UIView
 
+//标题
+@property (nonatomic, copy) NSString *headerStr;
+
 @end

@@ -16,4 +16,10 @@
 #define ScreenW [UIScreen mainScreen].bounds.size.width
 #define ScreenH [UIScreen mainScreen].bounds.size.height
 
+//业务列数
+#define BusinessColumns 4
+
+//高德地图key
+#define AMapKey @"83334748e8bb105128708bbb51dca7bc"
+
 #endif /* Define_h */

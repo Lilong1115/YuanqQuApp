@@ -14,6 +14,12 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AMap3DMap-NO-IDFA (5.0.0):
+    - AMapFoundation-NO-IDFA (~> 1.3)
+  - AMapFoundation-NO-IDFA (1.4.0)
+  - AMapSearch-NO-IDFA (5.1.0):
+    - AMapFoundation-NO-IDFA (~> 1.2)
+  - IQKeyboardManager (4.0.9)
   - Masonry (1.0.2)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
@@ -26,6 +32,9 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - AMap3DMap-NO-IDFA (~> 5.0.0)
+  - AMapSearch-NO-IDFA (~> 5.1.0)
+  - IQKeyboardManager (~> 4.0.9)
   - Masonry (~> 1.0.2)
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.12)
@@ -34,6 +43,10 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AMap3DMap-NO-IDFA: 0711f9634a5a41efb6ac79fc5137b681673fb6b9
+  AMapFoundation-NO-IDFA: d1ba541a56737c2048115a745b1dfcbe9901c248
+  AMapSearch-NO-IDFA: '06085cfcce8862531c16d5dfbe87f7152ce27dac'
+  IQKeyboardManager: 322c7405df3eb5f7e50dede32ea937bf3d4364e0
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
@@ -41,6 +54,6 @@ SPEC CHECKSUMS:
   SDCycleScrollView: e3ade90e9b3159bec04330b208fbfd81c3f3b671
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: e433cd04818fdbb0ce25594725dbdad5ad033535
+PODFILE CHECKSUM: 54cbeb98a1a5305845ca484dbe449ffe0cd94118
 
 COCOAPODS: 1.2.1

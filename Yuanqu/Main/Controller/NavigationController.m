@@ -11,7 +11,7 @@
 #import "HomeController.h"
 #import "BusinessController.h"
 
-@interface NavigationController ()
+@interface NavigationController ()<UINavigationControllerDelegate>
 
 @end
 
@@ -28,7 +28,7 @@
     
     
     // MARK: - 1设置背景
-    [navBar setBarTintColor:[UIColor blueColor]];
+    [navBar setBarTintColor:[UIColor colorWithHexString:@"#3e5880"]];
     
 //    navBar.translucent = NO;
     
@@ -47,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.delegate = self;
 }
     
     
@@ -72,19 +72,15 @@
     [super pushViewController:viewController animated:animated];
     
 }
-    
-    
-// 可以拦截pop操作!
-- (UIViewController *)popViewControllerAnimated:(BOOL)animated {
-    
-    //设置tabbar不隐藏
-    if (([self.viewControllers.firstObject isKindOfClass:[HomeController class]] || [self.viewControllers.firstObject isKindOfClass:[MineController class]] || [self.viewControllers.firstObject isKindOfClass:[BusinessController class]]) && self.viewControllers.count == 2) {
-        
+
+#pragma mark --delegate
+//设置不隐藏tabBar
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+
+    if ([viewController isKindOfClass:[HomeController class]] || [viewController isKindOfClass:[MineController class]] || [viewController isKindOfClass:[BusinessController class]]) {
         [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
-        
     }
     
-    return [super popViewControllerAnimated:animated];
 }
     
     

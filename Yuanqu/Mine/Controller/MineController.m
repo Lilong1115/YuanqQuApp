@@ -12,7 +12,7 @@
 #import "SettingController.h"
 
 #pragma mark --宏定义
-//轮播图高度
+//头视图高度
 #define HeaderViewHeight 150
 
 //cellid

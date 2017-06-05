@@ -20,10 +20,16 @@
         self.minimumInteritemSpacing = 0;
         
         //格大小
-        self.itemSize = CGSizeMake(ScreenW / 4, ScreenW / 4);
+        self.itemSize = CGSizeMake(ScreenW / BusinessColumns, ScreenW / BusinessColumns);
     }
     
     return self;
+}
+
+- (void)setBusinessColumns:(NSInteger)businessColumns {
+
+    _businessColumns = businessColumns;
+    self.itemSize = CGSizeMake(ScreenW / businessColumns, ScreenW / businessColumns);
 }
 
 @end

@@ -13,6 +13,12 @@
 //设置内容
 @property (nonatomic, copy) NSArray<NSString *> *contentArray;
 
+//滚动回调
+@property (nonatomic, copy) void(^scrollToViewBlock)(NSIndexPath *indexPath);
+
+//滚动到indexPath位置
+- (void)scrollToViewWithIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 #pragma mark --cell

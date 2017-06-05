@@ -21,7 +21,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
 
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = RandomColor;
+        self.backgroundColor = [UIColor colorWithHexString:@"#afdef6"];
         [self setupUI];
     }
     return self;
@@ -32,7 +32,8 @@
 
     //内容
     UILabel *contentLabel = [[UILabel alloc]init];
-    contentLabel.text = @"123";
+    contentLabel.text = self.headerStr;;
+//    contentLabel.textColor = [UIColor colorWithHexString:@"#94b7c5"];
     [self addSubview:contentLabel];
     self.contentLabel = contentLabel;
     
@@ -42,6 +43,12 @@
         make.leading.mas_equalTo(self).mas_offset(10);
     }];
     
+}
+
+- (void)setHeaderStr:(NSString *)headerStr {
+
+    _headerStr = headerStr;
+    self.contentLabel.text = headerStr;
 }
 
 @end

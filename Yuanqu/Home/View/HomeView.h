@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 
 #pragma mark --宏定义
-//轮播图高度
+//header高度
 #define HomeHeaderViewHeight 50
 
 @interface HomeView : UITableView
+
+//选中回调
+@property (nonatomic, copy) void(^selectedBlock)(NSIndexPath *indexPath);
+
+//填充内容
+@property (nonatomic, copy) NSArray *contentArray;
 
 @end

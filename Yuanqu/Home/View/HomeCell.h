@@ -10,4 +10,10 @@
 
 @interface HomeCell : UITableViewCell
 
+//选中回调
+@property (nonatomic, copy) void(^selectedBlock)(NSIndexPath *indexPath);
+
+//填充内容
+@property (nonatomic, copy) NSArray *contentArray;
+
 @end

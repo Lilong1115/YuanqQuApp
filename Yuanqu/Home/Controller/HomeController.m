@@ -11,10 +11,15 @@
 #import "BusinessFlowLayout.h"
 #import "BusinessCollectionView.h"
 #import "HomeView.h"
+#import "SurroundingController.h"
+#import "HomeBaseModel.h"
+#import "Calculate.h"
+#import "HomeModel.h"
 
 #pragma mark --宏定义
 //轮播图高度
 #define CycleViewHeight 200
+
 
 @interface HomeController ()<UIScrollViewDelegate>
 
@@ -33,8 +38,15 @@
     
     scrollView.delegate = self;
     
+    NSArray *array = [HomeBaseModel getHomeBaseModelArray];
+    
+    __block CGFloat homeHeight = 0;
+    [array enumerateObjectsUsingBlock:^(HomeBaseModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        homeHeight += (ScreenW / BusinessColumns * [Calculate calculateRowsWithCount:obj.content.count columns:BusinessColumns] + HomeHeaderViewHeight);
+    }];
+    
     //滚动范围
-    scrollView.contentSize = CGSizeMake(ScreenW, (ScreenW / 4 * 2 + HomeHeaderViewHeight) * 2 + CycleViewHeight);
+    scrollView.contentSize = CGSizeMake(ScreenW, homeHeight + CycleViewHeight);
     
     self.view = scrollView;
 }
@@ -61,8 +73,7 @@
     NSArray *imagesURLStrings = @[
                                   @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg",
                                   @"https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
-                                  @"http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg",
-                                  @"https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg"
+                                  @"http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg"
                                   ];
     
     
@@ -80,11 +91,36 @@
 //设置业务区内容
 - (void)setupBusinessView {
     
+    NSArray *array = [HomeBaseModel getHomeBaseModelArray];
+    
+    __block CGFloat homeHeight = 0;
+    [array enumerateObjectsUsingBlock:^(HomeBaseModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        homeHeight += (ScreenW / BusinessColumns * [Calculate calculateRowsWithCount:obj.content.count columns:BusinessColumns] + HomeHeaderViewHeight);
+    }];
+    
     //业务视图
-    HomeView *homeView = [[HomeView alloc]initWithFrame:CGRectMake(0, CycleViewHeight, ScreenW, (ScreenW / 4 * 2 + HomeHeaderViewHeight) * 2) style:UITableViewStylePlain];
+    HomeView *homeView = [[HomeView alloc]initWithFrame:CGRectMake(0, CycleViewHeight, ScreenW, homeHeight) style:UITableViewStylePlain];
+    
+    homeView.contentArray = array;
+    
+    //点击业务回调
+    __weak HomeController *weakSelf = self;
+    homeView.selectedBlock = ^(NSIndexPath *indexPath) {
+        __strong HomeController *strongSelf = weakSelf;
+        
+        HomeBaseModel *baseModel = array[indexPath.section];
+        HomeModel *model = baseModel.content[indexPath.item];
+        
+        //周边信息
+        if ([model.title isEqualToString:@"周边信息"]) {
+            SurroundingController *surroundingVC = [[SurroundingController alloc]init];
+            [strongSelf.navigationController pushViewController:surroundingVC animated:YES];
+        }
+        
+    };
 
     [self.view addSubview:homeView];
 }
-    
+
 
 @end
