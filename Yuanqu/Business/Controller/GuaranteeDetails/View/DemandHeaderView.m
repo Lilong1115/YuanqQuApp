@@ -50,6 +50,7 @@
     [contentButton setBackgroundColor:RandomColor];
     [self addSubview:contentButton];
     self.contentButton = contentButton;
+    [contentButton addTarget:self action:@selector(clickFunctionButton) forControlEvents:UIControlEventTouchUpInside];
     
     //白竖线
     UIView *whiteView = [[UIView alloc]init];
@@ -71,6 +72,15 @@
         make.width.mas_equalTo(8);
     }];
     
+}
+
+
+//点击功能按钮
+- (void)clickFunctionButton {
+
+    if (self.clickFunctionBlock) {
+        self.clickFunctionBlock(self.idx);
+    }
 }
 
 //是否隐藏按钮

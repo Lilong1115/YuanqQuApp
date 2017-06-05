@@ -10,4 +10,7 @@
 
 @interface GuaranteeDetailsController : UIViewController
 
+//navTitle
+@property (nonatomic, copy) NSString *navTitle;
+
 @end

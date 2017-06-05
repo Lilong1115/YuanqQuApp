@@ -22,6 +22,8 @@
 
 @interface EstimateView()
 
+//label
+@property (nonatomic, weak) UILabel *estimateLabel;
 //维修进度
 @property (nonatomic, weak) UILabel *maintenanceLabel;
 //维修进度星星
@@ -53,6 +55,7 @@
 
     //label
     UILabel *estimateLabel = [self creatLabelWithText:@"您对维修工作人员服务进行评价:"];
+    self.estimateLabel = estimateLabel;
     UILabel *maintenanceLabel = [self creatLabelWithText:@"维修进度:"];
     self.maintenanceLabel = maintenanceLabel;
     UILabel *workAttitudeLabel = [self creatLabelWithText:@"工作态度:"];
@@ -124,6 +127,22 @@
         make.height.mas_equalTo(50);
     }];
     
+}
+
+
+//根据内容设置详情
+- (void)setNavTitle:(NSString *)navTitle {
+
+    _navTitle = navTitle;
+    if ([navTitle isEqualToString:@"投诉评价"]) {
+        self.estimateLabel.text = @"您对服务工作人员进行评价:";
+        self.maintenanceLabel.hidden = YES;
+        self.maintenanceStarView.hidden = YES;
+        
+        [self.workAttitudeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.estimateLabel.mas_bottom).mas_offset(Margin);
+        }];
+    }
 }
 
 //确认点击

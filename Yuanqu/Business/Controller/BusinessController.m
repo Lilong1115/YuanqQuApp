@@ -72,6 +72,11 @@
             HandleController *handleVC = [[HandleController alloc]init];
             handleVC.navTitle = model.title;
             [strongSelf.navigationController pushViewController:handleVC animated:YES];
+        } else if ([model.title isEqualToString:@"任务"]) {
+            
+            HandleController *handleVC = [[HandleController alloc]init];
+            handleVC.navTitle = @"任务工单";
+            [strongSelf.navigationController pushViewController:handleVC animated:YES];
         }
         
     };

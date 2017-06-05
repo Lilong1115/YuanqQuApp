@@ -13,4 +13,7 @@
 //确认按钮点击回调
 @property (nonatomic, copy) void(^comfirmBlock)();
 
+//设置具体内容
+@property (nonatomic, copy) NSString *navTitle;
+
 @end

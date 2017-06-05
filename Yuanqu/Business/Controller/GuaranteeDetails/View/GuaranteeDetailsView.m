@@ -37,6 +37,8 @@
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
         
+        self.tableFooterView = [[UIView alloc]init];
+        
         [self setupGuaranteeDetailsHeaderView];
     }
     return self;
@@ -52,12 +54,12 @@
 #pragma mark --dataSoure
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 3;
+    return self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 3;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -75,6 +77,26 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
     DemandHeaderView *headerView = [[DemandHeaderView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 44)];
+    
+    //设置标记
+    headerView.idx = section;
+    //回调
+    __weak GuaranteeDetailsView *weakSelf = self;
+    headerView.clickFunctionBlock = ^(NSInteger idx) {
+        __strong GuaranteeDetailsView *strongSelf = weakSelf;
+        switch (idx) {
+            case 1:
+                if (strongSelf.complaintsBlock) {
+                    strongSelf.complaintsBlock();
+                }
+                break;
+            case 2:
+                
+                break;
+            default:
+                break;
+        }
+    };
     
     switch (section) {
         case 0:
@@ -107,6 +129,36 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
     return 44;
+}
+
+
+//是否有数据
+- (void)setIsTableData:(BOOL)isTableData {
+
+    _isTableData = isTableData;
+    
+    if (isTableData == NO) {
+
+        self.dataArray = @[];
+        [self reloadData];
+        
+    }
+    
+}
+
+
+#pragma mark --lazy
+- (NSArray *)dataArray {
+
+    if (_dataArray == nil) {
+        _dataArray = @[
+                       @"1",
+                       @"2",
+                       @"3"
+                       ];
+    }
+    
+    return _dataArray;
 }
 
 @end

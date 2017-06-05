@@ -115,6 +115,14 @@
         __strong ToGuaranteeController *strongSelf = weakSelf;
         
         GuaranteeDetailsController *guaranteeDetailsVC = [[GuaranteeDetailsController alloc]init];
+        
+        //设置不同内容
+        if ([self.navTitle isEqualToString:@"我要报修"]) {
+            guaranteeDetailsVC.navTitle = @"报修详情";
+        } else if ([self.navTitle isEqualToString:@"我要投诉"]) {
+            guaranteeDetailsVC.navTitle = @"投诉详情";
+        }
+        
         [strongSelf.navigationController pushViewController:guaranteeDetailsVC animated:YES];
     };
     

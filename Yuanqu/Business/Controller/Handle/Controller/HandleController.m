@@ -6,10 +6,11 @@
 //  Copyright © 2017年 李龙. All rights reserved.
 //
 
-//报修处理/投诉处理
+//报修处理/投诉处理/任务详情
 #import "HandleController.h"
 #import "HandleCell.h"
 #import "OrderDetailsController.h"
+#import "GuaranteeDetailsController.h"
 
 static NSString * const kHandleCellID = @"kHandleCellID";
 
@@ -81,9 +82,18 @@ static NSString * const kHandleCellID = @"kHandleCellID";
     cell.clickDetailsBlock = ^(){
         __strong HandleController *strongSelf = weakSelf;
         
-        OrderDetailsController *orderDetailsVC = [[OrderDetailsController alloc]init];
+        if ([self.navTitle isEqualToString:@"任务工单"]) {
+            
+            GuaranteeDetailsController *guaranteeDetailsVC = [[GuaranteeDetailsController alloc]init];
+            guaranteeDetailsVC.navTitle = @"任务详情";
+            [strongSelf.navigationController pushViewController:guaranteeDetailsVC animated:YES];
+            
+        } else {
+            OrderDetailsController *orderDetailsVC = [[OrderDetailsController alloc]init];
+            
+            [strongSelf.navigationController pushViewController:orderDetailsVC animated:YES];
+        }
         
-        [strongSelf.navigationController pushViewController:orderDetailsVC animated:YES];
     };
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

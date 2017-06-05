@@ -10,4 +10,7 @@
 
 @interface GuaranteeEstimateController : UIViewController
 
+//navTitle
+@property (nonatomic, copy) NSString *navTitle;
+
 @end

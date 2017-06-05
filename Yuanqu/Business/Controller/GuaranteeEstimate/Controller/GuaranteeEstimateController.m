@@ -27,13 +27,19 @@
 //设置Nav
 - (void)setupNav {
 
-    self.title = @"报修评价";
+    self.title = self.navTitle;
 }
 
 //设置评价视图
 - (void)setupEstimateView {
 
     EstimateView *estimaeView = [[EstimateView alloc]initWithFrame:CGRectMake(0, 64, ScreenW, ScreenH - 64)];
+    
+    //设置具体评价
+    if ([self.navTitle isEqualToString:@"投诉评价"]) {
+        estimaeView.navTitle = @"投诉评价";
+    }
+    
     //确认回调
     estimaeView.comfirmBlock = ^(){
         

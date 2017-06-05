@@ -18,5 +18,9 @@
 @property (nonatomic, copy) NSString *title;
 //按钮文字
 @property (nonatomic, copy) NSString *buttonStr;
+//点击按钮回调
+@property (nonatomic, copy) void(^clickFunctionBlock)(NSInteger idx);
+//标记
+@property (nonatomic, assign) NSInteger idx;
 
 @end
