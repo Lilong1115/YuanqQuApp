@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "TabBarController.h"
+#import "LoginController.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +20,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    //设置baseurl
+//    YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
+//    config.baseUrl = @"http://yuantiku.com";
+//    config.cdnUrl = @"http://fen.bi";
+    
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
+    LoginController *loginVC = [[LoginController alloc]init];
     
     TabBarController *tabBar = [[TabBarController alloc]init];
     self.window.rootViewController = tabBar;

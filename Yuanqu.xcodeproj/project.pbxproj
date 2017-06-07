@@ -57,6 +57,18 @@
 		5AEADF481EE54F5B004EB475 /* star-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AEADF451EE54F5B004EB475 /* star-empty.png */; };
 		5AEADF491EE54F5B004EB475 /* star-half.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AEADF461EE54F5B004EB475 /* star-half.png */; };
 		5AEADF531EE56194004EB475 /* OptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF521EE56194004EB475 /* OptionsView.m */; };
+		5AEADF5A1EE63A49004EB475 /* LeaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF591EE63A49004EB475 /* LeaseController.m */; };
+		5AEADF5D1EE64199004EB475 /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF5C1EE64199004EB475 /* SearchBar.m */; };
+		5AEADF601EE65DDF004EB475 /* LeaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF5F1EE65DDF004EB475 /* LeaseView.m */; };
+		5AEADF631EE67456004EB475 /* LeaseDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF621EE67456004EB475 /* LeaseDetailsController.m */; };
+		5AEADF661EE67E89004EB475 /* LeaseDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF651EE67E89004EB475 /* LeaseDetailsView.m */; };
+		5AEADF691EE684C6004EB475 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF681EE684C6004EB475 /* NSDate+Extension.m */; };
+		5AEADF6E1EE69229004EB475 /* BLDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF6D1EE69229004EB475 /* BLDatePickerView.m */; };
+		5AEADF711EE69937004EB475 /* TimeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF701EE69937004EB475 /* TimeCollectionView.m */; };
+		5AEADF781EE789BF004EB475 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF771EE789BF004EB475 /* LoginController.m */; };
+		5AEADF7F1EE7DEE4004EB475 /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF7E1EE7DEE4004EB475 /* MessageController.m */; };
+		5AEADF821EE7F605004EB475 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF811EE7F605004EB475 /* MessageCell.m */; };
+		5AEADF851EE7FDFA004EB475 /* MessageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF841EE7FDFA004EB475 /* MessageHeaderView.m */; };
 		9F821A8BC81ADE09044ABC37 /* libPods-Yuanqu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E2FFBBE922A97C8DD52947 /* libPods-Yuanqu.a */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +172,30 @@
 		5AEADF461EE54F5B004EB475 /* star-half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-half.png"; sourceTree = "<group>"; };
 		5AEADF511EE56194004EB475 /* OptionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsView.h; sourceTree = "<group>"; };
 		5AEADF521EE56194004EB475 /* OptionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsView.m; sourceTree = "<group>"; };
+		5AEADF581EE63A49004EB475 /* LeaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaseController.h; sourceTree = "<group>"; };
+		5AEADF591EE63A49004EB475 /* LeaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaseController.m; sourceTree = "<group>"; };
+		5AEADF5B1EE64199004EB475 /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
+		5AEADF5C1EE64199004EB475 /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
+		5AEADF5E1EE65DDF004EB475 /* LeaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaseView.h; sourceTree = "<group>"; };
+		5AEADF5F1EE65DDF004EB475 /* LeaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaseView.m; sourceTree = "<group>"; };
+		5AEADF611EE67456004EB475 /* LeaseDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaseDetailsController.h; sourceTree = "<group>"; };
+		5AEADF621EE67456004EB475 /* LeaseDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaseDetailsController.m; sourceTree = "<group>"; };
+		5AEADF641EE67E89004EB475 /* LeaseDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaseDetailsView.h; sourceTree = "<group>"; };
+		5AEADF651EE67E89004EB475 /* LeaseDetailsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaseDetailsView.m; sourceTree = "<group>"; };
+		5AEADF671EE684C6004EB475 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		5AEADF681EE684C6004EB475 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		5AEADF6C1EE69229004EB475 /* BLDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLDatePickerView.h; sourceTree = "<group>"; };
+		5AEADF6D1EE69229004EB475 /* BLDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLDatePickerView.m; sourceTree = "<group>"; };
+		5AEADF6F1EE69937004EB475 /* TimeCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCollectionView.h; sourceTree = "<group>"; };
+		5AEADF701EE69937004EB475 /* TimeCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeCollectionView.m; sourceTree = "<group>"; };
+		5AEADF761EE789BF004EB475 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		5AEADF771EE789BF004EB475 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		5AEADF7D1EE7DEE4004EB475 /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
+		5AEADF7E1EE7DEE4004EB475 /* MessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageController.m; sourceTree = "<group>"; };
+		5AEADF801EE7F605004EB475 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		5AEADF811EE7F605004EB475 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		5AEADF831EE7FDFA004EB475 /* MessageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageHeaderView.h; sourceTree = "<group>"; };
+		5AEADF841EE7FDFA004EB475 /* MessageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageHeaderView.m; sourceTree = "<group>"; };
 		A47688B1CC7BE83623239DB8 /* Pods-Yuanqu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yuanqu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yuanqu/Pods-Yuanqu.release.xcconfig"; sourceTree = "<group>"; };
 		E5E2FFBBE922A97C8DD52947 /* libPods-Yuanqu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Yuanqu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -211,6 +247,7 @@
 				5A0B1D031ED6B38000179C8C /* Home */,
 				5A0B1CFF1ED6B38000179C8C /* Business */,
 				5A0B1D071ED6B38000179C8C /* Mine */,
+				5AEADF721EE789A6004EB475 /* Login */,
 				5A0B1CE41ED6A76A00179C8C /* Supporting Files */,
 			);
 			path = Yuanqu;
@@ -297,6 +334,7 @@
 				5AEADEB51EDEAEAF004EB475 /* GuaranteeDetails */,
 				5AEADE9B1EDE7022004EB475 /* ToGuarantee */,
 				5AEADF4A1EE5540B004EB475 /* Task */,
+				5AEADF541EE638A7004EB475 /* Lease */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -374,6 +412,7 @@
 			children = (
 				5A0B1D181ED6DFF000179C8C /* MineController.h */,
 				5A0B1D191ED6DFF000179C8C /* MineController.m */,
+				5AEADF791EE7DECF004EB475 /* Message */,
 				5A0B1D1F1ED80A9800179C8C /* Setting */,
 			);
 			path = Controller;
@@ -587,6 +626,8 @@
 				5AEADEF71EDFBD7C004EB475 /* UITextView+Placeholder.m */,
 				5AEADEF91EDFC15A004EB475 /* UIColor+Extension.h */,
 				5AEADEFA1EDFC15A004EB475 /* UIColor+Extension.m */,
+				5AEADF671EE684C6004EB475 /* NSDate+Extension.h */,
+				5AEADF681EE684C6004EB475 /* NSDate+Extension.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -718,6 +759,137 @@
 			children = (
 				5AEADF511EE56194004EB475 /* OptionsView.h */,
 				5AEADF521EE56194004EB475 /* OptionsView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5AEADF541EE638A7004EB475 /* Lease */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADF551EE638A7004EB475 /* Controller */,
+				5AEADF561EE638A7004EB475 /* Model */,
+				5AEADF571EE638A7004EB475 /* View */,
+			);
+			path = Lease;
+			sourceTree = "<group>";
+		};
+		5AEADF551EE638A7004EB475 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADF581EE63A49004EB475 /* LeaseController.h */,
+				5AEADF591EE63A49004EB475 /* LeaseController.m */,
+				5AEADF611EE67456004EB475 /* LeaseDetailsController.h */,
+				5AEADF621EE67456004EB475 /* LeaseDetailsController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5AEADF561EE638A7004EB475 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5AEADF571EE638A7004EB475 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADF6A1EE69229004EB475 /* date */,
+				5AEADF5B1EE64199004EB475 /* SearchBar.h */,
+				5AEADF5C1EE64199004EB475 /* SearchBar.m */,
+				5AEADF5E1EE65DDF004EB475 /* LeaseView.h */,
+				5AEADF5F1EE65DDF004EB475 /* LeaseView.m */,
+				5AEADF641EE67E89004EB475 /* LeaseDetailsView.h */,
+				5AEADF651EE67E89004EB475 /* LeaseDetailsView.m */,
+				5AEADF6F1EE69937004EB475 /* TimeCollectionView.h */,
+				5AEADF701EE69937004EB475 /* TimeCollectionView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5AEADF6A1EE69229004EB475 /* date */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADF6B1EE69229004EB475 /* BLDatePickerView */,
+			);
+			path = date;
+			sourceTree = "<group>";
+		};
+		5AEADF6B1EE69229004EB475 /* BLDatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADF6C1EE69229004EB475 /* BLDatePickerView.h */,
+				5AEADF6D1EE69229004EB475 /* BLDatePickerView.m */,
+			);
+			path = BLDatePickerView;
+			sourceTree = "<group>";
+		};
+		5AEADF721EE789A6004EB475 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADF731EE789A6004EB475 /* Controller */,
+				5AEADF741EE789A6004EB475 /* Model */,
+				5AEADF751EE789A6004EB475 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		5AEADF731EE789A6004EB475 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADF761EE789BF004EB475 /* LoginController.h */,
+				5AEADF771EE789BF004EB475 /* LoginController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5AEADF741EE789A6004EB475 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5AEADF751EE789A6004EB475 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5AEADF791EE7DECF004EB475 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADF7A1EE7DECF004EB475 /* Controller */,
+				5AEADF7B1EE7DECF004EB475 /* Model */,
+				5AEADF7C1EE7DECF004EB475 /* View */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		5AEADF7A1EE7DECF004EB475 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADF7D1EE7DEE4004EB475 /* MessageController.h */,
+				5AEADF7E1EE7DEE4004EB475 /* MessageController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5AEADF7B1EE7DECF004EB475 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5AEADF7C1EE7DECF004EB475 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADF801EE7F605004EB475 /* MessageCell.h */,
+				5AEADF811EE7F605004EB475 /* MessageCell.m */,
+				5AEADF831EE7FDFA004EB475 /* MessageHeaderView.h */,
+				5AEADF841EE7FDFA004EB475 /* MessageHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -860,24 +1032,32 @@
 				5AEADF111EE2A2CA004EB475 /* HomeBaseModel.m in Sources */,
 				5AEADF421EE54D49004EB475 /* CJTStarView.m in Sources */,
 				5A0B1D1E1ED6E47F00179C8C /* MineHeaderView.m in Sources */,
+				5AEADF5A1EE63A49004EB475 /* LeaseController.m in Sources */,
+				5AEADF821EE7F605004EB475 /* MessageCell.m in Sources */,
 				5AEADEC41EDEB7BF004EB475 /* GuaranteeDetailsHeaderView.m in Sources */,
 				5AEADE9A1EDE4FC3004EB475 /* ScrollToView.m in Sources */,
 				5AEADF351EE5253A004EB475 /* AssignedPersonnelView.m in Sources */,
 				5AEADF3D1EE54D1A004EB475 /* EstimateView.m in Sources */,
+				5AEADF631EE67456004EB475 /* LeaseDetailsController.m in Sources */,
 				5AEADF381EE5361A004EB475 /* DispatchPersonnelController.m in Sources */,
 				5AEADEFB1EDFC15A004EB475 /* UIColor+Extension.m in Sources */,
+				5AEADF601EE65DDF004EB475 /* LeaseView.m in Sources */,
 				5A0B1D251ED80AB100179C8C /* SettingController.m in Sources */,
 				5A0B1D0E1ED6BC5500179C8C /* TabBarController.m in Sources */,
 				5AEADEB01EDE9C5E004EB475 /* DemandGuaranteeView.m in Sources */,
 				5A0B1D111ED6BE8100179C8C /* NavigationController.m in Sources */,
+				5AEADF781EE789BF004EB475 /* LoginController.m in Sources */,
 				5AEADF321EE523A1004EB475 /* DetailsView.m in Sources */,
 				5AEADECF1EDEC84B004EB475 /* GuaranteeEstimateController.m in Sources */,
 				5AEADEA41EDE73C6004EB475 /* WriteGuaranteeView.m in Sources */,
+				5AEADF851EE7FDFA004EB475 /* MessageHeaderView.m in Sources */,
 				5AEADF291EE4E71D004EB475 /* HandleController.m in Sources */,
 				5A0B1D471ED95F7E00179C8C /* ScrollToSwitchView.m in Sources */,
+				5AEADF6E1EE69229004EB475 /* BLDatePickerView.m in Sources */,
 				5A0B1CE91ED6A76A00179C8C /* AppDelegate.m in Sources */,
 				5A0B1D3A1ED9526000179C8C /* HomeHeaderView.m in Sources */,
 				5AEADF431EE54D49004EB475 /* CJTStarView2.m in Sources */,
+				5AEADF5D1EE64199004EB475 /* SearchBar.m in Sources */,
 				5AEADF0B1EE28E21004EB475 /* UIImage+Extension.m in Sources */,
 				5A0B1D311ED92BB700179C8C /* BusinessCell.m in Sources */,
 				5A0B1D2B1ED9267F00179C8C /* BusinessCollectionView.m in Sources */,
@@ -887,7 +1067,9 @@
 				5A0B1CE61ED6A76A00179C8C /* main.m in Sources */,
 				5AEADF081EDFEBEE004EB475 /* SurroundingController.m in Sources */,
 				5AEADF2C1EE4E8B8004EB475 /* HandleCell.m in Sources */,
+				5AEADF7F1EE7DEE4004EB475 /* MessageController.m in Sources */,
 				5A0B1D171ED6C37800179C8C /* HomeController.m in Sources */,
+				5AEADF661EE67E89004EB475 /* LeaseDetailsView.m in Sources */,
 				5AEADEBE1EDEAF38004EB475 /* GuaranteeDetailsView.m in Sources */,
 				5A0B1D281ED8395800179C8C /* BusinessController.m in Sources */,
 				5A0B1D411ED95AFB00179C8C /* SuggestionController.m in Sources */,
@@ -895,6 +1077,8 @@
 				5AEADEA71EDE8FDD004EB475 /* GuaranteeModel.m in Sources */,
 				5AEADF531EE56194004EB475 /* OptionsView.m in Sources */,
 				5AEADEFE1EDFD67F004EB475 /* Calculate.m in Sources */,
+				5AEADF691EE684C6004EB475 /* NSDate+Extension.m in Sources */,
+				5AEADF711EE69937004EB475 /* TimeCollectionView.m in Sources */,
 				5A0B1D371ED94E0E00179C8C /* HomeCell.m in Sources */,
 				5AEADEBB1EDEAEE3004EB475 /* GuaranteeDetailsController.m in Sources */,
 				5AEADEAD1EDE97B6004EB475 /* WriteGuaranteeFooterView.m in Sources */,

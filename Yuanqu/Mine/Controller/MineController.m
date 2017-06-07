@@ -10,6 +10,7 @@
 #import "MineController.h"
 #import "MineHeaderView.h"
 #import "SettingController.h"
+#import "MessageController.h"
 
 #pragma mark --宏定义
 //头视图高度
@@ -125,6 +126,15 @@ static NSString * const kMineCellID = @"kMineCellID";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
     return section == 0 ? 10 : 0;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        
+        MessageController *messageVC = [[MessageController alloc]initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:messageVC animated:YES];
+    }
 }
     
 

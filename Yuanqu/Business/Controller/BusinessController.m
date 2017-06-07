@@ -12,6 +12,7 @@
 #import "ToGuaranteeController.h"
 #import "HomeModel.h"
 #import "HandleController.h"
+#import "LeaseController.h"
 
 @interface BusinessController ()
 
@@ -77,6 +78,10 @@
             HandleController *handleVC = [[HandleController alloc]init];
             handleVC.navTitle = @"任务工单";
             [strongSelf.navigationController pushViewController:handleVC animated:YES];
+        } else if ([model.title isEqualToString:@"租赁"]) {
+            
+            LeaseController *leaseVC = [[LeaseController alloc]init];
+            [strongSelf.navigationController pushViewController:leaseVC animated:YES];
         }
         
     };

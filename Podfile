@@ -10,4 +10,7 @@ pod 'MJRefresh', '~> 3.1.12'
 pod 'IQKeyboardManager', '~> 4.0.9'
 pod 'AMap3DMap-NO-IDFA', '~> 5.0.0'
 pod 'AMapSearch-NO-IDFA', '~> 5.1.0'
+pod 'ECCustomDatePicker', '~> 1.0.1'
+pod 'YTKNetwork', '~> 2.0.3'
+pod 'UITableView+FDTemplateLayoutCell', '~> 1.6'
 end
