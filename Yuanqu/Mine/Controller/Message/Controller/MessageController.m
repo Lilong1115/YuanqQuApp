@@ -32,11 +32,17 @@
 //设置table
 - (void)setupTable {
     
-    
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    //去掉下划线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
+    //注册
     [self.tableView registerClass:[MessageCell class] forCellReuseIdentifier:@"cellID"];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [self.tableView.mj_header endRefreshing];
+    }];
     
 }
 
@@ -60,6 +66,7 @@
     return cell;
 }
 
+//设置cell高度并缓存
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     return [tableView fd_heightForCellWithIdentifier:@"cellID" cacheByIndexPath:indexPath configuration:^(id cell) {
@@ -67,11 +74,13 @@
     }];
 }
 
+//头视图高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
     return 50;
 }
 
+//头视图
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
     return [[MessageHeaderView alloc]init];

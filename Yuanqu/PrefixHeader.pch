@@ -21,6 +21,8 @@
 #import <MJRefresh.h>
 #import <YTKNetwork.h>
 #import <UITableView+FDTemplateLayoutCell.h>
+#import <UIImageView+WebCache.h>
+#import <MBProgressHUD.h>
 
 //分类
 #import "UITextView+Placeholder.h"

@@ -63,6 +63,7 @@
 
     _model = model;
     self.textLabel.text = model.title;
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.icon]];
 }
     
 @end

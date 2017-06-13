@@ -69,6 +69,9 @@
 		5AEADF7F1EE7DEE4004EB475 /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF7E1EE7DEE4004EB475 /* MessageController.m */; };
 		5AEADF821EE7F605004EB475 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF811EE7F605004EB475 /* MessageCell.m */; };
 		5AEADF851EE7FDFA004EB475 /* MessageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADF841EE7FDFA004EB475 /* MessageHeaderView.m */; };
+		5AEADFB61EEA9B70004EB475 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADFB51EEA9B70004EB475 /* WebViewController.m */; };
+		5AEADFB91EEB8B9E004EB475 /* LoginRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADFB81EEB8B9E004EB475 /* LoginRegister.m */; };
+		5AEADFDA1EEE7394004EB475 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADFD91EEE7394004EB475 /* Account.m */; };
 		9F821A8BC81ADE09044ABC37 /* libPods-Yuanqu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E2FFBBE922A97C8DD52947 /* libPods-Yuanqu.a */; };
 /* End PBXBuildFile section */
 
@@ -196,6 +199,12 @@
 		5AEADF811EE7F605004EB475 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		5AEADF831EE7FDFA004EB475 /* MessageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageHeaderView.h; sourceTree = "<group>"; };
 		5AEADF841EE7FDFA004EB475 /* MessageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageHeaderView.m; sourceTree = "<group>"; };
+		5AEADFB41EEA9B70004EB475 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		5AEADFB51EEA9B70004EB475 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		5AEADFB71EEB8B9E004EB475 /* LoginRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRegister.h; sourceTree = "<group>"; };
+		5AEADFB81EEB8B9E004EB475 /* LoginRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRegister.m; sourceTree = "<group>"; };
+		5AEADFD81EEE7394004EB475 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		5AEADFD91EEE7394004EB475 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		A47688B1CC7BE83623239DB8 /* Pods-Yuanqu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yuanqu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yuanqu/Pods-Yuanqu.release.xcconfig"; sourceTree = "<group>"; };
 		E5E2FFBBE922A97C8DD52947 /* libPods-Yuanqu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Yuanqu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -368,6 +377,7 @@
 			children = (
 				5A0B1D151ED6C37800179C8C /* HomeController.h */,
 				5A0B1D161ED6C37800179C8C /* HomeController.m */,
+				5AEADFB01EEA9B56004EB475 /* WebView */,
 				5AEADF021EDFEBDC004EB475 /* Surrounding */,
 			);
 			path = Controller;
@@ -846,6 +856,10 @@
 		5AEADF741EE789A6004EB475 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5AEADFB71EEB8B9E004EB475 /* LoginRegister.h */,
+				5AEADFB81EEB8B9E004EB475 /* LoginRegister.m */,
+				5AEADFD81EEE7394004EB475 /* Account.h */,
+				5AEADFD91EEE7394004EB475 /* Account.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -890,6 +904,39 @@
 				5AEADF811EE7F605004EB475 /* MessageCell.m */,
 				5AEADF831EE7FDFA004EB475 /* MessageHeaderView.h */,
 				5AEADF841EE7FDFA004EB475 /* MessageHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5AEADFB01EEA9B56004EB475 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADFB11EEA9B56004EB475 /* Controller */,
+				5AEADFB21EEA9B56004EB475 /* Model */,
+				5AEADFB31EEA9B56004EB475 /* View */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		5AEADFB11EEA9B56004EB475 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5AEADFB41EEA9B70004EB475 /* WebViewController.h */,
+				5AEADFB51EEA9B70004EB475 /* WebViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5AEADFB21EEA9B56004EB475 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5AEADFB31EEA9B56004EB475 /* View */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1031,6 +1078,7 @@
 				5AEADEC11EDEB340004EB475 /* DemandHeaderView.m in Sources */,
 				5AEADF111EE2A2CA004EB475 /* HomeBaseModel.m in Sources */,
 				5AEADF421EE54D49004EB475 /* CJTStarView.m in Sources */,
+				5AEADFB61EEA9B70004EB475 /* WebViewController.m in Sources */,
 				5A0B1D1E1ED6E47F00179C8C /* MineHeaderView.m in Sources */,
 				5AEADF5A1EE63A49004EB475 /* LeaseController.m in Sources */,
 				5AEADF821EE7F605004EB475 /* MessageCell.m in Sources */,
@@ -1060,6 +1108,7 @@
 				5AEADF5D1EE64199004EB475 /* SearchBar.m in Sources */,
 				5AEADF0B1EE28E21004EB475 /* UIImage+Extension.m in Sources */,
 				5A0B1D311ED92BB700179C8C /* BusinessCell.m in Sources */,
+				5AEADFDA1EEE7394004EB475 /* Account.m in Sources */,
 				5A0B1D2B1ED9267F00179C8C /* BusinessCollectionView.m in Sources */,
 				5A0B1D341ED94CD900179C8C /* HomeView.m in Sources */,
 				5A0B1D2E1ED929AC00179C8C /* BusinessFlowLayout.m in Sources */,
@@ -1067,6 +1116,7 @@
 				5A0B1CE61ED6A76A00179C8C /* main.m in Sources */,
 				5AEADF081EDFEBEE004EB475 /* SurroundingController.m in Sources */,
 				5AEADF2C1EE4E8B8004EB475 /* HandleCell.m in Sources */,
+				5AEADFB91EEB8B9E004EB475 /* LoginRegister.m in Sources */,
 				5AEADF7F1EE7DEE4004EB475 /* MessageController.m in Sources */,
 				5A0B1D171ED6C37800179C8C /* HomeController.m in Sources */,
 				5AEADF661EE67E89004EB475 /* LeaseDetailsView.m in Sources */,

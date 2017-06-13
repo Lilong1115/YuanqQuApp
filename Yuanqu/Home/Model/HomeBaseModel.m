@@ -16,41 +16,52 @@
                            @"type": @"办公保障",
                            @"content": @[
                                    @{
-                                       @"title": @"绿植租摆"
+                                       @"title": @"绿植租摆",
+                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
                                        },
                                    @{
-                                       @"title": @"送饮用水"
+                                       @"title": @"送饮用水",
+                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
                                        },
                                    @{
-                                       @"title": @"入室保洁"
+                                       @"title": @"入室保洁",
+                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
                                        },
                                    @{
-                                       @"title": @"电话网络"
+                                       @"title": @"电话网络",
+                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
                                        },
                                    @{
-                                       @"title": @"优惠促销"
+                                       @"title": @"优惠促销",
+                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
                                        },
                                    @{
-                                       @"title": @"周边信息"
+                                       @"title": @"周边信息",
+                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
                                        }
                                    ]},
                        @{
                            @"type": @"服务指南",
                            @"content": @[
                                    @{
-                                       @"title": @"园区信息"
+                                       @"title": @"园区信息",
+                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
                                        },
                                    @{
-                                       @"title": @"入驻流程"
+                                       @"title": @"入驻流程",
+                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
                                        },
                                    @{
-                                       @"title": @"装修流程"
+                                       @"title": @"装修流程",
+                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
                                        },
                                    @{
-                                       @"title": @"收费标准"
+                                       @"title": @"收费标准",
+                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
                                        },
                                    @{
-                                       @"title": @"出租房源"
+                                       @"title": @"出租房源",
+                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
                                        }
                                    ]},
                        ];

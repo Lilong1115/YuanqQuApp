@@ -8,6 +8,7 @@
 
 //登录
 #import "LoginController.h"
+#import "LoginRegister.h"
 
 #pragma mark --宏
 #define TextHeight 50
@@ -50,9 +51,9 @@
     self.password = password;
     
     //是否隐藏按钮
-    UIButton *secureTextButton = [[UIButton alloc]initWithFrame:CGRectMake(password.bounds.size.width - Margin - TextHeight / 2, TextHeight / 2 / 2, 40, TextHeight / 2)];
-    [secureTextButton setBackgroundImage:[UIImage imageNamed:@"location_bank"] forState:UIControlStateNormal];
-    [secureTextButton setBackgroundImage:[UIImage imageNamed:@"location_hospital"] forState:UIControlStateSelected];
+    UIButton *secureTextButton = [[UIButton alloc]initWithFrame:CGRectMake(password.bounds.size.width - Margin - TextHeight / 3, (TextHeight  - TextHeight / 3) / 2, 25, TextHeight / 3)];
+    [secureTextButton setBackgroundImage:[UIImage imageNamed:@"password_novisible"] forState:UIControlStateNormal];
+    [secureTextButton setBackgroundImage:[UIImage imageNamed:@"password_visible"] forState:UIControlStateSelected];
     [password addSubview:secureTextButton];
     [secureTextButton addTarget:self action:@selector(showAndHidePassword:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -83,7 +84,7 @@
     self.password.secureTextEntry = sender.selected;
     sender.selected = !sender.selected;
     self.password.enabled = YES;  // the second one;
-    [self.password becomeFirstResponder]; // the third one
+    //[self.password becomeFirstResponder]; // the third one
 }
 
 //设置登录按钮
@@ -95,8 +96,31 @@
     [loginButton setTitle:@"登录" forState:UIControlStateNormal];
     [loginButton setBackgroundColor:[UIColor blueColor]];
     [self.view addSubview:loginButton];
+    [loginButton addTarget:self action:@selector(clickLoginButton) forControlEvents:UIControlEventTouchUpInside];
     
 }
+
+//登录
+- (void)clickLoginButton {
+
+    
+//    NSString *username = self.username.text;
+//    NSString *password = self.password.text;
+//    if (username.length > 0 && password.length > 0) {
+//        LoginRegister *api = [[LoginRegister alloc] initWithUsername:username password:password];
+//        [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+//            // 你可以直接在这里使用 self
+//            NSLog(@"succeed");
+//        } failure:^(YTKBaseRequest *request) {
+//            // 你可以直接在这里使用 self
+//            NSLog(@"failed");
+//        }];
+//    }
+    
+
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -12,6 +12,7 @@
 
 //名称
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *icon;
 
 + (NSArray *)getHomeModelArray;
 
