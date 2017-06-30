@@ -29,8 +29,9 @@
     
     // MARK: - 1设置背景
     [navBar setBarTintColor:[UIColor colorWithHexString:@"#3e5880"]];
+
     
-//    navBar.translucent = NO;
+//    navBar.translucent = YES;
     
     // MARK: - 2.设置标题颜色
     [navBar setTitleTextAttributes:@{

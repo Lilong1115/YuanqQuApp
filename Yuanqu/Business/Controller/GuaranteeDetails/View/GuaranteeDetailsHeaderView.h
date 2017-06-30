@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class GuaranteeListModel;
+
 @interface GuaranteeDetailsHeaderView : UIView
+
+//model
+@property (nonatomic, strong) GuaranteeListModel *model;
 
 @end

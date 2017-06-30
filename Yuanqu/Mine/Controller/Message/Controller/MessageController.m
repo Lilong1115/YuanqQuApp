@@ -70,7 +70,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     return [tableView fd_heightForCellWithIdentifier:@"cellID" cacheByIndexPath:indexPath configuration:^(id cell) {
-        
     }];
 }
 

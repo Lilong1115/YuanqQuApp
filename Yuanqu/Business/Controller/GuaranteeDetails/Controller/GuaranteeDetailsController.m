@@ -12,6 +12,9 @@
 #import "GuaranteeEstimateController.h"
 #import "ToGuaranteeController.h"
 #import "OptionsView.h"
+#import "GuaranteeListModel.h"
+#import "LogModel.h"
+#import "LogBaseModel.h"
 
 #pragma mark --宏定义
 //底部视图高度
@@ -26,6 +29,10 @@
 //是否收费
 @property (nonatomic, strong) OptionsView *optionsView;
 
+@property (nonatomic, weak) GuaranteeDetailsView *guaranteeDetailsView;
+
+@property (nonatomic, weak) UIButton *estimateButton;
+
 @end
 
 @implementation GuaranteeDetailsController
@@ -39,6 +46,41 @@
     
     [self setupGuaranteeDetailsView];
     [self setupToEstimate];
+    
+    //通知 确认成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(repairOrderSuccessNotification:) name:RepairOrderSuccessNotification object:nil];
+    
+    //评价成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(estimateSuccessNotification:) name:EstimateSuccessNotification object:nil];
+    
+    //log列表通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appLogListSuccessNotification:) name:AppLogListSuccessNotification object:nil];
+}
+
+//log列表通知
+- (void)appLogListSuccessNotification:(NSNotification *)noti {
+    
+    //刷新
+    self.guaranteeDetailsView.dataArray = noti.object;
+    [self.guaranteeDetailsView reloadData];
+}
+
+//评价成功
+- (void)estimateSuccessNotification:(NSNotification *)noti {
+    
+    //变成1
+    self.model.rd_CLBJ = @"2";
+    self.estimateButton.hidden = YES;
+    
+}
+
+//通知 确认成功
+- (void)repairOrderSuccessNotification:(NSNotification *)noti {
+    
+    [ProgressHUD showSuccess:@"确认成功"];
+    [self.estimateButton setTitle:@"我要评价" forState:UIControlStateNormal];
+    //变成1
+    self.model.rd_CLBJ = @"1";
 }
 
 //设置导航
@@ -52,12 +94,18 @@
 
     GuaranteeDetailsView *guaranteeDetailsView = [[GuaranteeDetailsView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH - FooterViewHeight) style:UITableViewStylePlain];
     
+    [LogBaseModel getLogModelArrayWithDict:@{
+                                         @"SYSID": self.model.sysid
+                                         }];
+    
     //回调
     __weak GuaranteeDetailsController *weakSelf = self;
     guaranteeDetailsView.complaintsBlock = ^(){
         __strong GuaranteeDetailsController *strongSelf = weakSelf;
         ToGuaranteeController *ToGuaranteeVC = [[ToGuaranteeController alloc]init];
         ToGuaranteeVC.navTitle = @"我要投诉";
+        ToGuaranteeVC.model = strongSelf.model;
+        ToGuaranteeVC.isPhoto = NO;
         [strongSelf.navigationController pushViewController:ToGuaranteeVC animated:YES];
     };
     
@@ -68,7 +116,16 @@
         guaranteeDetailsView.isTableData = NO;
     }
     [self.view addSubview:guaranteeDetailsView];
+    self.guaranteeDetailsView = guaranteeDetailsView;
+    guaranteeDetailsView.model = self.model;
 }
+
+
+//- (void)setModel:(GuaranteeListModel *)model {
+//    
+//    _model = model;
+////    self.guaranteeDetailsView.model = model;
+//}
 
 //设置我要评价
 - (void)setupToEstimate {
@@ -78,17 +135,24 @@
     NSString *estimateStr;
     
     if ([self.navTitle isEqualToString:@"报修详情"]) {
-        
+                
         estimateButtonY += ScreenH - FooterViewHeight + FooterViewMargin;
-        estimateStr = @"我要评价";
+        if ([self.model.rd_CLBJ integerValue] == 0) {
+            estimateStr = @"我要确认";
+        } else if ([self.model.rd_CLBJ integerValue] == 1) {
+            estimateStr = @"我要评价";
+        } else if ([self.model.rd_CLBJ integerValue] > 1) {
+            return;
+        }
+        
         
     } else if ([self.navTitle isEqualToString:@"投诉详情"]) {
     
-        estimateButtonY += 400;
+        estimateButtonY += 320;
         estimateStr = @"我要评价";
     } else if ([self.navTitle isEqualToString:@"任务详情"]) {
     
-        estimateButtonY += 400;
+        estimateButtonY += 320;
         estimateStr = @"收取任务";
     }
     
@@ -101,6 +165,7 @@
     [estimateButton addTarget:self action:@selector(clickEstimateButton:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:estimateButton];
+    self.estimateButton = estimateButton;
     
 }
 
@@ -120,12 +185,26 @@
         return;
     }
     
+    if ([self.model.rd_CLBJ integerValue] == 0) {
+        //ITEMID  ，USERID  ，USERNAME ，RD_CLBJ
+        NSDictionary *dict = @{
+                               @"ITEMID": self.model.sysid,
+                               @"USERID": [UserInfo account].dsoa_user_code,
+                               @"USERNAME": [UserInfo account].dsoa_user_name,
+                               @"RD_CLBJ": self.model.rd_CLBJ
+                               };
+        
+        [GuaranteeListModel repairSubmitWithDict:dict];
+        return;
+    }
+    
     GuaranteeEstimateController *guaranteeEstimateVC = [[GuaranteeEstimateController alloc]init];
     
     //设置标题
     if ([self.navTitle isEqualToString:@"报修详情"]) {
         
         guaranteeEstimateVC.navTitle = @"报修评价";
+        guaranteeEstimateVC.model = self.model;
         
     } else if ([self.navTitle isEqualToString:@"投诉详情"]) {
         
@@ -166,6 +245,12 @@
         [self.view addSubview:_optionsView];
     }
     return _optionsView;
+}
+
+
+- (void)dealloc {
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

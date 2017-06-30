@@ -8,18 +8,25 @@
 
 //登录
 #import "LoginController.h"
-#import "LoginRegister.h"
+#import "UserInfo.h"
+#import "TabBarController.h"
+#import "RegisterController.h"
+#import "NavigationController.h"
+#import "QRCodeReaderViewController.h"
 
 #pragma mark --宏
 #define TextHeight 50
 #define Margin 20
 
-@interface LoginController ()
+@interface LoginController ()<QRCodeReaderDelegate>
 
 //账户
 @property (nonatomic, weak) UITextField *username;
 //密码
 @property (nonatomic, weak) UITextField *password;
+
+//
+@property (nonatomic, weak) NavigationController *nav;
 
 @end
 
@@ -28,9 +35,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
     [self setupLogo];
     [self setupText];
     [self setupLoginButton];
+    
+    //注册通知
+    //登录成功的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login:) name:AppLoginSuccessNotification object:nil];
+    
+}
+
+//登陆成功
+- (void)login:(NSNotification *)noti {
+    
+    [ProgressHUD showSuccess:@"登陆成功"];
+    
+    //提示登陆成功时间
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIApplication sharedApplication].delegate.window.rootViewController = [[TabBarController alloc]init];
+    });
+    
+    
     
 }
 
@@ -90,7 +116,7 @@
 //设置登录按钮
 - (void)setupLoginButton {
 
-    UIButton *loginButton = [[UIButton alloc]initWithFrame:CGRectMake(Margin, ScreenH - Margin - TextHeight, ScreenW - Margin * 2, TextHeight)];
+    UIButton *loginButton = [[UIButton alloc]initWithFrame:CGRectMake(Margin, self.password.frame.origin.y + TextHeight + Margin, ScreenW - Margin * 2, TextHeight)];
     loginButton.layer.cornerRadius = 5;
     loginButton.layer.masksToBounds = YES;
     [loginButton setTitle:@"登录" forState:UIControlStateNormal];
@@ -98,27 +124,94 @@
     [self.view addSubview:loginButton];
     [loginButton addTarget:self action:@selector(clickLoginButton) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    //忘记密码
+    UIButton *forgotButton = [self creatButtonWithTitle:@"忘记密码"];
+    forgotButton.frame = CGRectMake(Margin, loginButton.frame.origin.y + TextHeight + Margin / 2, 80, 30);
+    [forgotButton addTarget:self action:@selector(clickForgotButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:forgotButton];
+    
+    //注册用户
+    UIButton *registerButton = [self creatButtonWithTitle:@"注册用户"];
+    registerButton.frame = CGRectMake(ScreenW - Margin - 80, loginButton.frame.origin.y + TextHeight + Margin / 2, 80, 30);
+    [registerButton addTarget:self action:@selector(clickRegisterButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:registerButton];
+    
+}
+
+//注册用户
+- (void)clickRegisterButton {
+
+    RegisterController *registerVC = [[RegisterController alloc]init];
+    registerVC.navTitle = @"注册";
+    registerVC.url = AppRegister_URL;
+    NavigationController *registerNav = [[NavigationController alloc]initWithRootViewController:registerVC];
+    
+    
+    [self presentViewController:registerNav animated:YES completion:nil];
+    
+
+}
+
+
+#pragma mark - QRCodeReader Delegate Methods
+
+- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
+{
+
+    NSLog(@"%@", result);
+}
+
+
+//忘记密码
+- (void)clickForgotButton {
+
+    QRCodeReaderViewController *reader = [QRCodeReaderViewController new];
+    reader.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    reader.navigationItem.rightBarButtonItem = nil;
+    reader.navigationItem.title = @"扫一扫";
+    reader.modalPresentationStyle = UIModalPresentationFormSheet;
+    reader.delegate = self;
+    
+    NavigationController *nav = [[NavigationController alloc]initWithRootViewController:reader];
+    self.nav = nav;
+    [self presentViewController:nav animated:YES completion:nil];
+
+}
+
+//返回按钮
+- (void)back {
+
+    [self.nav dismissViewControllerAnimated:YES completion:nil];
 }
 
 //登录
 - (void)clickLoginButton {
+    
+    NSString *username = self.username.text;
+    NSString *password = self.password.text;
+    if (username.length > 0 && password.length > 0) {
+        [ProgressHUD show:@"正在登陆..."];
+        //登陆过程
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UserInfo loginWithPhone:username password:password];
+        });
+    } else {
+    
+        [ProgressHUD showError:@"请输入账号和密码"];
+    }
+    
+}
 
-    
-//    NSString *username = self.username.text;
-//    NSString *password = self.password.text;
-//    if (username.length > 0 && password.length > 0) {
-//        LoginRegister *api = [[LoginRegister alloc] initWithUsername:username password:password];
-//        [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-//            // 你可以直接在这里使用 self
-//            NSLog(@"succeed");
-//        } failure:^(YTKBaseRequest *request) {
-//            // 你可以直接在这里使用 self
-//            NSLog(@"failed");
-//        }];
-//    }
-    
 
+//创建按钮
+- (UIButton *)creatButtonWithTitle:(NSString *)title {
+
+    UIButton *button = [[UIButton alloc]init];
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
+    return button;
 }
 
 
@@ -127,5 +220,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)dealloc {
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

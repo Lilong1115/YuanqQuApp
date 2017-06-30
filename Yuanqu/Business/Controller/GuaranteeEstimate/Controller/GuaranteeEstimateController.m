@@ -8,8 +8,11 @@
 //报修评价
 #import "GuaranteeEstimateController.h"
 #import "EstimateView.h"
+#import "GuaranteeListModel.h"
 
 @interface GuaranteeEstimateController ()
+
+@property (nonatomic, weak) EstimateView *estimateView;
 
 @end
 
@@ -22,6 +25,19 @@
     
     [self setupNav];
     [self setupEstimateView];
+    //评价 确认成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(repairOrderSuccessNotification:) name:RepairOrderSuccessNotification object:nil];
+}
+
+//评价 确认成功
+- (void)repairOrderSuccessNotification:(NSNotification *)noti {
+    
+    [ProgressHUD showSuccess:@"评价成功"];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:EstimateSuccessNotification object:nil];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 //设置Nav
@@ -41,12 +57,27 @@
     }
     
     //确认回调
+    __weak GuaranteeEstimateController *weakSelf = self;
     estimaeView.comfirmBlock = ^(){
+        __strong GuaranteeEstimateController *strongSelf = weakSelf;
         
-        NSLog(@"确认");
+//         ITEMID ，CE_PF， CE_MYD ， CE_PJNR ， RD_CLBJ，USERNAME ，USERID
+        NSDictionary *dict = @{
+                               @"ITEMID": strongSelf.model.sysid,
+                               @"CE_PF": strongSelf.estimateView.workAttitudeStr,
+                               @"CE_MYD": strongSelf.estimateView.maintenanceStr,
+                               @"CE_PJNR": strongSelf.estimateView.content,
+                               @"RD_CLBJ": strongSelf.model.rd_CLBJ,
+                               @"USERNAME": [UserInfo account].dsoa_user_name,
+                               @"USERID": [UserInfo account].dsoa_user_code
+                               };
+        
+        [GuaranteeListModel repairSubmitWithDict:dict];
+        
     };
     
     [self.view addSubview:estimaeView];
+    self.estimateView = estimaeView;
     
 }
 
@@ -55,5 +86,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

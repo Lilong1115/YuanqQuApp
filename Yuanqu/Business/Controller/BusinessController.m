@@ -13,8 +13,13 @@
 #import "HomeModel.h"
 #import "HandleController.h"
 #import "LeaseController.h"
+#import "RepairProcessController.h"
 
 @interface BusinessController ()
+
+@property (nonatomic, copy) NSArray *dataArray;
+
+@property (nonatomic, weak) BusinessCollectionView *businessView;
 
 @end
 
@@ -25,6 +30,17 @@
     
     [self setupNav];
     [self setupBusinessView];
+    
+    //业务
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appShowMenuListNotification:) name:AppShowMenuListNotification object:nil];
+}
+
+//业务
+- (void)appShowMenuListNotification:(NSNotification *)noti {
+    
+    self.dataArray = noti.object;
+    self.businessView.contentArray = self.dataArray;
+    [self.businessView reloadData];
 }
     
 //设置nav
@@ -40,45 +56,52 @@
     BusinessFlowLayout *flowLayout = [[BusinessFlowLayout alloc]init];
     flowLayout.businessColumns = 3;
     
-    NSArray *array = [HomeModel getHomeModelArray];
-    
     BusinessCollectionView *businessView = [[BusinessCollectionView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH - 49) collectionViewLayout:flowLayout];
     
-    businessView.contentArray = array;
+    [HomeModel getMenuListModelArray];
+    
+    businessView.contentArray = self.dataArray;
     
     //点击回调
     __weak BusinessController *weakSelf = self;
     businessView.selectedBlock = ^(NSIndexPath *indexPath) {
         __strong BusinessController *strongSelf = weakSelf;
         
-        HomeModel *model = array[indexPath.item];
+        HomeModel *model = strongSelf.dataArray[indexPath.item];
         
-        if ([model.title isEqualToString:@"报修"]) {
+        NSInteger type = [model.type integerValue];
+        
+        //报修
+        if (type == RepairType) {
             
             ToGuaranteeController *ToGuaranteeVC = [[ToGuaranteeController alloc]init];
             ToGuaranteeVC.navTitle = @"我要报修";
+            ToGuaranteeVC.isPhoto = YES;
             [strongSelf.navigationController pushViewController:ToGuaranteeVC animated:YES];
-        } else if ([model.title isEqualToString:@"报修处理"]) {
+            //报修处理
+        } else if (type == RepairOrderType) {
         
-            HandleController *handleVC = [[HandleController alloc]init];
-            handleVC.navTitle = model.title;
-            [strongSelf.navigationController pushViewController:handleVC animated:YES];
-        } else if ([model.title isEqualToString:@"投诉"]) {
+            RepairProcessController *RepairProcessVC = [[RepairProcessController alloc]init];
+            [strongSelf.navigationController pushViewController:RepairProcessVC animated:YES];
+            //投诉
+        } else if ([model.name isEqualToString:@"投诉"]) {
             
             ToGuaranteeController *ToGuaranteeVC = [[ToGuaranteeController alloc]init];
             ToGuaranteeVC.navTitle = @"我要投诉";
+            ToGuaranteeVC.isPhoto = NO;
             [strongSelf.navigationController pushViewController:ToGuaranteeVC animated:YES];
-        } else if ([model.title isEqualToString:@"投诉处理"]) {
+            //投诉处理
+        } else if ([model.name isEqualToString:@"投诉处理"]) {
             
             HandleController *handleVC = [[HandleController alloc]init];
-            handleVC.navTitle = model.title;
+            handleVC.navTitle = model.name;
             [strongSelf.navigationController pushViewController:handleVC animated:YES];
-        } else if ([model.title isEqualToString:@"任务"]) {
+        } else if ([model.name isEqualToString:@"任务"]) {
             
             HandleController *handleVC = [[HandleController alloc]init];
             handleVC.navTitle = @"任务工单";
             [strongSelf.navigationController pushViewController:handleVC animated:YES];
-        } else if ([model.title isEqualToString:@"租赁"]) {
+        } else if ([model.name isEqualToString:@"租赁"]) {
             
             LeaseController *leaseVC = [[LeaseController alloc]init];
             [strongSelf.navigationController pushViewController:leaseVC animated:YES];
@@ -87,6 +110,7 @@
     };
     
     [self.view addSubview:businessView];
+    self.businessView = businessView;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,6 +118,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc {
 
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

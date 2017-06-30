@@ -9,6 +9,7 @@
 //设置
 #import "SettingController.h"
 #import "SuggestionController.h"
+#import "LoginController.h"
 
 //cellid
 static NSString * const kSettingCellID = @"kSettingCellID";
@@ -88,7 +89,42 @@ static NSString * const kSettingCellID = @"kSettingCellID";
 //退出登录
 - (void)clickLogoutButton {
 
-    NSLog(@"退出登录");
+    HHAlertView *alertview = [[HHAlertView alloc] initWithTitle:@"退出登录" detailText:@"确认退出登录?" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"]];
+    [alertview setMode:HHAlertViewModeWarning];
+//    [alertview setEnterMode:HHAlertEnterModeFadeIn];
+//    [alertview setLeaveMode:HHAlertLeaveModeFadeOut];
+    [alertview showWithBlock:^(NSInteger index) {
+        
+        switch (index) {
+            case 1:
+                [self logout];
+                break;
+            default:
+                break;
+        }
+        
+    }];
+    
+
+    
+   
+}
+
+
+//退出登录
+- (void)logout {
+        [ProgressHUD show:@"正在退出"];
+        //退出过程
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UserInfo logoutAccount];
+            [ProgressHUD showSuccess:@"退出成功"];
+            //提示退出成功时间
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].delegate.window.rootViewController = [[LoginController alloc]init];
+            });
+            
+        });
+    
 }
 
 - (void)didReceiveMemoryWarning {

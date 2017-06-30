@@ -12,6 +12,8 @@
 #import "WriteGuaranteeView.h"
 #import "DemandGuaranteeView.h"
 #import "GuaranteeDetailsController.h"
+#import "GuaranteeDetailsModel.h"
+#import "GuaranteeListModel.h"
 
 #pragma mark --宏定义
 //上部滚动高度
@@ -27,6 +29,8 @@
 
 //填写报修
 @property (nonatomic, weak) WriteGuaranteeView *writeGuaranteeView;
+//报修列表
+@property (nonatomic, weak) DemandGuaranteeView *demandGuaranteeView;
 
 //获取图片
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
@@ -36,9 +40,24 @@
 //报修图片
 @property (nonatomic, strong) UIImage *guaranteeImage;
 
+//列表数据
+@property (nonatomic, copy) NSArray *dataArray;
+
 @end
 
 @implementation ToGuaranteeController
+
+
+- (void)viewDidAppear:(BOOL)animated {
+
+    [super viewDidAppear:animated];
+    
+    if ([self.navTitle isEqualToString:@"我要报修"]) {
+        [GuaranteeListModel getGuaranteeListModelArray];
+    } else if ([self.navTitle isEqualToString:@"我要投诉"]) {
+        [GuaranteeListModel getComplaintsListModelArray];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +67,49 @@
     [self setupNav];
     [self setupScrollToSwitchView];
     [self setupScrollToView];
+    
+    //注册通知
+    //报修提交成功的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addRepairSuccessNotification:) name:AddRepairSuccessNotification object:nil];
+    //获取报修列表成功的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appRepairListSuccessNotification:) name:AppRepairListSuccessNotification object:nil];
+    //投诉提交
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(complaintsSuccessNotification:) name:ComplaintsSuccessNotification object:nil];
+    //投诉列表获取成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(complaintListSuccessNotification:) name:ComplaintListSuccessNotification object:nil];
+}
+
+//投诉列表获取成功
+- (void)complaintListSuccessNotification:(NSNotification *)noti {
+
+    self.dataArray = noti.object;
+    
+    //设置数据源
+    self.demandGuaranteeView.dataArray = self.dataArray;
+    
+}
+
+//投诉提交
+- (void)complaintsSuccessNotification:(NSNotification *)noti {
+
+    [ProgressHUD showSuccess:@"投诉成功"];
+    [self clearData];
+}
+
+//获取报修列表成功的通知
+- (void)appRepairListSuccessNotification:(NSNotification *)noti {
+
+    self.dataArray = noti.object;
+    
+    //设置数据源
+    self.demandGuaranteeView.dataArray = self.dataArray;
+}
+
+//报修提交成功的通知
+- (void)addRepairSuccessNotification:(NSNotification *)noti {
+
+    [self clearData];
+    
 }
 
 //设置nav
@@ -98,6 +160,7 @@
     
     //填写报修视图
     WriteGuaranteeView *writeGuaranteeView = [[WriteGuaranteeView alloc]initWithFrame:CGRectMake(0, ScrollToSwitchViewHeight - 10, ScreenW, ScreenH - ScrollToSwitchViewHeight - 10 - 64)];
+    writeGuaranteeView.isPhoto = self.isPhoto;
     self.writeGuaranteeView = writeGuaranteeView;
     //防止循环引用
     __weak ToGuaranteeController *weakSelf = self;
@@ -106,15 +169,44 @@
         __strong ToGuaranteeController *strongSelf = weakSelf;
         [strongSelf callActionSheetFunc];
     };
+    //清除
+    writeGuaranteeView.clearBlock = ^(){
+        __strong ToGuaranteeController *strongSelf = weakSelf;
+        [strongSelf clearData];
+    };
+    //提交
+    writeGuaranteeView.uploadBlock = ^(NSDictionary *dict){
+        __strong ToGuaranteeController *strongSelf = weakSelf;
+        
+        if ([strongSelf.navTitle isEqualToString:@"我要报修"]) {
+            [strongSelf uploadDataWithDict:dict];
+        } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"]) {
+            [strongSelf uploadComplaintsDataWithDict:dict];
+        }
+        
+        
+//        [strongSelf clearData];
+    };
     
     //查询保修视图
     DemandGuaranteeView *demandGuaranteeView = [[DemandGuaranteeView alloc]initWithFrame:CGRectMake(0, ScrollToSwitchViewHeight - 10, ScreenW, ScreenH - ScrollToSwitchViewHeight - 10 - 64)];
+    self.demandGuaranteeView = demandGuaranteeView;
+    
+    if ([self.navTitle isEqualToString:@"我要报修"]) {
+        [GuaranteeListModel getGuaranteeListModelArray];
+    } else if ([self.navTitle isEqualToString:@"我要投诉"]) {
+        [GuaranteeListModel getComplaintsListModelArray];
+    }
+    
+    
+    
     //报修详情回调
-    demandGuaranteeView.clickDetailsBlock = ^(){
+    demandGuaranteeView.clickDetailsBlock = ^(NSIndexPath *indexPath){
         
         __strong ToGuaranteeController *strongSelf = weakSelf;
         
         GuaranteeDetailsController *guaranteeDetailsVC = [[GuaranteeDetailsController alloc]init];
+        guaranteeDetailsVC.model = strongSelf.dataArray[indexPath.row];
         
         //设置不同内容
         if ([self.navTitle isEqualToString:@"我要报修"]) {
@@ -124,6 +216,18 @@
         }
         
         [strongSelf.navigationController pushViewController:guaranteeDetailsVC animated:YES];
+    };
+    
+    //下拉刷新
+    demandGuaranteeView.refreshBlock = ^(){
+        
+        __strong ToGuaranteeController *strongSelf = weakSelf;
+        if ([strongSelf.navTitle isEqualToString:@"我要报修"]) {
+            [GuaranteeListModel getGuaranteeListModelArray];
+        } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"]) {
+            [GuaranteeListModel getComplaintsListModelArray];
+        }
+        
     };
     
     scrollToView.contentArray = @[writeGuaranteeView, demandGuaranteeView];
@@ -138,6 +242,56 @@
     [self.view addSubview:scrollToView];
     self.scrollToView = scrollToView;
     
+}
+
+//提交投诉数据
+- (void)uploadComplaintsDataWithDict:(NSDictionary *)dict {
+    
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+    dictM[@"ITEMID"] = self.model.sysid;
+    dictM[@"CD_TSXM"] = dict[@"RD_BXXM"];
+    dictM[@"CD_LXSJ"] = dict[@"RD_BXDH"];
+    dictM[@"CD_LXDZ"] = dict[@"RD_SFZB"];
+    dictM[@"CD_TSBT"] = dict[@"RD_BXBT"];
+    dictM[@"CD_NRMS"] = dict[@"RD_BXNR"];
+    dictM[@"USERNAME"] = [UserInfo account].dsoa_user_name;
+    dictM[@"USERID"] = [UserInfo account].dsoa_user_code;
+    dictM[@"RD_CLBJ"] = @"2";
+    [GuaranteeDetailsModel uploadComplaintsDataWithDict:dictM.copy];
+    
+    
+}
+
+//提交报修数据
+- (void)uploadDataWithDict:(NSDictionary *)dict {
+    
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:dict];
+    
+    //用户姓名 admin
+    dictM[@"USERNAME"] = [UserInfo account].dsoa_user_name;
+    //用户ID 9E8E79216D9A4F8BB696FA4E3499E57
+    dictM[@"UUID"] = [UserInfo account].dsoa_user_code;
+    //用户所属编号 01
+    dictM[@"SSBM"] = [UserInfo account].dsoa_user_suoscode;
+    //所属公司名称：DEPTNAME
+    dictM[@"DEPTNAME"] = [UserInfo account].dsoa_dept_name;
+    
+    // UIImage图片转成Base64字符串：
+    if (self.guaranteeImage) {
+        NSData *imgData = UIImageJPEGRepresentation(self.guaranteeImage, 1.0f);
+        NSString *encodedImgStr = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+        dictM[@"imgStr"] = encodedImgStr;
+    }
+    
+    GuaranteeDetailsModel *model = [GuaranteeDetailsModel mj_objectWithKeyValues:dictM.copy];
+    [model uploadInformation];
+}
+
+//清除数据
+- (void)clearData {
+
+    [self.writeGuaranteeView clearData];
+    self.guaranteeImage = nil;
 }
 
 #pragma mark --调取相册
@@ -212,6 +366,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

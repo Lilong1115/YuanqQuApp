@@ -52,14 +52,17 @@
 //添加底部的工具条
 - (void)setupBottomView {
     
-    NSArray *tabBarItemImages = @[@"star", @"star", @"star"];
+    NSArray *tabBarItemImages = @[@"tab1", @"tab3", @"tab2"];
     
     NSInteger index = 0;
+    
+//    [self tabBar]
+    
     for (RDVTabBarItem *tabBarItem in [[self tabBar] items]) {
         
-        UIImage *selectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_selecte",
+        UIImage *selectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_normal",
                                                       [tabBarItemImages objectAtIndex:index]]];
-        UIImage *unselectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_selecte",
+        UIImage *unselectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_selected",
                                                         [tabBarItemImages objectAtIndex:index]]];
         [tabBarItem setFinishedSelectedImage:selectedimage withFinishedUnselectedImage:unselectedimage];
         switch (index) {
@@ -78,9 +81,9 @@
         
         //设置选中或者未选中状态文字颜色
         [tabBarItem setSelectedTitleAttributes:@{
-                                        NSForegroundColorAttributeName: [UIColor redColor]}];
+                                        NSForegroundColorAttributeName: [UIColor colorWithHexString:@"#1296DB"]}];
         [tabBarItem setUnselectedTitleAttributes:@{
-                                        NSForegroundColorAttributeName: [UIColor greenColor]}];
+                                        NSForegroundColorAttributeName: [UIColor colorWithHexString:@"#707070"]}];
         
         index++;
     }

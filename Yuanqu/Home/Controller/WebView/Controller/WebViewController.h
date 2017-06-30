@@ -10,4 +10,9 @@
 
 @interface WebViewController : UIViewController
 
+//webView的url
+@property (nonatomic, copy) NSString *url;
+//navTitle
+@property (nonatomic, copy) NSString *navTitle;
+
 @end

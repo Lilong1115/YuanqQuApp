@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class GuaranteeListModel;
 
 @interface ToGuaranteeController : UIViewController
 
 //navTitle
 @property (nonatomic, copy) NSString *navTitle;
+
+//不含图片
+@property (nonatomic, assign) BOOL isPhoto;
+
+//model
+@property (nonatomic, strong) GuaranteeListModel *model;
 
 @end

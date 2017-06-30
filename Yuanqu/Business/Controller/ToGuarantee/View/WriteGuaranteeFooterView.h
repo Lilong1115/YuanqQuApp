@@ -13,7 +13,19 @@
 //报修图片回调
 @property (nonatomic, copy) void(^selectedImageBlock)();
 
+//清除
+@property (nonatomic, copy) void(^clearBlock)();
+
+//提交
+@property (nonatomic, copy) void(^uploadBlock)();
+
 //报修图片
 @property (nonatomic, strong) UIImage *guaranteeImage;
+
+//是否提交图片
+@property (nonatomic, assign) BOOL isPhoto;
+
+//清除图片
+- (void)clearImg;
 
 @end

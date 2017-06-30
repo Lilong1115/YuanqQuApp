@@ -59,17 +59,19 @@ static NSString * const kHomeCellID = @"kHomeCellID";
     HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:kHomeCellID forIndexPath:indexPath];
     
     HomeBaseModel *baseModel = self.contentArray[indexPath.section];
+    
     NSArray *array = baseModel.content;
     
     cell.contentArray = array;
     
     //点击业务回调
     __weak HomeView *weakSelf = self;
-    cell.selectedBlock = ^(NSIndexPath *indexPath) {
+    cell.selectedBlock = ^(NSIndexPath *idx) {
         __strong HomeView *strongSelf = weakSelf;
         
+        //点击区域
         if (strongSelf.selectedBlock != nil) {
-            strongSelf.selectedBlock(indexPath);
+            strongSelf.selectedBlock([NSIndexPath indexPathForRow:idx.item inSection:indexPath.section]);
         }
     };
 

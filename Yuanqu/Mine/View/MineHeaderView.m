@@ -31,21 +31,22 @@
     
 - (void)setupUI {
 
-    self.backgroundColor = [UIColor redColor];
+    self.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     //头像
     UIImageView *iconView = [[UIImageView alloc]init];
-    iconView.backgroundColor = [UIColor greenColor];
+//    iconView.backgroundColor = [UIColor greenColor];
+    [iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [UserInfo account].dsoa_user_photo]] placeholderImage:[UIImage imageNamed:@"photo"]];
     [self addSubview:iconView];
     self.iconView = iconView;
     iconView.layer.cornerRadius = 40;
     iconView.layer.masksToBounds = YES;
     iconView.layer.borderWidth = 5;
-    iconView.layer.borderColor = [UIColor blueColor].CGColor;
+    iconView.layer.borderColor = [UIColor whiteColor].CGColor;
     
     //用户名
     UILabel *nameLabel = [[UILabel alloc]init];
-    nameLabel.text = @"123";
+    nameLabel.text = [UserInfo account].dsoa_user_name;
     [self addSubview:nameLabel];
     self.nameLabel = nameLabel;
     

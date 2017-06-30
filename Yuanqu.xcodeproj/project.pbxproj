@@ -26,6 +26,60 @@
 		5A0B1D3A1ED9526000179C8C /* HomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0B1D391ED9526000179C8C /* HomeHeaderView.m */; };
 		5A0B1D411ED95AFB00179C8C /* SuggestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0B1D401ED95AFB00179C8C /* SuggestionController.m */; };
 		5A0B1D471ED95F7E00179C8C /* ScrollToSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0B1D461ED95F7E00179C8C /* ScrollToSwitchView.m */; };
+		5AE7ECCE1EF0D2170096062F /* GuaranteeDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECCD1EF0D2170096062F /* GuaranteeDetailsModel.m */; };
+		5AE7ECD11EF2173B0096062F /* HomeRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECD01EF2173B0096062F /* HomeRegister.m */; };
+		5AE7ECD41EF2226F0096062F /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECD31EF2226F0096062F /* NSString+Extension.m */; };
+		5AE7ECD71EF3684F0096062F /* GuaranteeDetailsRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECD61EF3684F0096062F /* GuaranteeDetailsRegister.m */; };
+		5AE7ECDA1EF386A60096062F /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECD91EF386A60096062F /* UserInfo.m */; };
+		5AE7ECDD1EF3A8A40096062F /* GuaranteeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECDC1EF3A8A40096062F /* GuaranteeListModel.m */; };
+		5AE7ECE01EF3A9D40096062F /* GuaranteeListRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECDF1EF3A9D40096062F /* GuaranteeListRegister.m */; };
+		5AE7ECE31EF3C5350096062F /* WorkOrderRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECE21EF3C5350096062F /* WorkOrderRegister.m */; };
+		5AE7ECE81EF765B20096062F /* HandleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECE71EF765B20096062F /* HandleView.m */; };
+		5AE7ECF21EF770460096062F /* PersonalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECF11EF770460096062F /* PersonalController.m */; };
+		5AE7ECF51EF7708B0096062F /* PersonalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECF41EF7708B0096062F /* PersonalCell.m */; };
+		5AE7ECF81EF776870096062F /* PersonalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECF71EF776870096062F /* PersonalModel.m */; };
+		5AE7ECFB1EF7AC090096062F /* CycleRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECFA1EF7AC090096062F /* CycleRegister.m */; };
+		5AE7ECFE1EF7ACAD0096062F /* CycleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECFD1EF7ACAD0096062F /* CycleModel.m */; };
+		5AE7ED051EF7B80C0096062F /* RepairProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED041EF7B80C0096062F /* RepairProcessController.m */; };
+		5AE7ED0C1EF7C09F0096062F /* RepairOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED0B1EF7C09F0096062F /* RepairOrderController.m */; };
+		5AE7ED0F1EF7C42E0096062F /* RepairView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED0E1EF7C42E0096062F /* RepairView.m */; };
+		5AE7ED121EF8B55B0096062F /* RepairOrderDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED111EF8B55B0096062F /* RepairOrderDetailsController.m */; };
+		5AE7ED151EF8B6360096062F /* RepairDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED141EF8B6360096062F /* RepairDetailsCell.m */; };
+		5AE7ED181EF8C9380096062F /* RepairTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED171EF8C9380096062F /* RepairTitleModel.m */; };
+		5AE7ED1E1EF8EE300096062F /* NoRepairOrderRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED1D1EF8EE300096062F /* NoRepairOrderRegister.m */; };
+		5AE7ED251EF8FFFE0096062F /* DistributionOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED241EF8FFFE0096062F /* DistributionOrderController.m */; };
+		5AE7ED281EF901B60096062F /* NoDistributionRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED271EF901B60096062F /* NoDistributionRegister.m */; };
+		5AE7ED2B1EF9030A0096062F /* RepairOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED2A1EF9030A0096062F /* RepairOrderModel.m */; };
+		5AE7ED311EF915540096062F /* NoAcceptOrderRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED301EF915540096062F /* NoAcceptOrderRegister.m */; };
+		5AE7ED341EF917300096062F /* DistributionOrderDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED331EF917300096062F /* DistributionOrderDetailsController.m */; };
+		5AE7ED371EF918CE0096062F /* DistributionOrderHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED361EF918CE0096062F /* DistributionOrderHeader.m */; };
+		5AE7ED3D1EF9FD1E0096062F /* DistributionDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED3C1EF9FD1E0096062F /* DistributionDetailsCell.m */; };
+		5AE7ED401EFA03830096062F /* DistributionTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED3F1EFA03830096062F /* DistributionTitleModel.m */; };
+		5AE7ED431EFA12EF0096062F /* ReceivePersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED421EFA12EF0096062F /* ReceivePersonController.m */; };
+		5AE7ED461EFA1A980096062F /* ReceiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED451EFA1A980096062F /* ReceiveCell.m */; };
+		5AE7ED491EFA20A30096062F /* ReceivePersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED481EFA20A30096062F /* ReceivePersonModel.m */; };
+		5AE7ED4C1EFA21970096062F /* ReceivePersonRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED4B1EFA21970096062F /* ReceivePersonRegister.m */; };
+		5AE7ED531EFA3E6F0096062F /* AcceptOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED521EFA3E6F0096062F /* AcceptOrderController.m */; };
+		5AE7ED561EFA44FD0096062F /* RepairSubmitRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED551EFA44FD0096062F /* RepairSubmitRegister.m */; };
+		5AE7ED591EFA71950096062F /* DistrubitionSubmitRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED581EFA71950096062F /* DistrubitionSubmitRegister.m */; };
+		5AE7ED5C1EFB54EC0096062F /* AcceptingOrderRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED5B1EFB54EC0096062F /* AcceptingOrderRegister.m */; };
+		5AE7ED5F1EFB76F50096062F /* AcceptSubmitRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED5E1EFB76F50096062F /* AcceptSubmitRegister.m */; };
+		5AE7ED621EFB96230096062F /* AcceptOrderDetailsControllerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED611EFB96230096062F /* AcceptOrderDetailsControllerController.m */; };
+		5AE7ED651EFBA1900096062F /* AcceptingSubmitRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED641EFBA1900096062F /* AcceptingSubmitRegister.m */; };
+		5AE7ED681EFBA5870096062F /* AcceptFinishRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED671EFBA5870096062F /* AcceptFinishRegister.m */; };
+		5AE7ED6B1EFBA9550096062F /* AccepFinishOrderRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED6A1EFBA9550096062F /* AccepFinishOrderRegister.m */; };
+		5AE7ED6E1EFBBC990096062F /* UITableView+EmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED6D1EFBBC990096062F /* UITableView+EmptyData.m */; };
+		5AE7ED711EFCBDDB0096062F /* GuaranteeEstimateRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED701EFCBDDB0096062F /* GuaranteeEstimateRegister.m */; };
+		5AE7ED741EFD148D0096062F /* LogRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED731EFD148D0096062F /* LogRegister.m */; };
+		5AE7ED771EFD15790096062F /* LogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED761EFD15790096062F /* LogModel.m */; };
+		5AE7ED7A1EFE00940096062F /* LogBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED791EFE00940096062F /* LogBaseModel.m */; };
+		5AE7ED7D1EFE61750096062F /* BusinessRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED7C1EFE61750096062F /* BusinessRegister.m */; };
+		5AE7ED801F00EEC90096062F /* ComplaintsListRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED7F1F00EEC90096062F /* ComplaintsListRegister.m */; };
+		5AE7ED831F02009E0096062F /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED821F02009E0096062F /* RegisterController.m */; };
+		5AE7ED8C1F020D6E0096062F /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED861F020D6E0096062F /* QRCameraSwitchButton.m */; };
+		5AE7ED8D1F020D6E0096062F /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED891F020D6E0096062F /* QRCodeReaderView.m */; };
+		5AE7ED8E1F020D6E0096062F /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ED8B1F020D6E0096062F /* QRCodeReaderViewController.m */; };
+		5AE7ED901F020DBD0096062F /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5AE7ED8F1F020DBD0096062F /* beep.wav */; };
 		5AEADE9A1EDE4FC3004EB475 /* ScrollToView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADE991EDE4FC3004EB475 /* ScrollToView.m */; };
 		5AEADEA11EDE7040004EB475 /* ToGuaranteeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADEA01EDE7040004EB475 /* ToGuaranteeController.m */; };
 		5AEADEA41EDE73C6004EB475 /* WriteGuaranteeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADEA31EDE73C6004EB475 /* WriteGuaranteeView.m */; };
@@ -72,6 +126,7 @@
 		5AEADFB61EEA9B70004EB475 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADFB51EEA9B70004EB475 /* WebViewController.m */; };
 		5AEADFB91EEB8B9E004EB475 /* LoginRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADFB81EEB8B9E004EB475 /* LoginRegister.m */; };
 		5AEADFDA1EEE7394004EB475 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEADFD91EEE7394004EB475 /* Account.m */; };
+		5AEBC7431F0392C900F93818 /* ScanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEBC7421F0392C900F93818 /* ScanController.m */; };
 		9F821A8BC81ADE09044ABC37 /* libPods-Yuanqu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E2FFBBE922A97C8DD52947 /* libPods-Yuanqu.a */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +171,115 @@
 		5A0B1D401ED95AFB00179C8C /* SuggestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestionController.m; sourceTree = "<group>"; };
 		5A0B1D451ED95F7E00179C8C /* ScrollToSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollToSwitchView.h; sourceTree = "<group>"; };
 		5A0B1D461ED95F7E00179C8C /* ScrollToSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollToSwitchView.m; sourceTree = "<group>"; };
+		5AE7ECCC1EF0D2160096062F /* GuaranteeDetailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuaranteeDetailsModel.h; sourceTree = "<group>"; };
+		5AE7ECCD1EF0D2170096062F /* GuaranteeDetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuaranteeDetailsModel.m; sourceTree = "<group>"; };
+		5AE7ECCF1EF2173B0096062F /* HomeRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeRegister.h; sourceTree = "<group>"; };
+		5AE7ECD01EF2173B0096062F /* HomeRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeRegister.m; sourceTree = "<group>"; };
+		5AE7ECD21EF2226F0096062F /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		5AE7ECD31EF2226F0096062F /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		5AE7ECD51EF3684F0096062F /* GuaranteeDetailsRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuaranteeDetailsRegister.h; sourceTree = "<group>"; };
+		5AE7ECD61EF3684F0096062F /* GuaranteeDetailsRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuaranteeDetailsRegister.m; sourceTree = "<group>"; };
+		5AE7ECD81EF386A60096062F /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		5AE7ECD91EF386A60096062F /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		5AE7ECDB1EF3A8A40096062F /* GuaranteeListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuaranteeListModel.h; sourceTree = "<group>"; };
+		5AE7ECDC1EF3A8A40096062F /* GuaranteeListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuaranteeListModel.m; sourceTree = "<group>"; };
+		5AE7ECDE1EF3A9D40096062F /* GuaranteeListRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuaranteeListRegister.h; sourceTree = "<group>"; };
+		5AE7ECDF1EF3A9D40096062F /* GuaranteeListRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuaranteeListRegister.m; sourceTree = "<group>"; };
+		5AE7ECE11EF3C5350096062F /* WorkOrderRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkOrderRegister.h; sourceTree = "<group>"; };
+		5AE7ECE21EF3C5350096062F /* WorkOrderRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkOrderRegister.m; sourceTree = "<group>"; };
+		5AE7ECE51EF4CB630096062F /* NetPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetPort.h; sourceTree = "<group>"; };
+		5AE7ECE61EF765B20096062F /* HandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleView.h; sourceTree = "<group>"; };
+		5AE7ECE71EF765B20096062F /* HandleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandleView.m; sourceTree = "<group>"; };
+		5AE7ECF01EF770460096062F /* PersonalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalController.h; sourceTree = "<group>"; };
+		5AE7ECF11EF770460096062F /* PersonalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalController.m; sourceTree = "<group>"; };
+		5AE7ECF31EF7708B0096062F /* PersonalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCell.h; sourceTree = "<group>"; };
+		5AE7ECF41EF7708B0096062F /* PersonalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCell.m; sourceTree = "<group>"; };
+		5AE7ECF61EF776870096062F /* PersonalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalModel.h; sourceTree = "<group>"; };
+		5AE7ECF71EF776870096062F /* PersonalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalModel.m; sourceTree = "<group>"; };
+		5AE7ECF91EF7AC090096062F /* CycleRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleRegister.h; sourceTree = "<group>"; };
+		5AE7ECFA1EF7AC090096062F /* CycleRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleRegister.m; sourceTree = "<group>"; };
+		5AE7ECFC1EF7ACAD0096062F /* CycleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleModel.h; sourceTree = "<group>"; };
+		5AE7ECFD1EF7ACAD0096062F /* CycleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleModel.m; sourceTree = "<group>"; };
+		5AE7ED031EF7B80C0096062F /* RepairProcessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairProcessController.h; sourceTree = "<group>"; };
+		5AE7ED041EF7B80C0096062F /* RepairProcessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairProcessController.m; sourceTree = "<group>"; };
+		5AE7ED0A1EF7C09F0096062F /* RepairOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairOrderController.h; sourceTree = "<group>"; };
+		5AE7ED0B1EF7C09F0096062F /* RepairOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderController.m; sourceTree = "<group>"; };
+		5AE7ED0D1EF7C42E0096062F /* RepairView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairView.h; sourceTree = "<group>"; };
+		5AE7ED0E1EF7C42E0096062F /* RepairView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairView.m; sourceTree = "<group>"; };
+		5AE7ED101EF8B55B0096062F /* RepairOrderDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairOrderDetailsController.h; sourceTree = "<group>"; };
+		5AE7ED111EF8B55B0096062F /* RepairOrderDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderDetailsController.m; sourceTree = "<group>"; };
+		5AE7ED131EF8B6360096062F /* RepairDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairDetailsCell.h; sourceTree = "<group>"; };
+		5AE7ED141EF8B6360096062F /* RepairDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairDetailsCell.m; sourceTree = "<group>"; };
+		5AE7ED161EF8C9380096062F /* RepairTitleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairTitleModel.h; sourceTree = "<group>"; };
+		5AE7ED171EF8C9380096062F /* RepairTitleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairTitleModel.m; sourceTree = "<group>"; };
+		5AE7ED1C1EF8EE300096062F /* NoRepairOrderRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoRepairOrderRegister.h; sourceTree = "<group>"; };
+		5AE7ED1D1EF8EE300096062F /* NoRepairOrderRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoRepairOrderRegister.m; sourceTree = "<group>"; };
+		5AE7ED231EF8FFFE0096062F /* DistributionOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionOrderController.h; sourceTree = "<group>"; };
+		5AE7ED241EF8FFFE0096062F /* DistributionOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionOrderController.m; sourceTree = "<group>"; };
+		5AE7ED261EF901B60096062F /* NoDistributionRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoDistributionRegister.h; sourceTree = "<group>"; };
+		5AE7ED271EF901B60096062F /* NoDistributionRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoDistributionRegister.m; sourceTree = "<group>"; };
+		5AE7ED291EF9030A0096062F /* RepairOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairOrderModel.h; sourceTree = "<group>"; };
+		5AE7ED2A1EF9030A0096062F /* RepairOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderModel.m; sourceTree = "<group>"; };
+		5AE7ED2F1EF915540096062F /* NoAcceptOrderRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoAcceptOrderRegister.h; sourceTree = "<group>"; };
+		5AE7ED301EF915540096062F /* NoAcceptOrderRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoAcceptOrderRegister.m; sourceTree = "<group>"; };
+		5AE7ED321EF917300096062F /* DistributionOrderDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionOrderDetailsController.h; sourceTree = "<group>"; };
+		5AE7ED331EF917300096062F /* DistributionOrderDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionOrderDetailsController.m; sourceTree = "<group>"; };
+		5AE7ED351EF918CE0096062F /* DistributionOrderHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionOrderHeader.h; sourceTree = "<group>"; };
+		5AE7ED361EF918CE0096062F /* DistributionOrderHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionOrderHeader.m; sourceTree = "<group>"; };
+		5AE7ED3B1EF9FD1E0096062F /* DistributionDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionDetailsCell.h; sourceTree = "<group>"; };
+		5AE7ED3C1EF9FD1E0096062F /* DistributionDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionDetailsCell.m; sourceTree = "<group>"; };
+		5AE7ED3E1EFA03830096062F /* DistributionTitleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionTitleModel.h; sourceTree = "<group>"; };
+		5AE7ED3F1EFA03830096062F /* DistributionTitleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionTitleModel.m; sourceTree = "<group>"; };
+		5AE7ED411EFA12EF0096062F /* ReceivePersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivePersonController.h; sourceTree = "<group>"; };
+		5AE7ED421EFA12EF0096062F /* ReceivePersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceivePersonController.m; sourceTree = "<group>"; };
+		5AE7ED441EFA1A980096062F /* ReceiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveCell.h; sourceTree = "<group>"; };
+		5AE7ED451EFA1A980096062F /* ReceiveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveCell.m; sourceTree = "<group>"; };
+		5AE7ED471EFA20A30096062F /* ReceivePersonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivePersonModel.h; sourceTree = "<group>"; };
+		5AE7ED481EFA20A30096062F /* ReceivePersonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceivePersonModel.m; sourceTree = "<group>"; };
+		5AE7ED4A1EFA21970096062F /* ReceivePersonRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivePersonRegister.h; sourceTree = "<group>"; };
+		5AE7ED4B1EFA21970096062F /* ReceivePersonRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceivePersonRegister.m; sourceTree = "<group>"; };
+		5AE7ED511EFA3E6F0096062F /* AcceptOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptOrderController.h; sourceTree = "<group>"; };
+		5AE7ED521EFA3E6F0096062F /* AcceptOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptOrderController.m; sourceTree = "<group>"; };
+		5AE7ED541EFA44FD0096062F /* RepairSubmitRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairSubmitRegister.h; sourceTree = "<group>"; };
+		5AE7ED551EFA44FD0096062F /* RepairSubmitRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairSubmitRegister.m; sourceTree = "<group>"; };
+		5AE7ED571EFA71950096062F /* DistrubitionSubmitRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistrubitionSubmitRegister.h; sourceTree = "<group>"; };
+		5AE7ED581EFA71950096062F /* DistrubitionSubmitRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistrubitionSubmitRegister.m; sourceTree = "<group>"; };
+		5AE7ED5A1EFB54EC0096062F /* AcceptingOrderRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptingOrderRegister.h; sourceTree = "<group>"; };
+		5AE7ED5B1EFB54EC0096062F /* AcceptingOrderRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptingOrderRegister.m; sourceTree = "<group>"; };
+		5AE7ED5D1EFB76F50096062F /* AcceptSubmitRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptSubmitRegister.h; sourceTree = "<group>"; };
+		5AE7ED5E1EFB76F50096062F /* AcceptSubmitRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptSubmitRegister.m; sourceTree = "<group>"; };
+		5AE7ED601EFB96230096062F /* AcceptOrderDetailsControllerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptOrderDetailsControllerController.h; sourceTree = "<group>"; };
+		5AE7ED611EFB96230096062F /* AcceptOrderDetailsControllerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptOrderDetailsControllerController.m; sourceTree = "<group>"; };
+		5AE7ED631EFBA1900096062F /* AcceptingSubmitRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptingSubmitRegister.h; sourceTree = "<group>"; };
+		5AE7ED641EFBA1900096062F /* AcceptingSubmitRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptingSubmitRegister.m; sourceTree = "<group>"; };
+		5AE7ED661EFBA5870096062F /* AcceptFinishRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptFinishRegister.h; sourceTree = "<group>"; };
+		5AE7ED671EFBA5870096062F /* AcceptFinishRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptFinishRegister.m; sourceTree = "<group>"; };
+		5AE7ED691EFBA9550096062F /* AccepFinishOrderRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccepFinishOrderRegister.h; sourceTree = "<group>"; };
+		5AE7ED6A1EFBA9550096062F /* AccepFinishOrderRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccepFinishOrderRegister.m; sourceTree = "<group>"; };
+		5AE7ED6C1EFBBC990096062F /* UITableView+EmptyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+EmptyData.h"; sourceTree = "<group>"; };
+		5AE7ED6D1EFBBC990096062F /* UITableView+EmptyData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+EmptyData.m"; sourceTree = "<group>"; };
+		5AE7ED6F1EFCBDDB0096062F /* GuaranteeEstimateRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuaranteeEstimateRegister.h; sourceTree = "<group>"; };
+		5AE7ED701EFCBDDB0096062F /* GuaranteeEstimateRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuaranteeEstimateRegister.m; sourceTree = "<group>"; };
+		5AE7ED721EFD148D0096062F /* LogRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogRegister.h; sourceTree = "<group>"; };
+		5AE7ED731EFD148D0096062F /* LogRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRegister.m; sourceTree = "<group>"; };
+		5AE7ED751EFD15790096062F /* LogModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogModel.h; sourceTree = "<group>"; };
+		5AE7ED761EFD15790096062F /* LogModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogModel.m; sourceTree = "<group>"; };
+		5AE7ED781EFE00940096062F /* LogBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogBaseModel.h; sourceTree = "<group>"; };
+		5AE7ED791EFE00940096062F /* LogBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogBaseModel.m; sourceTree = "<group>"; };
+		5AE7ED7B1EFE61750096062F /* BusinessRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessRegister.h; sourceTree = "<group>"; };
+		5AE7ED7C1EFE61750096062F /* BusinessRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessRegister.m; sourceTree = "<group>"; };
+		5AE7ED7E1F00EEC90096062F /* ComplaintsListRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintsListRegister.h; sourceTree = "<group>"; };
+		5AE7ED7F1F00EEC90096062F /* ComplaintsListRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintsListRegister.m; sourceTree = "<group>"; };
+		5AE7ED811F02009E0096062F /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
+		5AE7ED821F02009E0096062F /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
+		5AE7ED851F020D6E0096062F /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCameraSwitchButton.h; sourceTree = "<group>"; };
+		5AE7ED861F020D6E0096062F /* QRCameraSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCameraSwitchButton.m; sourceTree = "<group>"; };
+		5AE7ED871F020D6E0096062F /* QRCodeReaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderDelegate.h; sourceTree = "<group>"; };
+		5AE7ED881F020D6E0096062F /* QRCodeReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderView.h; sourceTree = "<group>"; };
+		5AE7ED891F020D6E0096062F /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderView.m; sourceTree = "<group>"; };
+		5AE7ED8A1F020D6E0096062F /* QRCodeReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderViewController.h; sourceTree = "<group>"; };
+		5AE7ED8B1F020D6E0096062F /* QRCodeReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderViewController.m; sourceTree = "<group>"; };
+		5AE7ED8F1F020DBD0096062F /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 		5AEADE981EDE4FC3004EB475 /* ScrollToView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollToView.h; sourceTree = "<group>"; };
 		5AEADE991EDE4FC3004EB475 /* ScrollToView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollToView.m; sourceTree = "<group>"; };
 		5AEADE9F1EDE7040004EB475 /* ToGuaranteeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToGuaranteeController.h; sourceTree = "<group>"; };
@@ -205,6 +369,8 @@
 		5AEADFB81EEB8B9E004EB475 /* LoginRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRegister.m; sourceTree = "<group>"; };
 		5AEADFD81EEE7394004EB475 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		5AEADFD91EEE7394004EB475 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		5AEBC7411F0392C900F93818 /* ScanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanController.h; sourceTree = "<group>"; };
+		5AEBC7421F0392C900F93818 /* ScanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanController.m; sourceTree = "<group>"; };
 		A47688B1CC7BE83623239DB8 /* Pods-Yuanqu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yuanqu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yuanqu/Pods-Yuanqu.release.xcconfig"; sourceTree = "<group>"; };
 		E5E2FFBBE922A97C8DD52947 /* libPods-Yuanqu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Yuanqu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -265,12 +431,14 @@
 		5A0B1CE41ED6A76A00179C8C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5AE7ED8F1F020DBD0096062F /* beep.wav */,
 				5A0B1CF01ED6A76A00179C8C /* Assets.xcassets */,
 				5A0B1CF21ED6A76A00179C8C /* LaunchScreen.storyboard */,
 				5A0B1CF51ED6A76A00179C8C /* Info.plist */,
 				5A0B1CE51ED6A76A00179C8C /* main.m */,
 				5A0B1D0B1ED6BA4C00179C8C /* PrefixHeader.pch */,
 				5A0B1D1B1ED6E07A00179C8C /* Define.h */,
+				5AE7ECE51EF4CB630096062F /* NetPort.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -338,6 +506,7 @@
 			children = (
 				5A0B1D261ED8395800179C8C /* BusinessController.h */,
 				5A0B1D271ED8395800179C8C /* BusinessController.m */,
+				5AE7ECFF1EF7B7EC0096062F /* RepairProcess */,
 				5AEADF231EE4E681004EB475 /* Handle */,
 				5AEADEC91EDEC826004EB475 /* GuaranteeEstimate */,
 				5AEADEB51EDEAEAF004EB475 /* GuaranteeDetails */,
@@ -351,6 +520,8 @@
 		5A0B1D011ED6B38000179C8C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5AE7ED7B1EFE61750096062F /* BusinessRegister.h */,
+				5AE7ED7C1EFE61750096062F /* BusinessRegister.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -390,6 +561,12 @@
 				5AEADF0D1EE2A098004EB475 /* HomeModel.m */,
 				5AEADF0F1EE2A2CA004EB475 /* HomeBaseModel.h */,
 				5AEADF101EE2A2CA004EB475 /* HomeBaseModel.m */,
+				5AE7ECCF1EF2173B0096062F /* HomeRegister.h */,
+				5AE7ECD01EF2173B0096062F /* HomeRegister.m */,
+				5AE7ECFC1EF7ACAD0096062F /* CycleModel.h */,
+				5AE7ECFD1EF7ACAD0096062F /* CycleModel.m */,
+				5AE7ECF91EF7AC090096062F /* CycleRegister.h */,
+				5AE7ECFA1EF7AC090096062F /* CycleRegister.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -422,6 +599,9 @@
 			children = (
 				5A0B1D181ED6DFF000179C8C /* MineController.h */,
 				5A0B1D191ED6DFF000179C8C /* MineController.m */,
+				5AEBC7411F0392C900F93818 /* ScanController.h */,
+				5AEBC7421F0392C900F93818 /* ScanController.m */,
+				5AE7ECEC1EF770390096062F /* Personal */,
 				5AEADF791EE7DECF004EB475 /* Message */,
 				5A0B1D1F1ED80A9800179C8C /* Setting */,
 			);
@@ -511,6 +691,240 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5AE7ECEC1EF770390096062F /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ECED1EF770390096062F /* Controller */,
+				5AE7ECEE1EF770390096062F /* Model */,
+				5AE7ECEF1EF770390096062F /* View */,
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		5AE7ECED1EF770390096062F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ECF01EF770460096062F /* PersonalController.h */,
+				5AE7ECF11EF770460096062F /* PersonalController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5AE7ECEE1EF770390096062F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ECF61EF776870096062F /* PersonalModel.h */,
+				5AE7ECF71EF776870096062F /* PersonalModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5AE7ECEF1EF770390096062F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ECF31EF7708B0096062F /* PersonalCell.h */,
+				5AE7ECF41EF7708B0096062F /* PersonalCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5AE7ECFF1EF7B7EC0096062F /* RepairProcess */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED001EF7B7EC0096062F /* Controller */,
+				5AE7ED011EF7B7EC0096062F /* Model */,
+				5AE7ED021EF7B7EC0096062F /* View */,
+			);
+			path = RepairProcess;
+			sourceTree = "<group>";
+		};
+		5AE7ED001EF7B7EC0096062F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED031EF7B80C0096062F /* RepairProcessController.h */,
+				5AE7ED041EF7B80C0096062F /* RepairProcessController.m */,
+				5AE7ED4D1EFA3DF50096062F /* AcceptOrder */,
+				5AE7ED1F1EF8FFD90096062F /* DistributionOrder */,
+				5AE7ED061EF7C0490096062F /* RepairOrder */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5AE7ED011EF7B7EC0096062F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED1C1EF8EE300096062F /* NoRepairOrderRegister.h */,
+				5AE7ED1D1EF8EE300096062F /* NoRepairOrderRegister.m */,
+				5AE7ED261EF901B60096062F /* NoDistributionRegister.h */,
+				5AE7ED271EF901B60096062F /* NoDistributionRegister.m */,
+				5AE7ED2F1EF915540096062F /* NoAcceptOrderRegister.h */,
+				5AE7ED301EF915540096062F /* NoAcceptOrderRegister.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5AE7ED021EF7B7EC0096062F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5AE7ED061EF7C0490096062F /* RepairOrder */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED071EF7C0490096062F /* Controller */,
+				5AE7ED081EF7C0490096062F /* Model */,
+				5AE7ED091EF7C0490096062F /* View */,
+			);
+			path = RepairOrder;
+			sourceTree = "<group>";
+		};
+		5AE7ED071EF7C0490096062F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED0A1EF7C09F0096062F /* RepairOrderController.h */,
+				5AE7ED0B1EF7C09F0096062F /* RepairOrderController.m */,
+				5AE7ED101EF8B55B0096062F /* RepairOrderDetailsController.h */,
+				5AE7ED111EF8B55B0096062F /* RepairOrderDetailsController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5AE7ED081EF7C0490096062F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED161EF8C9380096062F /* RepairTitleModel.h */,
+				5AE7ED171EF8C9380096062F /* RepairTitleModel.m */,
+				5AE7ED291EF9030A0096062F /* RepairOrderModel.h */,
+				5AE7ED2A1EF9030A0096062F /* RepairOrderModel.m */,
+				5AE7ED541EFA44FD0096062F /* RepairSubmitRegister.h */,
+				5AE7ED551EFA44FD0096062F /* RepairSubmitRegister.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5AE7ED091EF7C0490096062F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED0D1EF7C42E0096062F /* RepairView.h */,
+				5AE7ED0E1EF7C42E0096062F /* RepairView.m */,
+				5AE7ED131EF8B6360096062F /* RepairDetailsCell.h */,
+				5AE7ED141EF8B6360096062F /* RepairDetailsCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5AE7ED1F1EF8FFD90096062F /* DistributionOrder */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED201EF8FFD90096062F /* Controller */,
+				5AE7ED211EF8FFD90096062F /* Model */,
+				5AE7ED221EF8FFD90096062F /* View */,
+			);
+			path = DistributionOrder;
+			sourceTree = "<group>";
+		};
+		5AE7ED201EF8FFD90096062F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED231EF8FFFE0096062F /* DistributionOrderController.h */,
+				5AE7ED241EF8FFFE0096062F /* DistributionOrderController.m */,
+				5AE7ED321EF917300096062F /* DistributionOrderDetailsController.h */,
+				5AE7ED331EF917300096062F /* DistributionOrderDetailsController.m */,
+				5AE7ED411EFA12EF0096062F /* ReceivePersonController.h */,
+				5AE7ED421EFA12EF0096062F /* ReceivePersonController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5AE7ED211EF8FFD90096062F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED3E1EFA03830096062F /* DistributionTitleModel.h */,
+				5AE7ED3F1EFA03830096062F /* DistributionTitleModel.m */,
+				5AE7ED471EFA20A30096062F /* ReceivePersonModel.h */,
+				5AE7ED481EFA20A30096062F /* ReceivePersonModel.m */,
+				5AE7ED4A1EFA21970096062F /* ReceivePersonRegister.h */,
+				5AE7ED4B1EFA21970096062F /* ReceivePersonRegister.m */,
+				5AE7ED571EFA71950096062F /* DistrubitionSubmitRegister.h */,
+				5AE7ED581EFA71950096062F /* DistrubitionSubmitRegister.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5AE7ED221EF8FFD90096062F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED351EF918CE0096062F /* DistributionOrderHeader.h */,
+				5AE7ED361EF918CE0096062F /* DistributionOrderHeader.m */,
+				5AE7ED3B1EF9FD1E0096062F /* DistributionDetailsCell.h */,
+				5AE7ED3C1EF9FD1E0096062F /* DistributionDetailsCell.m */,
+				5AE7ED441EFA1A980096062F /* ReceiveCell.h */,
+				5AE7ED451EFA1A980096062F /* ReceiveCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5AE7ED4D1EFA3DF50096062F /* AcceptOrder */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED4E1EFA3DF50096062F /* Controller */,
+				5AE7ED4F1EFA3DF50096062F /* Model */,
+				5AE7ED501EFA3DF50096062F /* View */,
+			);
+			path = AcceptOrder;
+			sourceTree = "<group>";
+		};
+		5AE7ED4E1EFA3DF50096062F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED511EFA3E6F0096062F /* AcceptOrderController.h */,
+				5AE7ED521EFA3E6F0096062F /* AcceptOrderController.m */,
+				5AE7ED601EFB96230096062F /* AcceptOrderDetailsControllerController.h */,
+				5AE7ED611EFB96230096062F /* AcceptOrderDetailsControllerController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5AE7ED4F1EFA3DF50096062F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED5A1EFB54EC0096062F /* AcceptingOrderRegister.h */,
+				5AE7ED5B1EFB54EC0096062F /* AcceptingOrderRegister.m */,
+				5AE7ED5D1EFB76F50096062F /* AcceptSubmitRegister.h */,
+				5AE7ED5E1EFB76F50096062F /* AcceptSubmitRegister.m */,
+				5AE7ED631EFBA1900096062F /* AcceptingSubmitRegister.h */,
+				5AE7ED641EFBA1900096062F /* AcceptingSubmitRegister.m */,
+				5AE7ED661EFBA5870096062F /* AcceptFinishRegister.h */,
+				5AE7ED671EFBA5870096062F /* AcceptFinishRegister.m */,
+				5AE7ED691EFBA9550096062F /* AccepFinishOrderRegister.h */,
+				5AE7ED6A1EFBA9550096062F /* AccepFinishOrderRegister.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5AE7ED501EFA3DF50096062F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5AE7ED841F020D6E0096062F /* QRCodeReaderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5AE7ED851F020D6E0096062F /* QRCameraSwitchButton.h */,
+				5AE7ED861F020D6E0096062F /* QRCameraSwitchButton.m */,
+				5AE7ED871F020D6E0096062F /* QRCodeReaderDelegate.h */,
+				5AE7ED881F020D6E0096062F /* QRCodeReaderView.h */,
+				5AE7ED891F020D6E0096062F /* QRCodeReaderView.m */,
+				5AE7ED8A1F020D6E0096062F /* QRCodeReaderViewController.h */,
+				5AE7ED8B1F020D6E0096062F /* QRCodeReaderViewController.m */,
+			);
+			path = QRCodeReaderViewController;
+			sourceTree = "<group>";
+		};
 		5AEADE9B1EDE7022004EB475 /* ToGuarantee */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +949,16 @@
 			children = (
 				5AEADEA51EDE8FDD004EB475 /* GuaranteeModel.h */,
 				5AEADEA61EDE8FDD004EB475 /* GuaranteeModel.m */,
+				5AE7ECCC1EF0D2160096062F /* GuaranteeDetailsModel.h */,
+				5AE7ECCD1EF0D2170096062F /* GuaranteeDetailsModel.m */,
+				5AE7ECDB1EF3A8A40096062F /* GuaranteeListModel.h */,
+				5AE7ECDC1EF3A8A40096062F /* GuaranteeListModel.m */,
+				5AE7ECDE1EF3A9D40096062F /* GuaranteeListRegister.h */,
+				5AE7ECDF1EF3A9D40096062F /* GuaranteeListRegister.m */,
+				5AE7ECD51EF3684F0096062F /* GuaranteeDetailsRegister.h */,
+				5AE7ECD61EF3684F0096062F /* GuaranteeDetailsRegister.m */,
+				5AE7ED7E1F00EEC90096062F /* ComplaintsListRegister.h */,
+				5AE7ED7F1F00EEC90096062F /* ComplaintsListRegister.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -574,6 +998,12 @@
 		5AEADEB71EDEAEAF004EB475 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5AE7ED721EFD148D0096062F /* LogRegister.h */,
+				5AE7ED731EFD148D0096062F /* LogRegister.m */,
+				5AE7ED751EFD15790096062F /* LogModel.h */,
+				5AE7ED761EFD15790096062F /* LogModel.m */,
+				5AE7ED781EFE00940096062F /* LogBaseModel.h */,
+				5AE7ED791EFE00940096062F /* LogBaseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -613,6 +1043,8 @@
 		5AEADECB1EDEC826004EB475 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5AE7ED6F1EFCBDDB0096062F /* GuaranteeEstimateRegister.h */,
+				5AE7ED701EFCBDDB0096062F /* GuaranteeEstimateRegister.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -630,6 +1062,8 @@
 		5AEADEF21EDFBB3C004EB475 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				5AE7ECD21EF2226F0096062F /* NSString+Extension.h */,
+				5AE7ECD31EF2226F0096062F /* NSString+Extension.m */,
 				5AEADF091EE28E21004EB475 /* UIImage+Extension.h */,
 				5AEADF0A1EE28E21004EB475 /* UIImage+Extension.m */,
 				5AEADEF61EDFBD7C004EB475 /* UITextView+Placeholder.h */,
@@ -638,6 +1072,8 @@
 				5AEADEFA1EDFC15A004EB475 /* UIColor+Extension.m */,
 				5AEADF671EE684C6004EB475 /* NSDate+Extension.h */,
 				5AEADF681EE684C6004EB475 /* NSDate+Extension.m */,
+				5AE7ED6C1EFBBC990096062F /* UITableView+EmptyData.h */,
+				5AE7ED6D1EFBBC990096062F /* UITableView+EmptyData.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -701,6 +1137,8 @@
 		5AEADF251EE4E681004EB475 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5AE7ECE11EF3C5350096062F /* WorkOrderRegister.h */,
+				5AE7ECE21EF3C5350096062F /* WorkOrderRegister.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -714,6 +1152,8 @@
 				5AEADF311EE523A1004EB475 /* DetailsView.m */,
 				5AEADF331EE5253A004EB475 /* AssignedPersonnelView.h */,
 				5AEADF341EE5253A004EB475 /* AssignedPersonnelView.m */,
+				5AE7ECE61EF765B20096062F /* HandleView.h */,
+				5AE7ECE71EF765B20096062F /* HandleView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -847,8 +1287,11 @@
 		5AEADF731EE789A6004EB475 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5AE7ED841F020D6E0096062F /* QRCodeReaderViewController */,
 				5AEADF761EE789BF004EB475 /* LoginController.h */,
 				5AEADF771EE789BF004EB475 /* LoginController.m */,
+				5AE7ED811F02009E0096062F /* RegisterController.h */,
+				5AE7ED821F02009E0096062F /* RegisterController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -858,6 +1301,8 @@
 			children = (
 				5AEADFB71EEB8B9E004EB475 /* LoginRegister.h */,
 				5AEADFB81EEB8B9E004EB475 /* LoginRegister.m */,
+				5AE7ECD81EF386A60096062F /* UserInfo.h */,
+				5AE7ECD91EF386A60096062F /* UserInfo.m */,
 				5AEADFD81EEE7394004EB475 /* Account.h */,
 				5AEADFD91EEE7394004EB475 /* Account.m */,
 			);
@@ -1012,6 +1457,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AE7ED901F020DBD0096062F /* beep.wav in Resources */,
 				5A0B1CF41ED6A76A00179C8C /* LaunchScreen.storyboard in Resources */,
 				5AEADF491EE54F5B004EB475 /* star-half.png in Resources */,
 				5AEADF471EE54F5B004EB475 /* star--full.png in Resources */,
@@ -1077,10 +1523,14 @@
 			files = (
 				5AEADEC11EDEB340004EB475 /* DemandHeaderView.m in Sources */,
 				5AEADF111EE2A2CA004EB475 /* HomeBaseModel.m in Sources */,
+				5AE7ECE31EF3C5350096062F /* WorkOrderRegister.m in Sources */,
 				5AEADF421EE54D49004EB475 /* CJTStarView.m in Sources */,
+				5AE7ECF51EF7708B0096062F /* PersonalCell.m in Sources */,
+				5AE7ED621EFB96230096062F /* AcceptOrderDetailsControllerController.m in Sources */,
 				5AEADFB61EEA9B70004EB475 /* WebViewController.m in Sources */,
 				5A0B1D1E1ED6E47F00179C8C /* MineHeaderView.m in Sources */,
 				5AEADF5A1EE63A49004EB475 /* LeaseController.m in Sources */,
+				5AE7ED531EFA3E6F0096062F /* AcceptOrderController.m in Sources */,
 				5AEADF821EE7F605004EB475 /* MessageCell.m in Sources */,
 				5AEADEC41EDEB7BF004EB475 /* GuaranteeDetailsHeaderView.m in Sources */,
 				5AEADE9A1EDE4FC3004EB475 /* ScrollToView.m in Sources */,
@@ -1088,53 +1538,103 @@
 				5AEADF3D1EE54D1A004EB475 /* EstimateView.m in Sources */,
 				5AEADF631EE67456004EB475 /* LeaseDetailsController.m in Sources */,
 				5AEADF381EE5361A004EB475 /* DispatchPersonnelController.m in Sources */,
+				5AE7ED591EFA71950096062F /* DistrubitionSubmitRegister.m in Sources */,
+				5AE7ECF81EF776870096062F /* PersonalModel.m in Sources */,
+				5AE7ECDA1EF386A60096062F /* UserInfo.m in Sources */,
 				5AEADEFB1EDFC15A004EB475 /* UIColor+Extension.m in Sources */,
+				5AE7ED6B1EFBA9550096062F /* AccepFinishOrderRegister.m in Sources */,
 				5AEADF601EE65DDF004EB475 /* LeaseView.m in Sources */,
 				5A0B1D251ED80AB100179C8C /* SettingController.m in Sources */,
 				5A0B1D0E1ED6BC5500179C8C /* TabBarController.m in Sources */,
+				5AE7ECF21EF770460096062F /* PersonalController.m in Sources */,
+				5AE7ED121EF8B55B0096062F /* RepairOrderDetailsController.m in Sources */,
+				5AE7ED4C1EFA21970096062F /* ReceivePersonRegister.m in Sources */,
 				5AEADEB01EDE9C5E004EB475 /* DemandGuaranteeView.m in Sources */,
 				5A0B1D111ED6BE8100179C8C /* NavigationController.m in Sources */,
+				5AE7ED5C1EFB54EC0096062F /* AcceptingOrderRegister.m in Sources */,
 				5AEADF781EE789BF004EB475 /* LoginController.m in Sources */,
+				5AE7ED251EF8FFFE0096062F /* DistributionOrderController.m in Sources */,
 				5AEADF321EE523A1004EB475 /* DetailsView.m in Sources */,
 				5AEADECF1EDEC84B004EB475 /* GuaranteeEstimateController.m in Sources */,
+				5AE7ED561EFA44FD0096062F /* RepairSubmitRegister.m in Sources */,
 				5AEADEA41EDE73C6004EB475 /* WriteGuaranteeView.m in Sources */,
 				5AEADF851EE7FDFA004EB475 /* MessageHeaderView.m in Sources */,
+				5AE7ED0C1EF7C09F0096062F /* RepairOrderController.m in Sources */,
 				5AEADF291EE4E71D004EB475 /* HandleController.m in Sources */,
 				5A0B1D471ED95F7E00179C8C /* ScrollToSwitchView.m in Sources */,
+				5AE7ED7A1EFE00940096062F /* LogBaseModel.m in Sources */,
+				5AE7ECCE1EF0D2170096062F /* GuaranteeDetailsModel.m in Sources */,
 				5AEADF6E1EE69229004EB475 /* BLDatePickerView.m in Sources */,
+				5AE7ED181EF8C9380096062F /* RepairTitleModel.m in Sources */,
+				5AE7ED681EFBA5870096062F /* AcceptFinishRegister.m in Sources */,
+				5AE7ECD71EF3684F0096062F /* GuaranteeDetailsRegister.m in Sources */,
 				5A0B1CE91ED6A76A00179C8C /* AppDelegate.m in Sources */,
+				5AE7ED151EF8B6360096062F /* RepairDetailsCell.m in Sources */,
+				5AE7ED281EF901B60096062F /* NoDistributionRegister.m in Sources */,
+				5AE7ECE81EF765B20096062F /* HandleView.m in Sources */,
 				5A0B1D3A1ED9526000179C8C /* HomeHeaderView.m in Sources */,
 				5AEADF431EE54D49004EB475 /* CJTStarView2.m in Sources */,
+				5AE7ED431EFA12EF0096062F /* ReceivePersonController.m in Sources */,
+				5AE7ED831F02009E0096062F /* RegisterController.m in Sources */,
+				5AE7ED801F00EEC90096062F /* ComplaintsListRegister.m in Sources */,
 				5AEADF5D1EE64199004EB475 /* SearchBar.m in Sources */,
+				5AE7ED8D1F020D6E0096062F /* QRCodeReaderView.m in Sources */,
+				5AEBC7431F0392C900F93818 /* ScanController.m in Sources */,
+				5AE7ED341EF917300096062F /* DistributionOrderDetailsController.m in Sources */,
 				5AEADF0B1EE28E21004EB475 /* UIImage+Extension.m in Sources */,
 				5A0B1D311ED92BB700179C8C /* BusinessCell.m in Sources */,
+				5AE7ECD41EF2226F0096062F /* NSString+Extension.m in Sources */,
 				5AEADFDA1EEE7394004EB475 /* Account.m in Sources */,
+				5AE7ED3D1EF9FD1E0096062F /* DistributionDetailsCell.m in Sources */,
 				5A0B1D2B1ED9267F00179C8C /* BusinessCollectionView.m in Sources */,
 				5A0B1D341ED94CD900179C8C /* HomeView.m in Sources */,
+				5AE7ED741EFD148D0096062F /* LogRegister.m in Sources */,
+				5AE7ED6E1EFBBC990096062F /* UITableView+EmptyData.m in Sources */,
 				5A0B1D2E1ED929AC00179C8C /* BusinessFlowLayout.m in Sources */,
+				5AE7ED5F1EFB76F50096062F /* AcceptSubmitRegister.m in Sources */,
+				5AE7ED461EFA1A980096062F /* ReceiveCell.m in Sources */,
+				5AE7ED401EFA03830096062F /* DistributionTitleModel.m in Sources */,
 				5AEADEA11EDE7040004EB475 /* ToGuaranteeController.m in Sources */,
 				5A0B1CE61ED6A76A00179C8C /* main.m in Sources */,
 				5AEADF081EDFEBEE004EB475 /* SurroundingController.m in Sources */,
+				5AE7ED8E1F020D6E0096062F /* QRCodeReaderViewController.m in Sources */,
 				5AEADF2C1EE4E8B8004EB475 /* HandleCell.m in Sources */,
 				5AEADFB91EEB8B9E004EB475 /* LoginRegister.m in Sources */,
+				5AE7ED2B1EF9030A0096062F /* RepairOrderModel.m in Sources */,
 				5AEADF7F1EE7DEE4004EB475 /* MessageController.m in Sources */,
 				5A0B1D171ED6C37800179C8C /* HomeController.m in Sources */,
 				5AEADF661EE67E89004EB475 /* LeaseDetailsView.m in Sources */,
+				5AE7ED7D1EFE61750096062F /* BusinessRegister.m in Sources */,
+				5AE7ED371EF918CE0096062F /* DistributionOrderHeader.m in Sources */,
+				5AE7ED051EF7B80C0096062F /* RepairProcessController.m in Sources */,
 				5AEADEBE1EDEAF38004EB475 /* GuaranteeDetailsView.m in Sources */,
+				5AE7ECFB1EF7AC090096062F /* CycleRegister.m in Sources */,
+				5AE7ED8C1F020D6E0096062F /* QRCameraSwitchButton.m in Sources */,
 				5A0B1D281ED8395800179C8C /* BusinessController.m in Sources */,
 				5A0B1D411ED95AFB00179C8C /* SuggestionController.m in Sources */,
 				5AEADF0E1EE2A098004EB475 /* HomeModel.m in Sources */,
+				5AE7ED711EFCBDDB0096062F /* GuaranteeEstimateRegister.m in Sources */,
 				5AEADEA71EDE8FDD004EB475 /* GuaranteeModel.m in Sources */,
+				5AE7ECDD1EF3A8A40096062F /* GuaranteeListModel.m in Sources */,
+				5AE7ED1E1EF8EE300096062F /* NoRepairOrderRegister.m in Sources */,
 				5AEADF531EE56194004EB475 /* OptionsView.m in Sources */,
 				5AEADEFE1EDFD67F004EB475 /* Calculate.m in Sources */,
 				5AEADF691EE684C6004EB475 /* NSDate+Extension.m in Sources */,
+				5AE7ECFE1EF7ACAD0096062F /* CycleModel.m in Sources */,
 				5AEADF711EE69937004EB475 /* TimeCollectionView.m in Sources */,
 				5A0B1D371ED94E0E00179C8C /* HomeCell.m in Sources */,
+				5AE7ED491EFA20A30096062F /* ReceivePersonModel.m in Sources */,
+				5AE7ED0F1EF7C42E0096062F /* RepairView.m in Sources */,
+				5AE7ED651EFBA1900096062F /* AcceptingSubmitRegister.m in Sources */,
 				5AEADEBB1EDEAEE3004EB475 /* GuaranteeDetailsController.m in Sources */,
+				5AE7ECD11EF2173B0096062F /* HomeRegister.m in Sources */,
 				5AEADEAD1EDE97B6004EB475 /* WriteGuaranteeFooterView.m in Sources */,
 				5A0B1D1A1ED6DFF000179C8C /* MineController.m in Sources */,
 				5AEADEF81EDFBD7C004EB475 /* UITextView+Placeholder.m in Sources */,
+				5AE7ED771EFD15790096062F /* LogModel.m in Sources */,
+				5AE7ECE01EF3A9D40096062F /* GuaranteeListRegister.m in Sources */,
 				5AEADF2F1EE52173004EB475 /* OrderDetailsController.m in Sources */,
+				5AE7ED311EF915540096062F /* NoAcceptOrderRegister.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1249,6 +1749,7 @@
 			baseConfigurationReference = 212B5CD437FD4A9C01410AEF /* Pods-Yuanqu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = Q7WTUP2ETT;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Yuanqu/PrefixHeader.pch";
@@ -1266,6 +1767,7 @@
 			baseConfigurationReference = A47688B1CC7BE83623239DB8 /* Pods-Yuanqu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = Q7WTUP2ETT;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Yuanqu/PrefixHeader.pch";

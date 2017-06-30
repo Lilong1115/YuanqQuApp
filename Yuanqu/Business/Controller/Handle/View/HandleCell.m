@@ -8,11 +8,10 @@
 
 //处理cell
 #import "HandleCell.h"
+#import "GuaranteeListModel.h"
 
 @interface HandleCell()
 
-//区域
-@property (nonatomic, weak) UILabel *areaLabel;
 //单号
 @property (nonatomic, weak) UILabel *orderNumLabel;
 //姓名
@@ -49,8 +48,6 @@
     blueView.backgroundColor = [UIColor colorWithHexString:@"#b0def5"];
     [self.contentView addSubview:blueView];
     
-    //名称
-    UILabel *area = [self creatLabelWithTitle:@"区  域:" titleColor:[UIColor blackColor]];
     UILabel *orderNum = [self creatLabelWithTitle:@"单  号:" titleColor:[UIColor blackColor]];
     UILabel *name = [self creatLabelWithTitle:@"姓  名:" titleColor:[UIColor blackColor]];
     UILabel *phone = [self creatLabelWithTitle:@"手  机:" titleColor:[UIColor blackColor]];
@@ -58,20 +55,18 @@
     UILabel *address = [self creatLabelWithTitle:@"地  址:" titleColor:[UIColor blackColor]];
     UILabel *time = [self creatLabelWithTitle:@"时  间:" titleColor:[UIColor blackColor]];
     
-    //内容
-    UILabel *areaLabel = [self creatLabelWithTitle:@"测试" titleColor:[UIColor grayColor]];
-    self.areaLabel = areaLabel;
-    UILabel *orderNumLabel = [self creatLabelWithTitle:@"测试" titleColor:[UIColor grayColor]];
+    UILabel *orderNumLabel = [self creatLabelWithTitle:@"" titleColor:[UIColor grayColor]];
     self.orderNumLabel = orderNumLabel;
-    UILabel *nameLabel = [self creatLabelWithTitle:@"测试" titleColor:[UIColor grayColor]];
+    UILabel *nameLabel = [self creatLabelWithTitle:@"" titleColor:[UIColor grayColor]];
     self.nameLabel = nameLabel;
-    UILabel *phoneLabel = [self creatLabelWithTitle:@"测试" titleColor:[UIColor grayColor]];
+    UILabel *phoneLabel = [self creatLabelWithTitle:@"" titleColor:[UIColor grayColor]];
     self.phoneLabel = phoneLabel;
-    UILabel *titleLabel = [self creatLabelWithTitle:@"测试" titleColor:[UIColor grayColor]];
+    UILabel *titleLabel = [self creatLabelWithTitle:@"" titleColor:[UIColor grayColor]];
     self.titleLabel = titleLabel;
-    UILabel *addressLabel = [self creatLabelWithTitle:@"测试" titleColor:[UIColor grayColor]];
+    UILabel *addressLabel = [self creatLabelWithTitle:@"" titleColor:[UIColor grayColor]];
     self.addressLabel = addressLabel;
-    UILabel *timeLabel = [self creatLabelWithTitle:@"测试" titleColor:[UIColor grayColor]];
+    UILabel *timeLabel = [self creatLabelWithTitle:@"" titleColor:[UIColor grayColor]];
+    timeLabel.numberOfLines = 0;
     self.timeLabel = timeLabel;
     
     //详情
@@ -93,17 +88,9 @@
         make.trailing.mas_equalTo(self.contentView).mas_offset(-8);
         make.height.mas_equalTo(5);
     }];
-    [area mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.mas_equalTo(self.contentView).mas_offset(8);
-        make.top.mas_equalTo(blueView.mas_bottom).mas_offset(8);
-    }];
-    [areaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(area);
-        make.leading.mas_equalTo(area.mas_trailing).mas_offset(8);
-    }];
     [orderNum mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.mas_equalTo(area);
-        make.top.mas_equalTo(area.mas_bottom).mas_offset(8);
+        make.leading.mas_equalTo(blueView);
+        make.top.mas_equalTo(blueView.mas_bottom).mas_offset(8);
     }];
     [orderNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(orderNum);
@@ -146,8 +133,9 @@
         make.top.mas_equalTo(orderNum);
     }];
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(time);
+        make.top.mas_equalTo(time);
         make.leading.mas_equalTo(time.mas_trailing).mas_offset(8);
+        make.trailing.mas_equalTo(self.contentView).mas_equalTo(-8);
     }];
     [detailsButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.mas_equalTo(self.contentView).mas_offset(-8);
@@ -177,6 +165,33 @@
     label.text = title;
     [self.contentView addSubview:label];
     return label;
+}
+
+
+-(void)setModel:(GuaranteeListModel *)model {
+
+    _model = model;
+    self.orderNumLabel.text = model.itemid;
+    self.nameLabel.text = model.rd_BXXM;
+    self.phoneLabel.text = model.rd_BXDH;
+    self.titleLabel.text = model.rd_BXBT;
+    self.addressLabel.text = model.rd_SFZB;
+    self.timeLabel.text = model.sysdate;
+    
+}
+
+//计算高度
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGFloat totalHeight = 0;
+//    totalHeight += [self.titleLabel sizeThatFits:size].height;
+//    totalHeight += [self.blueView sizeThatFits:size].height;
+//    totalHeight += [self.nameLabel sizeThatFits:size].height;
+//    totalHeight += [self.timeLabel sizeThatFits:size].height;
+//    totalHeight += [self.contentLabel sizeThatFits:size].height;
+//    totalHeight += [self.grayView sizeThatFits:size].height;
+//    totalHeight += [self.moreButton sizeThatFits:size].height;
+//    totalHeight += 8 + 8 + 20 + 20 + 20 + 8 + 8; // margins
+    return CGSizeMake(size.width, totalHeight);
 }
 
 @end

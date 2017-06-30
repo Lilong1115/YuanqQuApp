@@ -69,6 +69,35 @@ static NSString * const kWriteGuaranteeCellID = @"kWriteGuaranteeCellID";
             strongSelf.selectedImageBlock();
         }
     };
+    //清除
+    writeGuaranteeFooterView.clearBlock = ^(){
+        __strong WriteGuaranteeView *strongSelf = weakSelf;
+        if (strongSelf.clearBlock) {
+            strongSelf.clearBlock();
+        }
+    };
+    //提交
+    writeGuaranteeFooterView.uploadBlock = ^(){
+        
+        __strong WriteGuaranteeView *strongSelf = weakSelf;
+        if (strongSelf.uploadBlock) {
+            
+            NSDictionary *dict = @{
+                                   //报修姓名：RD_BXXM
+                                   @"RD_BXXM": ((WriteGuaranteeCell *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]).cellStr,
+                                   //报修电话：RD_BXDH
+                                   @"RD_BXDH": ((WriteGuaranteeCell *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]).cellStr,
+                                   //报修标题：RD_BXBT
+                                   @"RD_BXBT": ((WriteGuaranteeCell *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]]).cellStr,
+                                   //报修内容：RD_BXNR
+                                   @"RD_BXNR": ((WriteGuaranteeCell *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]]).cellStr,
+                                   //事发坐标：RD_SFZB
+                                   @"RD_SFZB": ((WriteGuaranteeCell *)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]]).cellStr
+                                   };
+            
+            strongSelf.uploadBlock(dict);
+        }
+    };
     
     self.tableFooterView = writeGuaranteeFooterView;
 }
@@ -102,11 +131,39 @@ static NSString * const kWriteGuaranteeCellID = @"kWriteGuaranteeCellID";
     return guaranteeModel.textType == textTypeFiled ? 60 : 120;
 }
 
-
+//设置图片
 - (void)setGuaranteeImage:(UIImage *)guaranteeImage {
 
     _guaranteeImage = guaranteeImage;
     self.writeGuaranteeFooterView.guaranteeImage = guaranteeImage;
+}
+
+
+- (void)setIsPhoto:(BOOL)isPhoto {
+
+    _isPhoto = isPhoto;
+    self.writeGuaranteeFooterView.isPhoto = isPhoto;
+    if (isPhoto == NO) {
+        self.writeGuaranteeFooterView.frame = CGRectMake(0, 0, ScreenW, 70);
+    }
+}
+
+//清除数据
+- (void)clearData {
+
+    //滚动防止复用
+    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    
+    for (int i = 0; i < self.contentArray.count; i++) {
+        WriteGuaranteeCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        [cell clearData];
+    }
+    
+    [self.writeGuaranteeFooterView clearImg];
+    
+    //回到底部
+    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.contentArray.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    
 }
 
 #pragma mark --lazy
@@ -208,7 +265,44 @@ static NSString * const kWriteGuaranteeCellID = @"kWriteGuaranteeCellID";
     
     self.contentTextView.hidden = guaranteeModel.textType == textTypeFiled;
     self.contentText.hidden = guaranteeModel.textType != textTypeFiled;
+    if (guaranteeModel.keyboardType == 0) {
+        self.contentText.keyboardType = UIKeyboardTypeDefault;
+    } else if (guaranteeModel.keyboardType == 1) {
+    
+        self.contentText.keyboardType = UIKeyboardTypeNumberPad;
+        //限制手机号字数
+        [self.contentText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    }
     
 }
+
+//限制手机号字数
+- (void)textFieldDidChange:(UITextField *)textField {
+
+    if (textField.text.length > 11) {
+        textField.text = [textField.text substringToIndex:11];
+    }
+
+}
+
+//清除数据
+- (void)clearData {
+
+    self.contentText.text = @"";
+    self.contentTextView.text = @"";
+    
+}
+
+//获取cell输入框信息
+- (NSString *)cellStr {
+
+    if (self.guaranteeModel.textType == textTypeFiled) {
+        return self.contentText.text;
+    } else {
+        return self.contentTextView.text;
+    }
+    
+}
+
 
 @end

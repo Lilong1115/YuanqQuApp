@@ -73,7 +73,7 @@
     
     //内容
     UILabel *contentLabel = [[UILabel alloc]init];
-    contentLabel.text = @"通知\n通知通知通知通知通知通知通知通知通知通知通知通知通知通知通知通知通知通知通知通知通知通知通知通知";
+    contentLabel.text = @"通知\n通知通知";
     contentLabel.numberOfLines = 0;
     contentLabel.textColor = [UIColor grayColor];
     [self.contentView addSubview:contentLabel];

@@ -13,8 +13,17 @@
 
 //报修图片回调
 @property (nonatomic, copy) void(^selectedImageBlock)();
+//清除
+@property (nonatomic, copy) void(^clearBlock)();
+//提交
+@property (nonatomic, copy) void(^uploadBlock)(NSDictionary *dict);
 //报修图片
 @property (nonatomic, strong) UIImage *guaranteeImage;
+
+@property (nonatomic, assign) BOOL isPhoto;
+
+//清除数据
+- (void)clearData;
 
 @end
 
@@ -24,5 +33,10 @@
 
 //模型
 @property (nonatomic, strong) GuaranteeModel *guaranteeModel;
+//cell输入框内容
+@property (nonatomic, copy) NSString *cellStr;
+
+//清除数据
+- (void)clearData;
 
 @end

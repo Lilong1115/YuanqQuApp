@@ -14,6 +14,15 @@
 //图片按钮
 @property (nonatomic, weak) UIButton *imageButton;
 
+//label
+@property (nonatomic, weak) UILabel *contentLabel;
+
+//提交按钮
+@property (nonatomic, weak) UIButton *submitButton;
+//清除按钮
+@property (nonatomic, weak) UIButton *clearButton;
+
+
 @end
 
 @implementation WriteGuaranteeFooterView
@@ -35,18 +44,23 @@
     UILabel *contentLabel = [[UILabel alloc]init];
     contentLabel.text = @"报修图片: (非必选项)";
     [self addSubview:contentLabel];
+    self.contentLabel = contentLabel;
+    
 
     //图片选择
     UIButton *imageButton = [[UIButton alloc]init];
-    [imageButton setBackgroundColor:[UIColor redColor]];
+//    [imageButton setBackgroundColor:[UIColor redColor]];
+    [imageButton setBackgroundImage:[UIImage imageNamed:@"addImg"] forState:UIControlStateNormal];
     [imageButton addTarget:self action:@selector(clickImageButton) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:imageButton];
     self.imageButton = imageButton;
     
     //提交按钮
     UIButton *submitButton = [self creatButtonWithTitle:@"提交" backgroundColor:[UIColor colorWithHexString:@"#4491fa"] sel:@selector(clickSubmitButton)];
+    self.submitButton = submitButton;
     //清除按钮
     UIButton *clearButton = [self creatButtonWithTitle:@"清除" backgroundColor:[UIColor orangeColor] sel:@selector(clickClearButton)];
+    self.clearButton = clearButton;
     
     //布局
     [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -66,8 +80,8 @@
         make.width.mas_equalTo((ScreenW - 8 * 3) / 2);
     }];
     [clearButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(submitButton);
-        make.bottom.trailing.mas_equalTo(self).mas_offset(-8);
+        make.top.height.mas_equalTo(submitButton);
+        make.trailing.mas_equalTo(self).mas_offset(-8);
         make.width.mas_equalTo((ScreenW - 8 * 3) / 2);
     }];
     
@@ -84,11 +98,17 @@
 //提交按钮
 - (void)clickSubmitButton {
 
+    if (self.uploadBlock) {
+        self.uploadBlock();
+    }
     
 }
 //清除按钮
 - (void)clickClearButton {
 
+    if (self.clearBlock) {
+        self.clearBlock();
+    }
     
 }
 
@@ -104,26 +124,49 @@
     return button;
 }
 
-
+//设置图片
 - (void)setGuaranteeImage:(UIImage *)guaranteeImage {
 
     _guaranteeImage = guaranteeImage;
     
     [self.imageButton setBackgroundImage:guaranteeImage forState:UIControlStateNormal];
+
+    [self.imageButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(160);
+        make.width.mas_equalTo(160);
+    }];
    
-    if (guaranteeImage.size.width >= guaranteeImage.size.height) {
-        [self.imageButton mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(160);
-            make.height.mas_equalTo(self.imageButton.frame.size.width * guaranteeImage.size.height / guaranteeImage.size.width);
-        }];
-    } else {
-    
-        [self.imageButton mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(160);
-            make.width.mas_equalTo(self.imageButton.frame.size.height * guaranteeImage.size.width / guaranteeImage.size.height);
+}
+
+
+- (void)setIsPhoto:(BOOL)isPhoto {
+
+    _isPhoto = isPhoto;
+    self.contentLabel.hidden = !isPhoto;
+    self.imageButton.hidden = !isPhoto;
+    if (isPhoto == NO) {
+        
+        [self.submitButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self).mas_offset(8);
+            make.height.mas_equalTo(40);
+            make.leading.mas_equalTo(self).mas_offset(8);
+            make.width.mas_equalTo((ScreenW - 8 * 3) / 2);
         }];
     }
     
+}
+
+
+//清除图片
+- (void)clearImg {
+
+    [self.imageButton setBackgroundImage:[UIImage imageNamed:@"addImg"] forState:UIControlStateNormal];
+    [self.imageButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self).mas_offset(-8);
+        make.centerX.mas_equalTo(self);
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(self.imageButton.mas_width);
+    }];
     
 }
 

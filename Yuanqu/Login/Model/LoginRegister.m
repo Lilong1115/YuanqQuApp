@@ -9,22 +9,20 @@
 #import "LoginRegister.h"
 
 @implementation LoginRegister {
-    NSString *_username;
-    NSString *_password;
+    NSString *_basic;
 }
 
-- (id)initWithUsername:(NSString *)username password:(NSString *)password {
+- (instancetype)initWithDict:(NSDictionary *)dict {
     self = [super init];
     if (self) {
-        _username = username;
-        _password = password;
+        _basic = dict[@"basic"];
     }
     return self;
 }
 
 - (NSString *)requestUrl {
-    // “ http://www.yuantiku.com ” 在 YTKNetworkConfig 中设置，这里只填除去域名剩余的网址信息
-    return @"/iphone/register";
+    // “http://www.yuantiku.com” 在 YTKNetworkConfig 中设置，这里只填除去域名剩余的网址信息
+    return AppLogin_URL;
 }
 
 - (YTKRequestMethod)requestMethod {
@@ -33,8 +31,7 @@
 
 - (id)requestArgument {
     return @{
-             @"username": _username,
-             @"password": _password
+             @"basic": _basic
              };
 }
 

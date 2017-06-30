@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = self.navTitle;
     [self setUpWKWebView];
 }
 
@@ -45,13 +45,14 @@
 
 
 - (void)setUpWKWebView {
-    self.wkWebView =  [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH - 64 - 10)];
+    self.wkWebView =  [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH)];
     self.wkWebView.navigationDelegate = self;
     self.wkWebView.UIDelegate = self;
     [self.view addSubview:self.wkWebView];
     [WKWebViewJavascriptBridge enableLogging];
     _bridge = [WKWebViewJavascriptBridge bridgeForWebView:self.wkWebView];
     [_bridge setWebViewDelegate:self];
+    self.wkWebView.scrollView.bounces = NO;
     
     // 注册一下
     
@@ -62,7 +63,9 @@
 // 加载h5
 - (void)loadExamplePage:(WKWebView*)webView {
     
+    NSLog(@"%@", [NSString stringWithFormat:@"%@%@", BaseUrl, self.url]);
     
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BaseUrl, self.url]]]];
 }
 
 @end

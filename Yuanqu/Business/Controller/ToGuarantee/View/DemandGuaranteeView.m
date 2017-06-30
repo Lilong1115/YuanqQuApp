@@ -8,6 +8,7 @@
 
 //查询报修
 #import "DemandGuaranteeView.h"
+#import "GuaranteeListModel.h"
 
 static NSString * const kDemandGuaranteeCellID = @"kDemandGuaranteeCellID";
 
@@ -41,6 +42,10 @@ static NSString * const kDemandGuaranteeCellID = @"kDemandGuaranteeCellID";
         //下拉刷新
         self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             
+            if (self.refreshBlock) {
+                self.refreshBlock();
+            }
+            
             [self.mj_header endRefreshing];
         }];
     }
@@ -56,12 +61,14 @@ static NSString * const kDemandGuaranteeCellID = @"kDemandGuaranteeCellID";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 20;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     DemandGuaranteeCell *cell = [tableView dequeueReusableCellWithIdentifier:kDemandGuaranteeCellID forIndexPath:indexPath];
+    
+    cell.model = self.dataArray[indexPath.row];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -71,13 +78,20 @@ static NSString * const kDemandGuaranteeCellID = @"kDemandGuaranteeCellID";
         __strong DemandGuaranteeView *strongSelf = weakSelf;
         
         //点击详情回调
-        if (strongSelf.clickDetailsBlock != nil) {
-            strongSelf.clickDetailsBlock();
+        if (strongSelf.clickDetailsBlock) {
+            strongSelf.clickDetailsBlock(indexPath);
         }
     };
     
     
     return cell;
+}
+
+
+- (void)setDataArray:(NSArray *)dataArray {
+
+    _dataArray = dataArray;
+    [self reloadData];
 }
 
 @end
@@ -139,6 +153,7 @@ static NSString * const kDemandGuaranteeCellID = @"kDemandGuaranteeCellID";
     UILabel *addressLabel = [self creatLabelWithTitle:@"测试" titleColor:[UIColor grayColor]];
     self.addressLabel = addressLabel;
     UILabel *timeLabel = [self creatLabelWithTitle:@"测试" titleColor:[UIColor grayColor]];
+    timeLabel.numberOfLines = 0;
     self.timeLabel = timeLabel;
     
     //详情
@@ -197,16 +212,18 @@ static NSString * const kDemandGuaranteeCellID = @"kDemandGuaranteeCellID";
         make.top.mas_equalTo(title.mas_bottom).mas_offset(8);
     }];
     [addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(address);
+        make.top.mas_equalTo(address);
         make.leading.mas_equalTo(address.mas_trailing).mas_offset(8);
+//        make.trailing.mas_equalTo(self.contentView).mas_offset(-8);
     }];
     [time mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.mas_equalTo(self.contentView.mas_centerX).mas_offset(20);
         make.top.mas_equalTo(orderNum);
     }];
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(time);
+        make.top.mas_equalTo(time);
         make.leading.mas_equalTo(time.mas_trailing).mas_offset(8);
+        make.trailing.mas_equalTo(self.contentView).mas_offset(-8);
     }];
     [detailsButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.mas_equalTo(self.contentView).mas_offset(-8);
@@ -236,6 +253,30 @@ static NSString * const kDemandGuaranteeCellID = @"kDemandGuaranteeCellID";
     label.text = title;
     [self.contentView addSubview:label];
     return label;
+}
+
+
+- (void)setModel:(GuaranteeListModel *)model {
+
+    _model = model;
+    if (model.itemid) {
+        self.orderNumLabel.text = model.itemid;
+        self.nameLabel.text = model.rd_BXXM;
+        self.phoneLabel.text = model.rd_BXDH;
+        self.titleLabel.text = model.rd_BXBT;
+        self.addressLabel.text = model.rd_SFZB;
+        self.timeLabel.text = model.sysdate;
+    } else {
+        self.orderNumLabel.text = model.NUMBERS;
+        self.nameLabel.text = model.CD_TSXM;
+        self.phoneLabel.text = model.CD_LXSJ;
+        self.titleLabel.text = model.CD_TSBT;
+        self.addressLabel.text = model.CD_LXDZ;
+        self.timeLabel.text = model.CJSJ;
+    }
+    
+    
+    
 }
 
 @end

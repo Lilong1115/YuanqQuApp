@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+/*
+{"icon":"/icon/null","name":"办公保障","type":"-1","url":"PalntRental.do?dataType=27BFC9F0564E48B5B845C27B51DB48D4"}
+*/
 @interface HomeBaseModel : NSObject
 
 //类型
@@ -15,7 +18,7 @@
 //内容
 @property (nonatomic, copy) NSArray *content;
 
-//获取内容
-+ (NSArray *)getHomeBaseModelArray;
+//获取内容,并发送通知
++ (void)getHomeBaseModelArray;
 
 @end

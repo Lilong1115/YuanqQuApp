@@ -174,5 +174,35 @@
     return label;
 }
 
+- (NSString *)maintenanceStr {
+    
+    CGFloat maintenance = self.maintenanceStarView.nowScore;
+    
+    
+    if (maintenance > 0 && maintenance < 5) {
+        maintenance += 0.5;
+    }
+    
+    
+    return [NSString stringWithFormat:@"%.1f", maintenance];
+    
+}
+
+- (NSString *)workAttitudeStr {
+
+    CGFloat maintenance = self.maintenanceStarView.nowScore;
+
+    if (maintenance > 0 && maintenance < 5) {
+        maintenance += 0.5;
+    }
+    
+    return [NSString stringWithFormat:@"%.1f", maintenance];
+}
+
+- (NSString *)content {
+
+    return self.contentText.text;
+}
+
 
 @end

@@ -7,75 +7,56 @@
 //
 
 #import "HomeBaseModel.h"
+#import "HomeRegister.h"
 
 @implementation HomeBaseModel
 
-+ (NSArray *)getHomeBaseModelArray {
-
-    NSArray *array = @[@{
-                           @"type": @"办公保障",
-                           @"content": @[
-                                   @{
-                                       @"title": @"绿植租摆",
-                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
-                                       },
-                                   @{
-                                       @"title": @"送饮用水",
-                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
-                                       },
-                                   @{
-                                       @"title": @"入室保洁",
-                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
-                                       },
-                                   @{
-                                       @"title": @"电话网络",
-                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
-                                       },
-                                   @{
-                                       @"title": @"优惠促销",
-                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
-                                       },
-                                   @{
-                                       @"title": @"周边信息",
-                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
-                                       }
-                                   ]},
-                       @{
-                           @"type": @"服务指南",
-                           @"content": @[
-                                   @{
-                                       @"title": @"园区信息",
-                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
-                                       },
-                                   @{
-                                       @"title": @"入驻流程",
-                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
-                                       },
-                                   @{
-                                       @"title": @"装修流程",
-                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
-                                       },
-                                   @{
-                                       @"title": @"收费标准",
-                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
-                                       },
-                                   @{
-                                       @"title": @"出租房源",
-                                       @"icon": @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg"
-                                       }
-                                   ]},
-                       ];
++ (void)getHomeBaseModelArray {
     
-    NSMutableArray *arrayM = [NSMutableArray array];
+    //字典
+    NSDictionary *parameters = @{
+                                 @"ssbm": [UserInfo account].dsoa_user_suoscode
+                                 };
+    NSString *json = [NSString ObjectTojsonString:parameters];
     
-    [array enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
+    //转为basic
+    NSDictionary *dict = @{@"basic": json};
+    
+    //请求
+    HomeRegister *homeRegister = [[HomeRegister alloc]initWithDict:dict];
+    [homeRegister startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
         
-        HomeBaseModel *model = [HomeBaseModel mj_objectWithKeyValues:dict];
-        [arrayM addObject:model];
+        NSDictionary *response = (NSDictionary *)homeRegister.responseObject;
+
+        NSInteger ret = [response[@"ret"] integerValue];
+        if (ret == Success_Code) {
+            NSString *data = (NSString *)response[@"data"];
+            
+            //json转array
+            NSArray *array = [NSJSONSerialization JSONObjectWithData:[data dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+            
+            NSMutableArray *arrayM = [NSMutableArray array];
+            
+            [array enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                HomeBaseModel *model = [HomeBaseModel mj_objectWithKeyValues:dict];
+                [arrayM addObject:model];
+            }];
+            
+            //主线程发送通知,更新界面
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:HomeBusinessNotification object:arrayM.copy];
+            }];
+        }
+        
+    } failure:^(YTKBaseRequest *request) {
+        // 你可以直接在这里使用 self
+        [ProgressHUD showError:@"网络请求失败"];
     }];
     
-    return arrayM.copy;
 }
+
+
 
 
 /* 实现该方法，说明数组中存储的模型数据类型 */

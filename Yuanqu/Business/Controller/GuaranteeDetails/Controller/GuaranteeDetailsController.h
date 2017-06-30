@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class GuaranteeListModel;
+
 @interface GuaranteeDetailsController : UIViewController
 
 //navTitle
 @property (nonatomic, copy) NSString *navTitle;
+
+//model
+@property (nonatomic, strong) GuaranteeListModel *model;
 
 @end

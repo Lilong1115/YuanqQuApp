@@ -10,6 +10,7 @@
 #import "TabBarController.h"
 #import "LoginController.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -20,21 +21,32 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // 启动图片延时: 1秒
+    [NSThread sleepForTimeInterval:1];
+    
+    
     //设置baseurl
     YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
-    config.baseUrl = @"http://yuantiku.com";
-    config.cdnUrl = @"http://fen.bi";
+    config.baseUrl = BaseUrl;
+    config.cdnUrl = CDNUrl;
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-    LoginController *loginVC = [[LoginController alloc]init];
+    //判断是否登录
+    if ([UserInfo account]) {
+        TabBarController *tabBar = [[TabBarController alloc]init];
+        self.window.rootViewController = tabBar;
+    } else {
     
-    TabBarController *tabBar = [[TabBarController alloc]init];
-    self.window.rootViewController = loginVC;
+        LoginController *loginVC = [[LoginController alloc]init];
+        self.window.rootViewController = loginVC;
+    }
+    
     [self.window makeKeyAndVisible];
     
     return YES;
 }
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

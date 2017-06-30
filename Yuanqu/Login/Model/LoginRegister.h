@@ -11,6 +11,6 @@
 @interface LoginRegister : YTKRequest
 
 
-- (id)initWithUsername:(NSString *)username password:(NSString *)password;
+- (instancetype)initWithDict:(NSDictionary *)dict;
 
 @end

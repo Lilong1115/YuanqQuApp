@@ -9,12 +9,14 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
-#import <RDVTabBarController.h>
+#import "UserInfo.h"
 
 //宏定义
 #import "Define.h"
+//接口
+#import "NetPort.h"
 
-
+#import <RDVTabBarController.h>
 #import <Masonry.h>
 #import <MJExtension.h>
 #import <IQKeyboardManager.h>
@@ -23,11 +25,15 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 #import <UIImageView+WebCache.h>
 #import <MBProgressHUD.h>
+#import <ProgressHUD.h>
+#import <HHAlertView.h>
 
 //分类
 #import "UITextView+Placeholder.h"
 #import "UIColor+Extension.h"
 #import "UIImage+Extension.h"
 #import "NSDate+Extension.h"
+#import "NSString+Extension.h"
+#import "UITableView+EmptyData.h"
 
 #endif /* PrefixHeader_pch */

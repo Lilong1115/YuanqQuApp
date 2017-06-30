@@ -21,6 +21,8 @@ typedef NS_ENUM(NSUInteger, TextType) {
 @property (nonatomic, copy) NSString *placeholder;
 //输入框类型
 @property (nonatomic, assign) TextType textType;
+//键盘类型
+@property (nonatomic, assign) NSInteger keyboardType;
 
 //字典转模型,获取数组
 + (NSArray *)getGuaranteeModelArray;

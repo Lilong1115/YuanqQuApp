@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class GuaranteeListModel, LogModel;
+
 @interface GuaranteeDetailsView : UITableView
 
 //是否含有table数据
@@ -18,5 +20,14 @@
 //我要投诉回调
 @property (nonatomic, copy) void(^complaintsBlock)();
 
+//model
+@property (nonatomic, strong) GuaranteeListModel *model;
+
+@end
+
+
+@interface LogCell : UITableViewCell
+
+@property (nonatomic, strong) LogModel *model;
 
 @end

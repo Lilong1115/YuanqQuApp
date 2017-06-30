@@ -10,8 +10,16 @@
 #import "GuaranteeDetailsView.h"
 #import "DemandHeaderView.h"
 #import "GuaranteeDetailsHeaderView.h"
+#import "GuaranteeListModel.h"
+#import "LogModel.h"
+#import "LogBaseModel.h"
+
+
+static NSString * kLogCellID = @"kLogCellID";
 
 @interface GuaranteeDetailsView()<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, weak) GuaranteeDetailsHeaderView *guaranteeDetailsHeaderView;
 
 @end
 
@@ -27,12 +35,12 @@
         self.delegate = self;
         
         //注册
-        [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellID"];
+        [self registerClass:[LogCell class] forCellReuseIdentifier:kLogCellID];
         
         //去掉下划线
 //        self.separatorStyle = UITableViewCellSeparatorStyleNone;
         //行高
-//        self.rowHeight = 60;
+//        self.rowHeight = 100;
         //去掉滚动轴
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
@@ -47,8 +55,17 @@
 //设置详情头部视图
 - (void)setupGuaranteeDetailsHeaderView {
 
-    GuaranteeDetailsHeaderView *guaranteeDetailsHeaderView = [[GuaranteeDetailsHeaderView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 300)];
+    GuaranteeDetailsHeaderView *guaranteeDetailsHeaderView = [[GuaranteeDetailsHeaderView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 230)];
+    
     self.tableHeaderView = guaranteeDetailsHeaderView;
+    self.guaranteeDetailsHeaderView = guaranteeDetailsHeaderView;
+}
+
+
+- (void)setModel:(GuaranteeListModel *)model {
+    
+    _model = model;
+    self.guaranteeDetailsHeaderView.model = model;
 }
 
 #pragma mark --dataSoure
@@ -59,18 +76,37 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.dataArray.count;
+    LogBaseModel *model = self.dataArray[section];
+    
+    return model.content.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
+    LogCell *cell = [tableView dequeueReusableCellWithIdentifier:kLogCellID forIndexPath:indexPath];
   
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld-%ld", indexPath.section, indexPath.row];
+    LogBaseModel *baseModel = self.dataArray[indexPath.section];
+    
+    LogModel *model = baseModel.content[indexPath.row];
+    
+    cell.model = model;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
+}
+
+//设置高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return [tableView fd_heightForCellWithIdentifier:kLogCellID cacheByKey:indexPath configuration:^(id cell) {
+        LogBaseModel *baseModel = self.dataArray[indexPath.section];
+        
+        LogModel *model = baseModel.content[indexPath.row];
+        
+        ((LogCell *)cell).model = model;
+    }];
+    
 }
 
 //设置每个section的headerView
@@ -111,12 +147,6 @@
             headerView.title = @"投诉查询";
             headerView.buttonStr = @"我要投诉";
             break;
-        case 2:
-            headerView.isHidden = NO;
-            headerView.groundColor = [UIColor greenColor];
-            headerView.title = @"维修查询";
-            headerView.buttonStr = @"维修确认";
-            break;
         default:
             break;
     }
@@ -148,17 +178,70 @@
 
 
 #pragma mark --lazy
-- (NSArray *)dataArray {
+//- (NSArray *)dataArray {
+//
+//    if (_dataArray == nil) {
+//        _dataArray = @[
+//                       @"1",
+//                       @"2"
+//                       ];
+//    }
+//    
+//    return _dataArray;
+//}
 
-    if (_dataArray == nil) {
-        _dataArray = @[
-                       @"1",
-                       @"2",
-                       @"3"
-                       ];
+@end
+
+
+@interface LogCell()
+
+@property (nonatomic, weak) UILabel *contentLabel;
+
+@end
+
+@implementation LogCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        [self setupUI];
     }
     
-    return _dataArray;
+    return self;
 }
+
+- (void)setupUI {
+
+    UILabel *contentLabel = [[UILabel alloc]init];
+    contentLabel.text = @"123";
+    contentLabel.numberOfLines = 0;
+    [self.contentView addSubview:contentLabel];
+    self.contentLabel = contentLabel;
+    contentLabel.font = [UIFont systemFontOfSize:14];
+    
+    [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.contentView).mas_offset(UIEdgeInsetsMake(8, 8, 8, 8));
+    }];
+}
+
+
+- (void)setModel:(LogModel *)model {
+
+    _model = model;
+    self.contentLabel.text = model.NEIRONG;
+}
+
+//计算高度
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGFloat totalHeight = 0;
+    totalHeight += [self.contentLabel sizeThatFits:size].height;
+//    totalHeight += 8 * 2; // margins
+    return CGSizeMake(size.width, totalHeight);
+}
+
+
+
+
 
 @end

@@ -16,4 +16,12 @@
 //设置具体内容
 @property (nonatomic, copy) NSString *navTitle;
 
+//维修进度评价
+@property (nonatomic, copy) NSString *maintenanceStr;
+//工作态度评价
+@property (nonatomic, copy) NSString *workAttitudeStr;
+
+//评价内容
+@property (nonatomic, copy) NSString *content;
+
 @end

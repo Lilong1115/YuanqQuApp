@@ -8,13 +8,17 @@
 
 //报修处理/投诉处理/任务详情
 #import "HandleController.h"
-#import "HandleCell.h"
 #import "OrderDetailsController.h"
 #import "GuaranteeDetailsController.h"
+#import "GuaranteeListModel.h"
+#import "HandleView.h"
 
 static NSString * const kHandleCellID = @"kHandleCellID";
 
 @interface HandleController ()
+
+//数据源
+@property (nonatomic, copy) NSArray *dataArray;
 
 @end
 
@@ -24,7 +28,22 @@ static NSString * const kHandleCellID = @"kHandleCellID";
     [super viewDidLoad];
     
     [self setupNav];
+    
     [self setupTable];
+    
+    //获取数据
+//    [GuaranteeListModel getWorkOrderListModelArray];
+    //注册通知
+    //获取报修处理列表的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkOrderListSuccessNotification:) name:AppWorkOrderListSuccessNotification object:nil];
+}
+
+//获取报修处理列表的通知
+- (void)appWorkOrderListSuccessNotification:(NSNotification *)noti {
+
+    self.dataArray = noti.object;
+    [self.tableView reloadData];
+
 }
 
 //设置nav
@@ -36,23 +55,8 @@ static NSString * const kHandleCellID = @"kHandleCellID";
 
 //设置table
 - (void)setupTable {
-
-    //注册
-    [self.tableView registerClass:[HandleCell class] forCellReuseIdentifier:kHandleCellID];
     
-    //去掉下划线
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //行高
-    self.tableView.rowHeight = 230;
-    //去掉滚动轴
-    self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.showsHorizontalScrollIndicator = NO;
-    
-    //下拉刷新
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
-        [self.tableView.mj_header endRefreshing];
-    }];
+//    HandleView *repairOrderView = []
     
 }
 
@@ -62,47 +66,10 @@ static NSString * const kHandleCellID = @"kHandleCellID";
 }
 
 
-#pragma mark --dataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 1;
+- (void)dealloc {
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return 10;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    HandleCell *cell = [tableView dequeueReusableCellWithIdentifier:kHandleCellID forIndexPath:indexPath];
-    
-    //详情回调
-    __weak HandleController *weakSelf = self;
-    cell.clickDetailsBlock = ^(){
-        __strong HandleController *strongSelf = weakSelf;
-        
-        if ([self.navTitle isEqualToString:@"任务工单"]) {
-            
-            GuaranteeDetailsController *guaranteeDetailsVC = [[GuaranteeDetailsController alloc]init];
-            guaranteeDetailsVC.navTitle = @"任务详情";
-            [strongSelf.navigationController pushViewController:guaranteeDetailsVC animated:YES];
-            
-        } else {
-            OrderDetailsController *orderDetailsVC = [[OrderDetailsController alloc]init];
-            
-            [strongSelf.navigationController pushViewController:orderDetailsVC animated:YES];
-        }
-        
-    };
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    return cell;
-}
-
-#pragma mark --delegate
-
-
 
 @end

@@ -57,7 +57,6 @@ static NSString * const kBusinessCellID = @"kBusinessCellID";
     BusinessCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kBusinessCellID forIndexPath:indexPath];
     
     HomeModel *model = self.contentArray[indexPath.item];
-//    NSLog(@"%@", model.title);
     
     cell.model = model;
     
@@ -68,7 +67,7 @@ static NSString * const kBusinessCellID = @"kBusinessCellID";
 
 #pragma mark --delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     //选中回调
     if (self.selectedBlock != nil) {
         self.selectedBlock(indexPath);
@@ -80,5 +79,6 @@ static NSString * const kBusinessCellID = @"kBusinessCellID";
     _contentArray = contentArray;
     [self reloadData];
 }
+
 
 @end

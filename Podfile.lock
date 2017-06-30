@@ -19,11 +19,14 @@ PODS:
   - AMapFoundation-NO-IDFA (1.4.0)
   - AMapSearch-NO-IDFA (5.1.0):
     - AMapFoundation-NO-IDFA (~> 1.2)
-  - IQKeyboardManager (4.0.9)
+  - HHAlertView (0.1.0)
+  - IQKeyboardManager (4.0.10)
   - Masonry (1.0.2)
   - MBProgressHUD (1.0.0)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
+  - OpenShare (0.0.1)
+  - ProgressHUD (2.4)
   - RDVTabBarController (1.1.9)
   - SDCycleScrollView (1.66):
     - SDWebImage (~> 4.0.0)
@@ -36,30 +39,36 @@ PODS:
     - AFNetworking (~> 3.0)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.1.0)
-  - AMap3DMap-NO-IDFA (~> 5.0.0)
-  - AMapSearch-NO-IDFA (~> 5.1.0)
-  - IQKeyboardManager (~> 4.0.9)
-  - Masonry (~> 1.0.2)
-  - MBProgressHUD (~> 1.0.0)
-  - MJExtension (~> 3.0.13)
-  - MJRefresh (~> 3.1.12)
-  - RDVTabBarController (~> 1.1.9)
-  - SDCycleScrollView (~> 1.66)
-  - UITableView+FDTemplateLayoutCell (~> 1.6)
-  - WebViewJavascriptBridge (~> 6.0.2)
-  - YTKNetwork (~> 2.0.3)
+  - AFNetworking
+  - AMap3DMap-NO-IDFA
+  - AMapSearch-NO-IDFA
+  - HHAlertView
+  - IQKeyboardManager
+  - Masonry
+  - MBProgressHUD
+  - MJExtension
+  - MJRefresh
+  - OpenShare
+  - ProgressHUD
+  - RDVTabBarController
+  - SDCycleScrollView
+  - UITableView+FDTemplateLayoutCell
+  - WebViewJavascriptBridge
+  - YTKNetwork
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AMap3DMap-NO-IDFA: 0711f9634a5a41efb6ac79fc5137b681673fb6b9
   AMapFoundation-NO-IDFA: d1ba541a56737c2048115a745b1dfcbe9901c248
   AMapSearch-NO-IDFA: '06085cfcce8862531c16d5dfbe87f7152ce27dac'
-  IQKeyboardManager: 322c7405df3eb5f7e50dede32ea937bf3d4364e0
+  HHAlertView: 043766460ca18236a1e2fbbbdb396318d304d43d
+  IQKeyboardManager: 593ee99b88381f4b9ccb22bd680f22606351bd41
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  OpenShare: a560580dbb729d5c0c3cc1ee84cd6aa4a07e94c6
+  ProgressHUD: 4b66b0df0e08519c5c7283a198fd2867a114c95a
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   SDCycleScrollView: e3ade90e9b3159bec04330b208fbfd81c3f3b671
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
@@ -67,6 +76,6 @@ SPEC CHECKSUMS:
   WebViewJavascriptBridge: 791ee0e26d1bf15efe5fb7fb9666a71a19b89d77
   YTKNetwork: c4b0c29c9d639dc050d475de69ee626d53eac598
 
-PODFILE CHECKSUM: 76949206d68f3ef23da930a8f271ccdcd4b1bee3
+PODFILE CHECKSUM: 64b1a82101d23e469e450df19abbd75a9be6fef9
 
 COCOAPODS: 1.2.1

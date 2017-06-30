@@ -11,6 +11,9 @@
 #import "MineHeaderView.h"
 #import "SettingController.h"
 #import "MessageController.h"
+#import "PersonalController.h"
+#import "QRCodeReaderViewController.h"
+#import "ScanController.h"
 
 #pragma mark --宏定义
 //头视图高度
@@ -19,7 +22,7 @@
 //cellid
 static NSString * const kMineCellID = @"kMineCellID";
 
-@interface MineController ()
+@interface MineController ()<QRCodeReaderDelegate>
 
 //我的头视图
 @property (nonatomic, weak) MineHeaderView *headerView;
@@ -52,7 +55,7 @@ static NSString * const kMineCellID = @"kMineCellID";
 
     self.title = @"我的";
     //设置
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"star_selecte"] style:UIBarButtonItemStylePlain target:self action:@selector(setting)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"setting"] style:UIBarButtonItemStylePlain target:self action:@selector(setting)];
     
 }
 
@@ -120,21 +123,52 @@ static NSString * const kMineCellID = @"kMineCellID";
     
     return cell;
 }
-    
-#pragma mark --delegate
+
 //脚视图高度
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
     return section == 0 ? 10 : 0;
 }
+    
+#pragma mark --delegate
 
+//选择cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (indexPath.section == 1 && indexPath.row == 0) {
         
         MessageController *messageVC = [[MessageController alloc]initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:messageVC animated:YES];
+    } else if (indexPath.section == 0 && indexPath.row == 0) {
+    
+        PersonalController *personalVC = [[PersonalController alloc]init];
+        [self.navigationController pushViewController:personalVC animated:YES];
+    } else if (indexPath.section == 1 && indexPath.row == 2) {
+    
+        QRCodeReaderViewController *reader = [QRCodeReaderViewController new];
+        reader.navigationItem.rightBarButtonItem = nil;
+        reader.navigationItem.title = @"扫一扫";
+        reader.modalPresentationStyle = UIModalPresentationFormSheet;
+        reader.delegate = self;
+        
+        [self.navigationController pushViewController:reader animated:YES];
+        
+    } else if (indexPath.section == 1 && indexPath.row == 1) {
+    
     }
+}
+
+
+
+#pragma mark --reader delegate
+//扫描信息
+- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result {
+    
+    ScanController *scanVC = [[ScanController alloc]init];
+    scanVC.url = result;
+    
+    [reader.navigationController pushViewController:scanVC animated:YES];
+    
 }
     
 
@@ -151,16 +185,20 @@ static NSString * const kMineCellID = @"kMineCellID";
         
         NSArray *array = @[
                            @[@{
-                                 @"picture": @"star_selecte",
+                                 @"picture": @"personal",
                                  @"text": @"个人资料"
                                  }],
                            @[@{
-                                 @"picture": @"star_selecte",
+                                 @"picture": @"msg",
                                  @"text": @"消息"
                                  },
                              @{
-                                 @"picture": @"star_selecte",
+                                 @"picture": @"share",
                                  @"text": @"分享"
+                                 },
+                             @{
+                                 @"picture": @"qe",
+                                 @"text": @"扫一扫"
                                  }
                              ]
                            ];
