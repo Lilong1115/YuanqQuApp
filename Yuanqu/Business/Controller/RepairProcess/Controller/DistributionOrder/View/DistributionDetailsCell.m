@@ -93,6 +93,14 @@
         //可交互
         self.contentLabel.userInteractionEnabled = YES;
         [self.contentLabel addGestureRecognizer:tap];
+        UIImageView *xiala = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xiala"]];
+        [self.contentLabel addSubview:xiala];
+        
+        [xiala mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self.contentLabel);
+            make.trailing .mas_equalTo(self.contentLabel);
+        }];
+        
     }
 }
 

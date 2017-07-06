@@ -175,8 +175,12 @@ static NSString * const kRepairDetailsCellID = @"kRepairDetailsCellID";
 - (NSArray *)dataArray {
 
     if (_dataArray == nil) {
+        if (self.yesRepairOrderModel) {
+            _dataArray = [RepairTitleModel getNewRepairTitleModelArray];
+        } else {
+            _dataArray = [RepairTitleModel getRepairTitleModelArray];
+        }
         
-        _dataArray = [RepairTitleModel getRepairTitleModelArray];
     }
     
     return _dataArray;
@@ -195,7 +199,7 @@ static NSString * const kRepairDetailsCellID = @"kRepairDetailsCellID";
                              self.repairOrderModel.rd_SFZB,
                              self.repairOrderModel.rd_BXBT,
                              self.repairOrderModel.rd_BXNR,
-                             self.repairOrderModel.objname,
+                             self.repairOrderModel.username,
                              self.repairOrderModel.senddate,
                              @"一般"
                              ];

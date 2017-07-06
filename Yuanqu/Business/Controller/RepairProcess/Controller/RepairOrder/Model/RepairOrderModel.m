@@ -82,6 +82,8 @@
         if (ret == Success_Code) {
             NSArray *data = (NSArray *)response[@"data"];
             
+            NSLog(@"%@",data);
+            
             NSMutableArray *arrayM = [NSMutableArray array];
             
             [data enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {

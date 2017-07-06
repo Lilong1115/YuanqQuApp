@@ -42,6 +42,8 @@
 @property (nonatomic, copy) NSString *objid;
 //费用               WD_FY
 @property (nonatomic, copy) NSString *wd_FY;
+//制单人员
+@property (nonatomic, copy) NSString *username;
 
 //已制定(未分配)工单列表
 + (void)getYesRepairOrderListModelArray;

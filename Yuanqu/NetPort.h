@@ -11,7 +11,7 @@
 
 /*******************URL******************/
 //baseUrl
-#define BaseUrl @"http://192.168.100.232:8080/Apps/"
+#define BaseUrl @"http://192.168.100.125:8080/Apps/"
 //cdnUrl
 #define CDNUrl @""
 //扫一扫baseUrl
@@ -67,20 +67,19 @@ URL:appShowMenuList.do
 模块名称 	:name
 请求地址	:url
 模块编号  :type
- 装修申报  ：type：01
- 设备管理  ：      02
- 工单管理  ：      03
- 报修管理  ：      04
+ 装修申报  ：type：02
+ 工单管理  ：      07
+ 报修管理  ：      06
 */
 
 //业务类型
 typedef NS_ENUM(NSUInteger, BusinessType) {
     //报修管理
-    RepairType = 12,
+    RepairType = 6,
     //工单管理
-    RepairOrderType = 13,
+    RepairOrderType = 7,
     //装修申报
-    DecorateType = 14,
+    DecorateType = 2,
     //设备管理
     EquipmentType = 15,
 };

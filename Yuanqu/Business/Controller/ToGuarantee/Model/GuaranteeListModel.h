@@ -36,6 +36,8 @@
 @property (nonatomic, copy) NSString *senddate;
 //状态: RD_CLBJ    0  我要确认， 1 我要评价， 大于1  按钮隐藏
 @property (nonatomic, copy) NSString *rd_CLBJ;
+//报修人员
+@property (nonatomic, copy) NSString *username;
 
 /**********投诉*************/
 //SYSID  系统Id

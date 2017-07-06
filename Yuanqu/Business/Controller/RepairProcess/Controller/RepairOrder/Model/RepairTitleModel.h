@@ -15,4 +15,6 @@
 
 + (NSArray *)getRepairTitleModelArray;
 
++ (NSArray *)getNewRepairTitleModelArray;
+
 @end

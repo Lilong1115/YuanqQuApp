@@ -66,6 +66,8 @@
     [self.contentView addSubview:textField];
     self.textField = textField;
     textField.tintColor = [UIColor whiteColor];
+    self.textField.rightView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xiala"]];
+    self.textField.rightViewMode = UITextFieldViewModeAlways;
     
     //选择器
     UIPickerView *pickerView = [[UIPickerView alloc]init];
@@ -163,7 +165,7 @@
 
     if (_pickerData == nil) {
         
-        _pickerData = @[@"一般", @"紧急", @"非常急"];
+        _pickerData = @[@"一般", @"紧急", @"非常紧急"];
     }
     
     return _pickerData;

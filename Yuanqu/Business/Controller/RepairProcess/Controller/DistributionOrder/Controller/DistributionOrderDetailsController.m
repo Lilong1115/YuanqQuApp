@@ -308,7 +308,7 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
                                  self.yesRepairOrderModel.wd_BXDH,
                                  self.yesRepairOrderModel.wd_WYDZ,
                                  self.yesRepairOrderModel.wd_JJCD,
-                                 [UserInfo account].dsoa_user_name,
+                                 self.yesRepairOrderModel.username,
                                  self.yesRepairOrderModel.senddate
                                  ],
                              @[
@@ -337,7 +337,7 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
                                  self.yesRepairOrderModel.wd_BXDH,
                                  self.yesRepairOrderModel.wd_WYDZ,
                                  self.yesRepairOrderModel.wd_JJCD,
-                                 [UserInfo account].dsoa_user_name,
+                                 self.yesRepairOrderModel.username,
                                  self.yesRepairOrderModel.sysdate
                                  ],
                              @[
