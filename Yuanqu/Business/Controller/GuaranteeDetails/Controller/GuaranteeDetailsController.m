@@ -93,6 +93,7 @@
 - (void)setupGuaranteeDetailsView {
 
     GuaranteeDetailsView *guaranteeDetailsView = [[GuaranteeDetailsView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH - FooterViewHeight) style:UITableViewStylePlain];
+    guaranteeDetailsView.isComplaints = self.isComplaints;
     
     [LogBaseModel getLogModelArrayWithDict:@{
                                          @"SYSID": self.model.sysid
@@ -106,6 +107,7 @@
         ToGuaranteeVC.navTitle = @"我要投诉";
         ToGuaranteeVC.model = strongSelf.model;
         ToGuaranteeVC.isPhoto = NO;
+        ToGuaranteeVC.isAppComplaints = NO;
         [strongSelf.navigationController pushViewController:ToGuaranteeVC animated:YES];
     };
     
@@ -134,7 +136,7 @@
     CGFloat estimateButtonY = 0;
     NSString *estimateStr;
     
-    if ([self.navTitle isEqualToString:@"报修详情"]) {
+    if ([self.navTitle isEqualToString:@"报修详情"] || self.isComplaints == YES) {
                 
         estimateButtonY += ScreenH - FooterViewHeight + FooterViewMargin;
         if ([self.model.rd_CLBJ integerValue] == 0) {
@@ -146,7 +148,7 @@
         }
         
         
-    } else if ([self.navTitle isEqualToString:@"投诉详情"]) {
+    } else if ([self.navTitle isEqualToString:@"投诉详情"] && self.isComplaints == NO) {
     
         estimateButtonY += 320;
         estimateStr = @"我要评价";

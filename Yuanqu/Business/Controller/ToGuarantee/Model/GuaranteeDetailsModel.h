@@ -33,6 +33,8 @@
 
 //上传报修信息
 - (void)uploadInformation;
+//上传我要投诉信息
+- (void)uploadAppComplaintsInformation;
 
 + (void)uploadComplaintsDataWithDict:(NSDictionary *)dict;
 

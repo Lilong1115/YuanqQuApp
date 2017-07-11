@@ -120,7 +120,7 @@
     loginButton.layer.cornerRadius = 5;
     loginButton.layer.masksToBounds = YES;
     [loginButton setTitle:@"登录" forState:UIControlStateNormal];
-    [loginButton setBackgroundColor:[UIColor blueColor]];
+    [loginButton setBackgroundColor:[UIColor colorWithHexString:@"#00BFFF"]];
     [self.view addSubview:loginButton];
     [loginButton addTarget:self action:@selector(clickLoginButton) forControlEvents:UIControlEventTouchUpInside];
     

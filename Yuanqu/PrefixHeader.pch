@@ -26,7 +26,7 @@
 #import <UIImageView+WebCache.h>
 #import <MBProgressHUD.h>
 #import <ProgressHUD.h>
-#import <HHAlertView.h>
+#import <JCAlertController.h>
 
 //分类
 #import "UITextView+Placeholder.h"

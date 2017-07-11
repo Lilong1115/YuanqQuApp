@@ -11,6 +11,40 @@
 
 @implementation HomeModel
 
+
+//获取投诉管理
++ (NSArray *)getComplaintModelArray {
+    NSArray *array = @[
+                       @{
+                           @"name": @"制定投诉单",
+                           @"icon": @"zdgd",
+                           @"isLocal": @1
+                           },
+                       @{
+                           @"name": @"投诉单分配",
+                           @"icon": @"gdfp",
+                           @"isLocal": @1
+                           },
+                       @{
+                           @"name": @"受理投诉单",
+                           @"icon": @"slgd",
+                           @"isLocal": @1
+                           }
+                       ];
+    
+    NSMutableArray *arrayM = [NSMutableArray array];
+    
+    [array enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        HomeModel *model = [HomeModel mj_objectWithKeyValues:dict];
+        [arrayM addObject:model];
+        
+    }];
+    
+    return arrayM.copy;
+    
+}
+
 //获取工单
 + (NSArray *)getOrderModelArray {
     NSArray *array = @[
@@ -42,7 +76,6 @@
     
     return arrayM.copy;
 
-    
 }
 
 + (NSArray *)getHomeModelArray {

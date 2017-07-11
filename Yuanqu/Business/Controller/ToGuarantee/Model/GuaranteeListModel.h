@@ -61,7 +61,8 @@
 //NUMBERS 单号
 @property (nonatomic, copy) NSString *NUMBERS;
 
-
+//获取我要投诉列表
++ (void)getAppComplaintsListModelArray;
 //获取投诉列表
 + (void)getComplaintsListModelArray;
 
@@ -69,8 +70,13 @@
 + (void)getGuaranteeListModelArray;
 //未制定工单列表
 + (void)getNoRepairOrderListModelArray;
+//未制定投诉单列表
++ (void)getNoComplaintOrderListModelArray;
+
 //制单提交
 + (void)repairOrderSubmitWithDict:(NSDictionary *)dict;
+//制定投诉单提交
++ (void)complaintOrderSubmitWithDict:(NSDictionary *)dict;
 
 //我要确认
 + (void)repairSubmitWithDict:(NSDictionary *)dict;

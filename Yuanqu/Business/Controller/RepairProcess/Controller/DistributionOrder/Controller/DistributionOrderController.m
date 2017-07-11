@@ -42,9 +42,17 @@
 
     [super viewDidAppear:animated];
     
-    //获取数据
-    [RepairOrderModel getYesRepairOrderListModelArray];
-    [RepairOrderModel getYesDistributionOrderListModelArray];
+    if ([self.navTitle isEqualToString:@"工单分配"]) {
+        //获取数据
+        [RepairOrderModel getYesRepairOrderListModelArray];
+        [RepairOrderModel getYesDistributionOrderListModelArray];
+    } else if ([self.navTitle isEqualToString:@"投诉单分配"]) {
+    
+        [RepairOrderModel getYesComplaintOrderListModelArray];
+        [RepairOrderModel getYesComplaintDistributionOrderListModelArray];
+    }
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -55,13 +63,25 @@
     [self setupScrollToSwitchView];
     [self setupScrollToView];
     
-    //获取数据
-    [RepairOrderModel getYesRepairOrderListModelArray];
-    [RepairOrderModel getYesDistributionOrderListModelArray];
-    //注册通知
-    //获取未制定工单报修处理列表的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkOrderListSuccessNotification:) name:AppWorkOrderShowListSuccessNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkAcceptListSuccessNotification:) name:AppWorkAcceptListSuccessNotification object:nil];
+    if ([self.navTitle isEqualToString:@"工单分配"]) {
+        //获取数据
+        [RepairOrderModel getYesRepairOrderListModelArray];
+        [RepairOrderModel getYesDistributionOrderListModelArray];
+        //注册通知
+        //获取未制定工单报修处理列表的通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkOrderListSuccessNotification:) name:AppWorkOrderShowListSuccessNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkAcceptListSuccessNotification:) name:AppWorkAcceptListSuccessNotification object:nil];
+    } else if ([self.navTitle isEqualToString:@"投诉单分配"]) {
+        
+        [RepairOrderModel getYesComplaintOrderListModelArray];
+        [RepairOrderModel getYesComplaintDistributionOrderListModelArray];
+        
+        //注册通知
+        //获取未制定工单报修处理列表的通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkOrderListSuccessNotification:) name:AppComplainManagementShowListSuccessNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkAcceptListSuccessNotification:) name:AppComplainManagementAcceptListSuccessNotification object:nil];
+    }
+    
 }
 
 //获取报修处理列表的通知未分配
@@ -130,14 +150,23 @@
         __strong DistributionOrderController *strongSelf = weakSelf;
         
         DistributionOrderDetailsController *DistributionOrderDetailsVC = [[DistributionOrderDetailsController alloc]init];
-        DistributionOrderDetailsVC.navTitle = @"分配工单";
+        DistributionOrderDetailsVC.navTitle = strongSelf.navTitle;
         DistributionOrderDetailsVC.yesRepairOrderModel = strongSelf.noRepairData[indexPath.row];
         [strongSelf.navigationController pushViewController:DistributionOrderDetailsVC animated:YES];
     };
     
     //下拉刷新
     noRepairView.refreshBlock = ^(){
-        [RepairOrderModel getYesRepairOrderListModelArray];
+        
+        __strong DistributionOrderController *strongSelf = weakSelf;
+        if ([strongSelf.navTitle isEqualToString:@"工单分配"]) {
+            //获取数据
+            [RepairOrderModel getYesRepairOrderListModelArray];
+            
+        } else if ([strongSelf.navTitle isEqualToString:@"投诉单分配"]) {
+            
+            [RepairOrderModel getYesComplaintOrderListModelArray];
+        }
     };
     
     
@@ -150,14 +179,21 @@
         __strong DistributionOrderController *strongSelf = weakSelf;
         
         DistributionOrderDetailsController *DistributionOrderDetailsVC = [[DistributionOrderDetailsController alloc]init];
-        DistributionOrderDetailsVC.navTitle = @"分配工单";
+        DistributionOrderDetailsVC.navTitle = strongSelf.navTitle;
         DistributionOrderDetailsVC.yesRepairOrderModel = strongSelf.yesRepairData[indexPath.row];
         [strongSelf.navigationController pushViewController:DistributionOrderDetailsVC animated:YES];
     };
     
     //下拉刷新
     yesRepairView.refreshBlock = ^(){
-        [RepairOrderModel getYesDistributionOrderListModelArray];
+        __strong DistributionOrderController *strongSelf = weakSelf;
+        if ([strongSelf.navTitle isEqualToString:@"工单分配"]) {
+            //获取数据
+            [RepairOrderModel getYesDistributionOrderListModelArray];
+        } else if ([strongSelf.navTitle isEqualToString:@"投诉单分配"]) {
+         
+            [RepairOrderModel getYesComplaintDistributionOrderListModelArray];
+        }
     };
     
     scrollToView.contentArray = @[noRepairView, yesRepairView];

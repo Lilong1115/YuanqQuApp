@@ -137,13 +137,13 @@ static NSString * kLogCellID = @"kLogCellID";
     switch (section) {
         case 0:
             headerView.isHidden = YES;
-            headerView.groundColor = [UIColor greenColor];
+            headerView.groundColor = [UIColor colorWithHexString:@"#98FB98"];
             headerView.title = @"进度查询";
             headerView.buttonStr = @"";
             break;
         case 1:
             headerView.isHidden = NO;
-            headerView.groundColor = [UIColor greenColor];
+            headerView.groundColor = [UIColor colorWithHexString:@"#98FB98"];
             headerView.title = @"投诉查询";
             headerView.buttonStr = @"我要投诉";
             break;
@@ -158,6 +158,10 @@ static NSString * kLogCellID = @"kLogCellID";
 //设置每个section的headerView的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
+    if (self.isComplaints == YES && section == 1) {
+        return 0;
+    }
+    
     return 44;
 }
 

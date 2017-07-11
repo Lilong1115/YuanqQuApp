@@ -40,8 +40,12 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appChooseUserSuccessNotification:) name:AppChooseUserSuccessNotification object:nil];
     //分配成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allotWorkOrderSuccessNotification:) name:AllotWorkOrderSuccessNotification object:nil];
+    //分配投诉单成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allotWorkOrderSuccessNotification:) name:AllotComplainManagementSuccessNotification object:nil];
     //受理成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addWorkacceptSuccessNotification:) name:AddWorkacceptSuccessNotification object:nil];
+    //受理投诉单成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addWorkacceptSuccessNotification:) name:AddComplainManagementAcceptSuccessNotification object:nil];
     
 }
 
@@ -105,9 +109,9 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
 
     NSString *buttonStr;
     
-    if ([self.navTitle isEqualToString:@"分配工单"]) {
+    if ([self.navTitle isEqualToString:@"工单分配"] || [self.navTitle isEqualToString:@"投诉单分配"]) {
         buttonStr = @"分配";
-    } else if ([self.navTitle isEqualToString:@"受理工单"]) {
+    } else if ([self.navTitle isEqualToString:@"受理工单"] || [self.navTitle isEqualToString:@"受理投诉单"]) {
         
         buttonStr = @"受理";
     }
@@ -125,10 +129,10 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
 //footer 按钮
 - (void)clickRepairButton {
 
-    if ([self.navTitle isEqualToString:@"分配工单"]) {
+    if ([self.navTitle isEqualToString:@"工单分配"] || [self.navTitle isEqualToString:@"投诉单分配"]) {
         
         [self distribution];
-    } else if ([self.navTitle isEqualToString:@"受理工单"]) {
+    } else if ([self.navTitle isEqualToString:@"受理工单"] || [self.navTitle isEqualToString:@"受理投诉单"]) {
         
         [self accept];
     }
@@ -145,16 +149,38 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
      报修单系统编号：WD_BYE
      报修单标题：	WD_BXBT
      */
-    NSDictionary *dict = @{
-                           @"SYSID": self.yesRepairOrderModel.sysid,
-                           @"USERID": [UserInfo account].dsoa_user_code,
-                           @"USERNAME": [UserInfo account].dsoa_user_name,
-                           @"DEPTNAME": [UserInfo account].dsoa_dept_name,
-                           @"WD_BYE": self.yesRepairOrderModel.wd_BYE,
-                           @"WD_BXBT": self.yesRepairOrderModel.wd_BXBT
-                           };
     
-    [RepairOrderModel acceptOrderSubmitWithDict:dict];
+    JCAlertController *alert = [JCAlertController alertWithTitle:@"受理" message:@"确认受理?"];
+    
+    [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
+    [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
+        
+        NSDictionary *dict = @{
+                               @"SYSID": self.yesRepairOrderModel.sysid,
+                               @"USERID": [UserInfo account].dsoa_user_code,
+                               @"USERNAME": [UserInfo account].dsoa_user_name,
+                               @"DEPTNAME": [UserInfo account].dsoa_dept_name,
+                               @"WD_BYE": self.yesRepairOrderModel.wd_BYE,
+                               @"WD_BXBT": self.yesRepairOrderModel.wd_BXBT
+                               };
+        
+        if ([self.navTitle isEqualToString:@"受理工单"]) {
+            [RepairOrderModel acceptOrderSubmitWithDict:dict];
+        } else if ([self.navTitle isEqualToString:@"受理投诉单"]) {
+            
+            [RepairOrderModel complaintAcceptOrderSubmitWithDict:dict];
+        }
+        
+        
+        
+        
+        
+    }];
+    
+    [self jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
+    
+    
+    
 }
 
 //分配
@@ -174,39 +200,58 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
          当前用户名： USERNAME
          */
         
-        NSMutableString *strMWD_SLRID = [NSMutableString string];
-        NSMutableString *strMWD_SLRNAME = [NSMutableString string];
-        NSMutableString *strMWD_LXDH = [NSMutableString string];
-        [self.chooseUserArray enumerateObjectsUsingBlock:^(ReceivePersonModel *model, NSUInteger idx,BOOL * _Nonnull stop) {
+        
+        JCAlertController *alert = [JCAlertController alertWithTitle:@"分配" message:@"确认分配?"];
+        
+        [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
+        [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
             
-            switch (idx) {
-                case 0:
-                    [strMWD_SLRNAME appendString:model.name];
-                    [strMWD_SLRID appendString:model.userid];
-                    [strMWD_LXDH appendString:model.modileno];
-                    break;
-                default:
-                    [strMWD_SLRNAME appendFormat:@",%@", model.name];
-                    [strMWD_SLRID appendFormat:@",%@", model.userid];
-                    [strMWD_LXDH appendFormat:@",%@", model.modileno];
-                    break;
+            NSMutableString *strMWD_SLRID = [NSMutableString string];
+            NSMutableString *strMWD_SLRNAME = [NSMutableString string];
+            NSMutableString *strMWD_LXDH = [NSMutableString string];
+            [self.chooseUserArray enumerateObjectsUsingBlock:^(ReceivePersonModel *model, NSUInteger idx,BOOL * _Nonnull stop) {
+                
+                switch (idx) {
+                    case 0:
+                        [strMWD_SLRNAME appendString:model.name];
+                        [strMWD_SLRID appendString:model.userid];
+                        [strMWD_LXDH appendString:model.modileno];
+                        break;
+                    default:
+                        [strMWD_SLRNAME appendFormat:@",%@", model.name];
+                        [strMWD_SLRID appendFormat:@",%@", model.userid];
+                        [strMWD_LXDH appendFormat:@",%@", model.modileno];
+                        break;
+                }
+                
+            }];
+            
+            
+            NSDictionary *dict = @{
+                                   @"SYSID": self.yesRepairOrderModel.sysid,
+                                   @"WD_SLRID": strMWD_SLRID.copy,
+                                   @"WD_SLRNAME": strMWD_SLRNAME.copy,
+                                   @"WD_LXDH": strMWD_LXDH,
+                                   @"DEPTNAME": [UserInfo account].dsoa_dept_name,
+                                   @"WD_BYE": self.yesRepairOrderModel.wd_BYE,
+                                   @"WD_BXBT": self.yesRepairOrderModel.wd_BXBT,
+                                   @"USERNAME": [UserInfo account].dsoa_user_name
+                                   };
+            
+            if ([self.navTitle isEqualToString:@"工单分配"]) {
+               [RepairOrderModel distributionOrderSubmitWithDict:dict];
+            } else if ([self.navTitle isEqualToString:@"投诉单分配"]) {
+            
+                [RepairOrderModel complaintDistributionOrderSubmitWithDict:dict];
             }
+            
+            
             
         }];
         
+        [self jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
         
-        NSDictionary *dict = @{
-                               @"SYSID": self.yesRepairOrderModel.sysid,
-                               @"WD_SLRID": strMWD_SLRID.copy,
-                               @"WD_SLRNAME": strMWD_SLRNAME.copy,
-                               @"WD_LXDH": strMWD_LXDH,
-                               @"DEPTNAME": [UserInfo account].dsoa_dept_name,
-                               @"WD_BYE": self.yesRepairOrderModel.wd_BYE,
-                               @"WD_BXBT": self.yesRepairOrderModel.wd_BXBT,
-                               @"USERNAME": [UserInfo account].dsoa_user_name
-                               };
         
-        [RepairOrderModel distributionOrderSubmitWithDict:dict];
     }
 
     
@@ -280,9 +325,9 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
 - (NSArray *)dataArray {
 
     if (_dataArray == nil) {
-        if ([self.navTitle isEqualToString:@"分配工单"]) {
+        if ([self.navTitle isEqualToString:@"工单分配"] || [self.navTitle isEqualToString:@"投诉单分配"]) {
             _dataArray = [DistributionTitleModel getDistributionTitleModelArray];
-        } else if ([self.navTitle isEqualToString:@"受理工单"]) {
+        } else if ([self.navTitle isEqualToString:@"受理工单"] || [self.navTitle isEqualToString:@"受理投诉单"]) {
         
             _dataArray = [DistributionTitleModel getAcceptTitleModelArray];
         }
@@ -316,10 +361,10 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
                                  ]
                              ];
             
-            if ([self.navTitle isEqualToString:@"分配工单"]) {
+            if ([self.navTitle isEqualToString:@"工单分配"] || [self.navTitle isEqualToString:@"投诉单分配"]) {
                 self.tableView.tableFooterView.hidden = YES;
                 self.tableView.userInteractionEnabled = NO;
-            } else if ([self.navTitle isEqualToString:@"受理工单"]) {
+            } else if ([self.navTitle isEqualToString:@"受理工单"] || [self.navTitle isEqualToString:@"受理投诉单"]) {
                 self.tableView.tableFooterView.hidden = NO;
                 self.tableView.userInteractionEnabled = YES;
             }

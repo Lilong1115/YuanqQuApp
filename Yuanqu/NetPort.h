@@ -11,7 +11,7 @@
 
 /*******************URL******************/
 //baseUrl
-#define BaseUrl @"http://192.168.100.125:8080/Apps/"
+#define BaseUrl @"http://192.168.100.186:8080/Apps/"
 //cdnUrl
 #define CDNUrl @""
 //扫一扫baseUrl
@@ -70,6 +70,9 @@ URL:appShowMenuList.do
  装修申报  ：type：02
  工单管理  ：      07
  报修管理  ：      06
+ 我要投诉  :  12
+ 投诉管理     13
+
 */
 
 //业务类型
@@ -80,6 +83,10 @@ typedef NS_ENUM(NSUInteger, BusinessType) {
     RepairOrderType = 7,
     //装修申报
     DecorateType = 2,
+    //我要投诉
+    ToComplaintType = 12,
+    //投诉管理
+    ComplaintType = 13,
     //设备管理
     EquipmentType = 15,
 };
@@ -144,6 +151,259 @@ ComplaintList.do
 #define ComplaintList_URL @"ComplaintList.do"
 
 /*--------------业务----------------*/
+
+
+/*--------------投诉----------------*/
+/*
+添加投诉主程序
+URL ：addComplain.do
+参数：
+报修姓名：RD_BXXM
+报修电话：RD_BXDH
+报修内容：RD_BXNR
+报修标题：RD_BXBT
+事发地址：RD_SFZB
+用户姓名：USERNAME
+用户ID：UUID
+用户所属编号：SSBM
+图片：imgStr
+所属公司名称：DEPTNAME
+*/
+#define AddComplain_URL @"addComplain.do"
+
+
+/*
+投诉单列表
+URL : appComplainList.do
+参数：
+用户id :uuid
+返回值：
+系统编号：SYSID
+项目编号：ITEMID
+报修姓名：RD_BXXM
+报修电话：RD_BXDH
+报修内容：RD_BXNR
+报修标题：RD_BXBT
+事发地址：RD_SFZB
+报修图片：RD_BXTP
+所属编码:  SSBM
+添加时间:SYSDATE
+*/
+#define AppComplainList_URL @"appComplainList.do"
+
+
+
+/*
+未制定投诉列表
+URL：appComplainManagementList.do
+参数：
+所属编号：SSBM
+返回值:
+系统编号：SYSID
+项目编号：ITEMID
+报修姓名：RD_BXXM
+报修电话：RD_BXDH
+报修内容：RD_BXNR
+报修标题：RD_BXBT
+事发地址：RD_SFZB
+报修图片：RD_BXTP
+发单人员：OBJNAME
+发单时间：SENDDATE
+*/
+#define AppComplainManagementList_URL @"appComplainManagementList.do"
+
+
+
+/*
+制定投诉单主程序
+URL:  addComplainManagement.do
+参数：
+报修姓名：WD_KHMC
+报修单系统编号：WD_BYE
+事发地址：WD_WYDZ
+报修内容：WD_BXNR
+报修标题：WD_BXBT
+紧急程度：WD_JJCD
+登录用户名：USERNAME
+登录用户ID：UUID
+登录用户所属编号：SSBM
+所属公司名称：DEPTNAME
+*/
+#define AddComplainManagement_URL @"addComplainManagement.do"
+
+
+
+/*
+未分配投诉单列表
+URL：appComplainManagementShowList.do
+参数：
+所属编号：SSBM
+返回值：
+工单系统编号：SYSID
+工单编号：ITEMID
+报修人姓名：WD_KHMC
+报修标题：WD_BXBT
+报修地址：WD_WYDZ
+报修内容：WD_BXNR
+报修电话：WD_BXDH
+紧急程度：WD_JJCD
+报修单系统编号：WD_BYE
+工单生成时间：SYSDATE
+*/
+#define AppComplainManagementShowList_URL @"appComplainManagementShowList.do"
+
+
+/*
+分配工单主程序
+URL：allotComplainManagement.do
+参数：
+工单系统编号：SYSID
+工单接受人ID：WD_SLRID
+工单接收人姓名：WD_SLRNAME
+工单维修人电话：WD_LXDH
+所属公司名称：DEPTNAME
+报修单系统编号：WD_BYE
+报修单标题： WD_BXBT
+当前用户名： USERNAME
+*/
+#define AllotComplainManagement_URL @"allotComplainManagement.do"
+
+
+/*
+未受理投诉列表（已分配投诉）
+URL：appComplainManagementAcceptList.do
+参数：
+所属编号：SSBM
+当前用户ID：   USERID
+返回值：
+工单系统编号：SYSID
+工单编号：ITEMID
+报修人姓名：WD_KHMC
+报修标题：WD_BXBT
+报修地址：WD_WYDZ
+报修内容：WD_BXNR
+报修电话：WD_BXDH
+紧急程度：WD_JJCD
+维修人员：WD_JDRY
+维修人电话：WD_LXDH
+报修单系统编号：WD_BYE
+工单分派时间：SENDDATE
+分配工单人员：OBJNAME
+*/
+#define AppComplainManagementAcceptList_URL @"appComplainManagementAcceptList.do"
+
+
+
+/*
+待受理工单主程序
+URL:addComplainManagementAccept.do
+参数：
+工单系统编号 :  SYSID
+当前用户ID：   USERID
+当前用户名： USERNAME
+所属公司名称：DEPTNAME
+报修单系统编号：WD_BYE
+报修单标题：	WD_BXBT
+*/
+#define AddComplainManagementAccept_URL @"addComplainManagementAccept.do"
+
+
+
+/*
+受理中投诉列表
+URL:appComplainManagementBeingtList.do
+参数：
+当前用户id:  	 USERID
+所属编码：		 SSBM
+返回值：
+工单系统编号：	SYSID
+工单编号			ITEMID
+报修人姓名		WD_KHMC
+报修地址			WD_WYDZ
+报修内容			WD_BXNR
+紧急程度			WD_JJCD
+报修电话			WD_BXDH
+报修标题			WD_BXBT
+分配时间			SENDDATE
+报修单系统编号： WD_BYE
+工单接受人ID		OBJID
+工单接受人姓名   OBJNAME
+所属公司名称：DEPTNAME
+报修单标题：	WD_BXBT
+*/
+#define AppComplainManagementBeingtList_URL @"appComplainManagementBeingtList.do"
+
+
+/*
+受理中处理投诉（提交）
+URL：addComplainLogs.do
+参数：
+报修单系统编号：  MR_GDBH
+当前用户名：		USERNAME
+当前用户ID ：		USERID
+维修描述：			MR_WXBZ
+所属编码：			SSBM
+所属公司名称：DEPTNAME
+报修单标题：	WD_BXBT
+*/
+#define AddComplainLogs_URL @"addComplainLogs.do"
+
+
+
+/*
+受理中处理投诉（完成）
+URL：appFinishComplainLogs.do
+参数：
+报修单系统编号：  MR_GDBH
+当前用户名：		USERNAME
+当前用户ID ：		USERID
+维修描述：			MR_WXBZ
+所属编码：			SSBM
+所属公司名称：DEPTNAME
+报修单系统编号：WD_BYE
+报修单标题：	WD_BXBT
+*/
+#define AppFinishComplainLogs_URL @"appFinishComplainLogs.do"
+
+
+
+/*
+受理投诉已完成列表
+URL：appFinishComplainLogs.do
+参数：
+所属编码：SSBM
+返回值：
+工单系统编号	： SYSID
+工单编号 		： ITEMID
+报修人员：         WD_KHMC
+事发地址           WD_WYDZ
+报修内容           WD_BXNR
+紧急程度           WD_JJCD
+是否收费           WD_SFSF
+费用               WD_FY
+报修电话           WD_BXDH
+报修标题           WD_BXBT
+报修单系统编号     WD_BYE
+工单生成时间       SYSDATE
+*/
+#define AppFinishComplainLogs_URL @"appFinishComplainLogs.do"
+
+
+
+/*
+投诉日志列表 IOS
+URL:appComplainLogsIOS.do
+参数：
+报修单系统编号：SYSID
+返回值：
+日志时间：SHIJIAN
+日志内容：NEIRONG
+*/
+#define AppComplainLogsIOS_URL @"appComplainLogsIOS.do"
+
+/*--------------投诉----------------*/
+
+
 
 
 /*--------------报修----------------*/

@@ -16,6 +16,8 @@
 
 @interface RepairProcessController ()
 
+@property (nonatomic, strong) NSArray *dataArray;
+
 @end
 
 @implementation RepairProcessController
@@ -23,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"报修处理";
+    self.title = self.navTitle;
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupLogo];
     [self setupBusinessView];
@@ -49,28 +51,37 @@
     
     
     BusinessCollectionView *businessView = [[BusinessCollectionView alloc]initWithFrame:CGRectMake(0, 64 + 250, ScreenW, ScreenW / 3) collectionViewLayout:flowLayout];
-    businessView.contentArray = [HomeModel getOrderModelArray];
+    
+    if ([self.navTitle isEqualToString:@"工单管理"]) {
+        self.dataArray = [HomeModel getOrderModelArray];
+    } else if ([self.navTitle isEqualToString:@"投诉管理"]) {
+        self.dataArray = [HomeModel getComplaintModelArray];
+    }
+    
+    businessView.contentArray = self.dataArray;
     
     //点击回调
     __weak RepairProcessController *weakSelf = self;
     businessView.selectedBlock = ^(NSIndexPath *indexPath) {
         __strong RepairProcessController *strongSelf = weakSelf;
         
+        HomeModel *model = strongSelf.dataArray[indexPath.item];
+        
         if (indexPath.item == 0) {
             RepairOrderController *repairOrderVC = [[RepairOrderController alloc]init];
-            repairOrderVC.navTitle = @"制定工单";
+            repairOrderVC.navTitle = model.name;
             
             [strongSelf.navigationController pushViewController:repairOrderVC animated:YES];
         } else if (indexPath.item == 1) {
         
             DistributionOrderController *distributionOrderVC = [[DistributionOrderController alloc]init];
-            distributionOrderVC.navTitle = @"分配工单";
+            distributionOrderVC.navTitle = model.name;
             [strongSelf.navigationController pushViewController:distributionOrderVC animated:YES];
             
         } else if (indexPath.item == 2) {
         
             AcceptOrderController *acceptOrderVC = [[AcceptOrderController alloc]init];
-            acceptOrderVC.navTitle = @"受理工单";
+            acceptOrderVC.navTitle = model.name;
             [strongSelf.navigationController pushViewController:acceptOrderVC animated:YES];
             
         }

@@ -9,8 +9,42 @@
 #import "GuaranteeDetailsModel.h"
 #import "GuaranteeDetailsRegister.h"
 #import "GuaranteeEstimateRegister.h"
+#import "AppComplaintsRegister.h"
 
 @implementation GuaranteeDetailsModel
+
+
+//上传我要投诉信息
+- (void)uploadAppComplaintsInformation {
+    
+    NSString *json = [NSString ObjectTojsonString:self.mj_keyValues];
+    
+    //转为basic
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+    dictM[@"basic"] = json;
+    
+    AppComplaintsRegister *guaranteeDetailsRegister = [[AppComplaintsRegister alloc]initWithDict:dictM.copy];
+    
+    [guaranteeDetailsRegister startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+        
+        NSDictionary *response = (NSDictionary *)guaranteeDetailsRegister.responseObject;
+        
+        NSInteger ret = [response[@"ret"] integerValue];
+        if (ret == Success_Code) {
+            
+            //主线程发送通知,更新界面
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:AppComplaintsSuccessNotification object:nil];
+            }];
+        }
+        
+        
+    } failure:^(YTKBaseRequest *request) {
+        // 你可以直接在这里使用 self
+        [ProgressHUD showError:@"网络请求失败"];
+    }];
+    
+}
 
 - (void)uploadInformation {
     

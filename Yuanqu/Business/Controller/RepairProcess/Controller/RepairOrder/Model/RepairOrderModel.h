@@ -47,21 +47,38 @@
 
 //已制定(未分配)工单列表
 + (void)getYesRepairOrderListModelArray;
+//已制定(未分配)投诉单列表
++ (void)getYesComplaintOrderListModelArray;
 //已分配(未受理)工单列表
 + (void)getYesDistributionOrderListModelArray;
+//已分配(未受理)投诉单列表
++ (void)getYesComplaintDistributionOrderListModelArray;
 //受理中工单列表
 + (void)getAcceptingOrderListModelArray;
+//受理中投诉单列表
++ (void)getComplaintAcceptingOrderListModelArray;
 //受理完成列表
 + (void)getAcceptFinishOrderListModelArray;
+//受理完成投诉列表
++ (void)getComplaintAcceptFinishOrderListModelArray;
 
 //分配工单
 + (void)distributionOrderSubmitWithDict:(NSDictionary *)dict;
+//分配投诉单
++ (void)complaintDistributionOrderSubmitWithDict:(NSDictionary *)dict;
+
 //受理工单
 + (void)acceptOrderSubmitWithDict:(NSDictionary *)dict;
+//受理投诉单
++ (void)complaintAcceptOrderSubmitWithDict:(NSDictionary *)dict;
 //受理中提交工单
 + (void)acceptingOrderSubmitWithDict:(NSDictionary *)dict;
+//受理中提交投诉单
++ (void)complaintAcceptingOrderSubmitWithDict:(NSDictionary *)dict;
 //受理中完成工单
 + (void)acceptFinishOrderSubmitWithDict:(NSDictionary *)dict;
+//受理中完成投诉单
++ (void)complaintAcceptFinishOrderSubmitWithDict:(NSDictionary *)dict;
 /*
 工单系统编号：SYSID
 工单编号：ITEMID

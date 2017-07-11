@@ -11,6 +11,8 @@
 
 @interface RepairOrderDetailsController : UITableViewController
 
+@property (nonatomic, copy) NSString *navTitle;
+
 //工单数据模型
 @property (nonatomic, strong) GuaranteeListModel *repairOrderModel;
 

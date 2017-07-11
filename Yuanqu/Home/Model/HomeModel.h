@@ -35,6 +35,9 @@ typedef NS_ENUM(NSUInteger, HomeType) {
 //获取工单
 + (NSArray *)getOrderModelArray;
 
+//投诉管理
++ (NSArray *)getComplaintModelArray;
+
 + (NSArray *)getHomeModelArray;
 
 //业务

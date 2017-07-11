@@ -15,6 +15,6 @@ pod 'UITableView+FDTemplateLayoutCell'
 pod 'WebViewJavascriptBridge'
 pod 'MBProgressHUD'
 pod 'ProgressHUD'
-pod 'HHAlertView'
 pod 'OpenShare'
+pod 'JCAlertController'
 end

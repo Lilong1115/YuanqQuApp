@@ -10,4 +10,6 @@
 
 @interface RepairProcessController : UIViewController
 
+@property (nonatomic, copy) NSString *navTitle;
+
 @end

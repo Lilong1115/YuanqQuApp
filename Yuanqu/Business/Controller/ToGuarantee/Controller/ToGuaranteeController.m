@@ -52,10 +52,16 @@
 
     [super viewDidAppear:animated];
     
+    
     if ([self.navTitle isEqualToString:@"我要报修"]) {
         [GuaranteeListModel getGuaranteeListModelArray];
     } else if ([self.navTitle isEqualToString:@"我要投诉"]) {
-        [GuaranteeListModel getComplaintsListModelArray];
+        if (self.isAppComplaints == YES) {
+            [GuaranteeListModel getAppComplaintsListModelArray];
+        } else {
+            [GuaranteeListModel getComplaintsListModelArray];
+        }
+        
     }
 }
 
@@ -75,8 +81,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appRepairListSuccessNotification:) name:AppRepairListSuccessNotification object:nil];
     //投诉提交
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(complaintsSuccessNotification:) name:ComplaintsSuccessNotification object:nil];
+    //我要投诉提交
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(complaintsSuccessNotification:) name:AppComplaintsSuccessNotification object:nil];
     //投诉列表获取成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(complaintListSuccessNotification:) name:ComplaintListSuccessNotification object:nil];
+    //我要投诉列表获取成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(complaintListSuccessNotification:) name:AppComplainListSuccessNotification object:nil];
 }
 
 //投诉列表获取成功
@@ -181,7 +191,13 @@
         if ([strongSelf.navTitle isEqualToString:@"我要报修"]) {
             [strongSelf uploadDataWithDict:dict];
         } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"]) {
-            [strongSelf uploadComplaintsDataWithDict:dict];
+            if (strongSelf.isAppComplaints == YES) {
+                
+                [strongSelf uploadDataWithDict:dict];
+            } else {
+                [strongSelf uploadComplaintsDataWithDict:dict];
+            }
+            
         }
         
         
@@ -195,7 +211,12 @@
     if ([self.navTitle isEqualToString:@"我要报修"]) {
         [GuaranteeListModel getGuaranteeListModelArray];
     } else if ([self.navTitle isEqualToString:@"我要投诉"]) {
-        [GuaranteeListModel getComplaintsListModelArray];
+        if (self.isAppComplaints == YES) {
+            [GuaranteeListModel getAppComplaintsListModelArray];
+        } else {
+            [GuaranteeListModel getComplaintsListModelArray];
+        }
+        
     }
     
     
@@ -211,8 +232,10 @@
         //设置不同内容
         if ([self.navTitle isEqualToString:@"我要报修"]) {
             guaranteeDetailsVC.navTitle = @"报修详情";
+            guaranteeDetailsVC.isComplaints = NO;
         } else if ([self.navTitle isEqualToString:@"我要投诉"]) {
             guaranteeDetailsVC.navTitle = @"投诉详情";
+            guaranteeDetailsVC.isComplaints = YES;
         }
         
         [strongSelf.navigationController pushViewController:guaranteeDetailsVC animated:YES];
@@ -225,7 +248,12 @@
         if ([strongSelf.navTitle isEqualToString:@"我要报修"]) {
             [GuaranteeListModel getGuaranteeListModelArray];
         } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"]) {
-            [GuaranteeListModel getComplaintsListModelArray];
+            if (strongSelf.isAppComplaints == YES) {
+                [GuaranteeListModel getAppComplaintsListModelArray];
+            } else {
+                [GuaranteeListModel getComplaintsListModelArray];
+            }
+            
         }
         
     };
@@ -247,6 +275,7 @@
 //提交投诉数据
 - (void)uploadComplaintsDataWithDict:(NSDictionary *)dict {
     
+    
     NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
     dictM[@"ITEMID"] = self.model.sysid;
     dictM[@"CD_TSXM"] = dict[@"RD_BXXM"];
@@ -265,27 +294,49 @@
 //提交报修数据
 - (void)uploadDataWithDict:(NSDictionary *)dict {
     
-    NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:dict];
     
-    //用户姓名 admin
-    dictM[@"USERNAME"] = [UserInfo account].dsoa_user_name;
-    //用户ID 9E8E79216D9A4F8BB696FA4E3499E57
-    dictM[@"UUID"] = [UserInfo account].dsoa_user_code;
-    //用户所属编号 01
-    dictM[@"SSBM"] = [UserInfo account].dsoa_user_suoscode;
-    //所属公司名称：DEPTNAME
-    dictM[@"DEPTNAME"] = [UserInfo account].dsoa_dept_name;
+    JCAlertController *alert = [JCAlertController alertWithTitle:@"提交" message:@"确认提交?"];
     
-    // UIImage图片转成Base64字符串：
-    if (self.guaranteeImage) {
-        NSData *imgData = UIImageJPEGRepresentation(self.guaranteeImage, 1.0f);
-        NSString *encodedImgStr = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-        dictM[@"imgStr"] = encodedImgStr;
-    }
+    [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
+    [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
+        
+        NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:dict];
+        
+        //用户姓名 admin
+        dictM[@"USERNAME"] = [UserInfo account].dsoa_user_name;
+        //用户ID 9E8E79216D9A4F8BB696FA4E3499E57
+        dictM[@"UUID"] = [UserInfo account].dsoa_user_code;
+        //用户所属编号 01
+        dictM[@"SSBM"] = [UserInfo account].dsoa_user_suoscode;
+        //所属公司名称：DEPTNAME
+        dictM[@"DEPTNAME"] = [UserInfo account].dsoa_dept_name;
+        
+        // UIImage图片转成Base64字符串：
+        if (self.guaranteeImage) {
+            NSData *imgData = UIImageJPEGRepresentation(self.guaranteeImage, 1.0f);
+            NSString *encodedImgStr = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+            dictM[@"imgStr"] = encodedImgStr;
+        }
+        
+        GuaranteeDetailsModel *model = [GuaranteeDetailsModel mj_objectWithKeyValues:dictM.copy];
+        
+        if (self.isAppComplaints == YES) {
+            [model uploadAppComplaintsInformation];
+        } else {
+            [model uploadInformation];
+        }
+        
+        
+        
+    }];
     
-    GuaranteeDetailsModel *model = [GuaranteeDetailsModel mj_objectWithKeyValues:dictM.copy];
-    [model uploadInformation];
+    [self jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
+    
+    
+    
 }
+
+
 
 //清除数据
 - (void)clearData {

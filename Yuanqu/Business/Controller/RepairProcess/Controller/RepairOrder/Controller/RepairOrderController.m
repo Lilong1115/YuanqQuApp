@@ -42,8 +42,15 @@
     [super viewDidAppear:animated];
     
     //获取数据
-    [GuaranteeListModel getNoRepairOrderListModelArray];
-    [RepairOrderModel getYesRepairOrderListModelArray];
+    if ([self.navTitle isEqualToString:@"制定工单"]) {
+        [GuaranteeListModel getNoRepairOrderListModelArray];
+        [RepairOrderModel getYesRepairOrderListModelArray];
+    } else if ([self.navTitle isEqualToString:@"制定投诉单"]) {
+        [GuaranteeListModel getNoComplaintOrderListModelArray];
+        [RepairOrderModel getYesComplaintOrderListModelArray];
+        
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -55,13 +62,26 @@
     [self setupScrollToView];
 
     //获取数据
-    [GuaranteeListModel getNoRepairOrderListModelArray];
-    [RepairOrderModel getYesRepairOrderListModelArray];
-    //注册通知
-    //获取未制定害怕工单报修处理列表的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkOrderListSuccessNotification:) name:AppWorkOrderListSuccessNotification object:nil];
-    //已制定
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkOrderShowListSuccessNotification:) name:AppWorkOrderShowListSuccessNotification object:nil];
+    if ([self.navTitle isEqualToString:@"制定工单"]) {
+        [GuaranteeListModel getNoRepairOrderListModelArray];
+        [RepairOrderModel getYesRepairOrderListModelArray];
+        //注册通知
+        //获取未制定害怕工单报修处理列表的通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkOrderListSuccessNotification:) name:AppWorkOrderListSuccessNotification object:nil];
+        //已制定
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkOrderShowListSuccessNotification:) name:AppWorkOrderShowListSuccessNotification object:nil];
+    } else if ([self.navTitle isEqualToString:@"制定投诉单"]) {
+        [GuaranteeListModel getNoComplaintOrderListModelArray];
+        [RepairOrderModel getYesComplaintOrderListModelArray];
+        //注册通知
+        //获取未制定投诉单单报修处理列表的通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkOrderListSuccessNotification:) name:AppComplainManagementListSuccessNotification object:nil];
+        //已制定
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkOrderShowListSuccessNotification:) name:AppComplainManagementShowListSuccessNotification object:nil];
+        
+    }
+    
+    
 }
 
 //获取报修处理列表的通知
@@ -130,13 +150,21 @@
         __strong RepairOrderController *strongSelf = weakSelf;
         
         RepairOrderDetailsController *repairOrderDetailsVC = [[RepairOrderDetailsController alloc]init];
+        repairOrderDetailsVC.navTitle = strongSelf.navTitle;
         repairOrderDetailsVC.repairOrderModel = strongSelf.noRepairData[indexPath.row];
         [strongSelf.navigationController pushViewController:repairOrderDetailsVC animated:YES];
     };
     
     //下拉刷新
     noRepairView.refreshBlock = ^(){
-        [GuaranteeListModel getNoRepairOrderListModelArray];
+        __strong RepairOrderController *strongSelf = weakSelf;
+        if ([strongSelf.navTitle isEqualToString:@"制定工单"]) {
+            [GuaranteeListModel getNoRepairOrderListModelArray];
+            
+        } else if ([strongSelf.navTitle isEqualToString:@"制定投诉单"]) {
+            [GuaranteeListModel getNoComplaintOrderListModelArray];
+            
+        }
     };
     
     
@@ -149,13 +177,21 @@
         __strong RepairOrderController *strongSelf = weakSelf;
         
         RepairOrderDetailsController *repairOrderDetailsVC = [[RepairOrderDetailsController alloc]init];
+        repairOrderDetailsVC.navTitle = strongSelf.navTitle;
         repairOrderDetailsVC.yesRepairOrderModel = strongSelf.yesRepairData[indexPath.row];
         [strongSelf.navigationController pushViewController:repairOrderDetailsVC animated:YES];
     };
     
     //下拉刷新
     yesRepairView.refreshBlock = ^(){
-        [RepairOrderModel getYesRepairOrderListModelArray];
+        __strong RepairOrderController *strongSelf = weakSelf;
+        if ([strongSelf.navTitle isEqualToString:@"制定工单"]) {
+            
+            [RepairOrderModel getYesRepairOrderListModelArray];
+        } else if ([strongSelf.navTitle isEqualToString:@"制定投诉单"]) {
+            [RepairOrderModel getYesComplaintOrderListModelArray];
+            
+        }
     };
     
     scrollToView.contentArray = @[noRepairView, yesRepairView];

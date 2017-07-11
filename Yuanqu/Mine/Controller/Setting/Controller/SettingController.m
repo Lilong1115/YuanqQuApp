@@ -89,25 +89,16 @@ static NSString * const kSettingCellID = @"kSettingCellID";
 //退出登录
 - (void)clickLogoutButton {
 
-    HHAlertView *alertview = [[HHAlertView alloc] initWithTitle:@"退出登录" detailText:@"确认退出登录?" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"]];
-    [alertview setMode:HHAlertViewModeWarning];
-//    [alertview setEnterMode:HHAlertEnterModeFadeIn];
-//    [alertview setLeaveMode:HHAlertLeaveModeFadeOut];
-    [alertview showWithBlock:^(NSInteger index) {
-        
-        switch (index) {
-            case 1:
-                [self logout];
-                break;
-            default:
-                break;
-        }
+    JCAlertController *alert = [JCAlertController alertWithTitle:@"退出登录" message:@"您确认要退出当前登录吗?"];
+    
+    [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
+    [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
+        [self logout];
         
     }];
     
-
+    [self jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
     
-   
 }
 
 

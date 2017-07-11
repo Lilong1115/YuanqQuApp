@@ -20,4 +20,7 @@
 //model
 @property (nonatomic, strong) GuaranteeListModel *model;
 
+//是否是我要投诉列表
+@property (nonatomic, assign) BOOL isAppComplaints;
+
 @end

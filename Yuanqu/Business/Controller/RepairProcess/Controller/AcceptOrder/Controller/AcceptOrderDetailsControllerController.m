@@ -38,8 +38,12 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
     
     //受理中提交成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addMaintenaceSuccessNotification:) name:AddMaintenaceSuccessNotification object:nil];
+    //受理中投诉单提交成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addMaintenaceSuccessNotification:) name:AddComplainLogsSuccessNotification object:nil];
     //受理完成
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appfinishWorkSuccessNotification:) name:AppfinishWorkSuccessNotification object:nil];
+    //受理投诉单完成
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appfinishWorkSuccessNotification:) name:AppFinishComplainLogsSuccessNotification object:nil];
     
 }
 
@@ -120,7 +124,15 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
                            @"WD_BXBT": self.yesRepairOrderModel.wd_BXBT
                            };
     
-    [RepairOrderModel acceptFinishOrderSubmitWithDict:dict];
+    
+    if ([self.navTitle isEqualToString:@"受理工单"])  {
+        [RepairOrderModel acceptFinishOrderSubmitWithDict:dict];
+    } else if ([self.navTitle isEqualToString:@"受理投诉单"]) {
+        
+        [RepairOrderModel complaintAcceptFinishOrderSubmitWithDict:dict];
+    }
+    
+    
 }
 
 //提交按钮
@@ -136,7 +148,14 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
                            @"WD_BXBT": self.yesRepairOrderModel.wd_BXBT
                            };
     
-    [RepairOrderModel acceptingOrderSubmitWithDict:dict];
+    if ([self.navTitle isEqualToString:@"受理工单"])  {
+        [RepairOrderModel acceptingOrderSubmitWithDict:dict];
+    } else if ([self.navTitle isEqualToString:@"受理投诉单"]) {
+    
+        [RepairOrderModel complaintAcceptingOrderSubmitWithDict:dict];
+    }
+    
+    
     
 }
 

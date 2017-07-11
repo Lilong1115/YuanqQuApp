@@ -28,12 +28,14 @@ static NSString * const kRepairDetailsCellID = @"kRepairDetailsCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"制定工单";
+    self.title = self.navTitle;
     [self setupTable];
     
     //注册通知
     //制单成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addWorkOrderSuccessNotification:) name:AddWorkOrderSuccessNotification object:nil];
+    //制定投诉单成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addWorkOrderSuccessNotification:) name:AddComplainManagementSuccessNotification object:nil];
 }
 
 //制单成功的通知
@@ -75,41 +77,58 @@ static NSString * const kRepairDetailsCellID = @"kRepairDetailsCellID";
 //制单
 - (void)clickRepairButton {
 
-    RepairDetailsCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.dataArray.count - 1 inSection:0]];
-
-    NSDictionary *dict = @{
-                           /*
-                            报修姓名：WD_KHMC
-                            报修单系统编号：WD_BYE
-                            报修单工单：ITEMID
-                            事发地址：WD_WYDZ
-                            报修内容：WD_BXNR
-                            报修标题：WD_BXBT
-                            报修电话：WD_BXDH
-                            紧急程度：WD_JJCD
-                            登录用户名：USERNAME
-                            登录用户ID：UUID
-                            登录用户所属编号：SSBM
-                            所属公司名称：DEPTNAME
-
-                            */
-                           @"WD_KHMC": self.repairOrderModel.rd_BXXM,
-                           @"WD_BYE": self.repairOrderModel.sysid,
-                           @"ITEMID": self.repairOrderModel.itemid,
-                           @"WD_WYDZ": self.repairOrderModel.rd_SFZB,
-                           @"WD_BXNR": self.repairOrderModel.rd_BXNR,
-                           @"WD_BXBT": self.repairOrderModel.rd_BXBT,
-                           @"WD_BXDH": self.repairOrderModel.rd_BXDH,
-                           @"WD_JJCD": cell.degreeStr,
-                           @"USERNAME": [UserInfo account].dsoa_user_name,
-                           @"UUID": [UserInfo account].dsoa_user_code,
-                           @"SSBM": [UserInfo account].dsoa_user_suoscode,
-                           @"DEPTNAME": [UserInfo account].dsoa_dept_name
-                           };
+    JCAlertController *alert = [JCAlertController alertWithTitle:@"制单" message:@"确认制单?"];
+    
+    [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
+    [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
+        
+        RepairDetailsCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.dataArray.count - 1 inSection:0]];
+        
+        NSDictionary *dict = @{
+                               /*
+                                报修姓名：WD_KHMC
+                                报修单系统编号：WD_BYE
+                                报修单工单：ITEMID
+                                事发地址：WD_WYDZ
+                                报修内容：WD_BXNR
+                                报修标题：WD_BXBT
+                                报修电话：WD_BXDH
+                                紧急程度：WD_JJCD
+                                登录用户名：USERNAME
+                                登录用户ID：UUID
+                                登录用户所属编号：SSBM
+                                所属公司名称：DEPTNAME
+                                
+                                */
+                               @"WD_KHMC": self.repairOrderModel.rd_BXXM,
+                               @"WD_BYE": self.repairOrderModel.sysid,
+                               @"ITEMID": self.repairOrderModel.itemid,
+                               @"WD_WYDZ": self.repairOrderModel.rd_SFZB,
+                               @"WD_BXNR": self.repairOrderModel.rd_BXNR,
+                               @"WD_BXBT": self.repairOrderModel.rd_BXBT,
+                               @"WD_BXDH": self.repairOrderModel.rd_BXDH,
+                               @"WD_JJCD": cell.degreeStr,
+                               @"USERNAME": [UserInfo account].dsoa_user_name,
+                               @"UUID": [UserInfo account].dsoa_user_code,
+                               @"SSBM": [UserInfo account].dsoa_user_suoscode,
+                               @"DEPTNAME": [UserInfo account].dsoa_dept_name
+                               };
+        
+        
+        if ([self.navTitle isEqualToString:@"制定工单"]) {
+            //提交
+            [GuaranteeListModel repairOrderSubmitWithDict:dict];
+        } else if ([self.navTitle isEqualToString:@"制定投诉单"]) {
+        
+            [GuaranteeListModel complaintOrderSubmitWithDict:dict];
+        }
+        
+        
+    }];
+    
+    [self jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
     
     
-    //提交
-    [GuaranteeListModel repairOrderSubmitWithDict:dict];
 }
 
 //设置按钮

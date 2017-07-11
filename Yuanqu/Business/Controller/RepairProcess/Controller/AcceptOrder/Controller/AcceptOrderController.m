@@ -47,10 +47,18 @@
 - (void)viewDidAppear:(BOOL)animated {
 
     [super viewDidAppear:animated];
-    //获取数据
-    [RepairOrderModel getYesDistributionOrderListModelArray];
-    [RepairOrderModel getAcceptingOrderListModelArray];
-    [RepairOrderModel getAcceptFinishOrderListModelArray];
+    if ([self.navTitle isEqualToString:@"受理工单"]) {
+        //获取数据
+        [RepairOrderModel getYesDistributionOrderListModelArray];
+        [RepairOrderModel getAcceptingOrderListModelArray];
+        [RepairOrderModel getAcceptFinishOrderListModelArray];
+    } else if ([self.navTitle isEqualToString:@"受理投诉单"]) {
+        [RepairOrderModel getYesComplaintDistributionOrderListModelArray];
+        [RepairOrderModel getComplaintAcceptingOrderListModelArray];
+        [RepairOrderModel getComplaintAcceptFinishOrderListModelArray];
+        
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -61,16 +69,31 @@
     [self setupScrollToSwitchView];
     [self setupScrollToView];
     
-    //获取数据
-    [RepairOrderModel getYesDistributionOrderListModelArray];
-    [RepairOrderModel getAcceptingOrderListModelArray];
-    [RepairOrderModel getAcceptFinishOrderListModelArray];
-    //注册通知
-    //获取未制定工单报修处理列表的通知
-    //未受理工单
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkAcceptListSuccessNotification:) name:AppWorkAcceptListSuccessNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkBeingtListSuccessNotification:) name:AppWorkBeingtListSuccessNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appFinishListSuccessNotification:) name:AppFinishListSuccessNotification object:nil];
+    if ([self.navTitle isEqualToString:@"受理工单"]) {
+        //获取数据
+        [RepairOrderModel getYesDistributionOrderListModelArray];
+        [RepairOrderModel getAcceptingOrderListModelArray];
+        [RepairOrderModel getAcceptFinishOrderListModelArray];
+        //注册通知
+        //获取未制定工单报修处理列表的通知
+        //未受理工单
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkAcceptListSuccessNotification:) name:AppWorkAcceptListSuccessNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkBeingtListSuccessNotification:) name:AppWorkBeingtListSuccessNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appFinishListSuccessNotification:) name:AppFinishListSuccessNotification object:nil];
+    } else if ([self.navTitle isEqualToString:@"受理投诉单"]) {
+        [RepairOrderModel getYesComplaintDistributionOrderListModelArray];
+        [RepairOrderModel getComplaintAcceptingOrderListModelArray];
+        [RepairOrderModel getComplaintAcceptFinishOrderListModelArray];
+        
+        //注册通知
+        //获取未制定工单报修处理列表的通知
+        //未受理工单
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkAcceptListSuccessNotification:) name:AppComplainManagementAcceptListSuccessNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWorkBeingtListSuccessNotification:) name:AppComplainManagementBeingtListSuccessNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appFinishListSuccessNotification:) name:AppFinishComplainLogsSuccessNotification object:nil];
+        
+    }
+    
 }
 
 //受理中
@@ -152,14 +175,24 @@
         __strong AcceptOrderController *strongSelf = weakSelf;
         
         DistributionOrderDetailsController *DistributionOrderDetailsVC = [[DistributionOrderDetailsController alloc]init];
-        DistributionOrderDetailsVC.navTitle = @"受理工单";
+        DistributionOrderDetailsVC.navTitle = strongSelf.navTitle;
         DistributionOrderDetailsVC.yesRepairOrderModel = strongSelf.noRepairData[indexPath.row];
         [strongSelf.navigationController pushViewController:DistributionOrderDetailsVC animated:YES];
     };
     
     //下拉刷新
     noRepairView.refreshBlock = ^(){
-        [RepairOrderModel getYesDistributionOrderListModelArray];
+        
+        __strong AcceptOrderController *strongSelf = weakSelf;
+        if ([strongSelf.navTitle isEqualToString:@"受理工单"]) {
+            //获取数据
+            [RepairOrderModel getYesDistributionOrderListModelArray];
+        
+        } else if ([strongSelf.navTitle isEqualToString:@"受理投诉单"]) {
+            [RepairOrderModel getYesComplaintDistributionOrderListModelArray];
+            
+            
+        }
     };
     
     //受理中
@@ -173,7 +206,7 @@
         
         AcceptOrderDetailsControllerController *DistributionOrderDetailsVC = [[AcceptOrderDetailsControllerController alloc]init];
         DistributionOrderDetailsVC.isFinish = NO;
-        DistributionOrderDetailsVC.navTitle = @"受理工单";
+        DistributionOrderDetailsVC.navTitle = strongSelf.navTitle;
         DistributionOrderDetailsVC.yesRepairOrderModel = strongSelf.acceptRepairData[indexPath.row];
         [strongSelf.navigationController pushViewController:DistributionOrderDetailsVC animated:YES];
         
@@ -181,7 +214,17 @@
     
     //下拉刷新
     acceptRepairView.refreshBlock = ^(){
-        [RepairOrderModel getAcceptingOrderListModelArray];
+        __strong AcceptOrderController *strongSelf = weakSelf;
+        if ([strongSelf.navTitle isEqualToString:@"受理工单"]) {
+            
+            [RepairOrderModel getAcceptingOrderListModelArray];
+            
+        } else if ([strongSelf.navTitle isEqualToString:@"受理投诉单"]) {
+            
+            [RepairOrderModel getComplaintAcceptingOrderListModelArray];
+            
+            
+        }
     };
     
     
@@ -195,14 +238,23 @@
         
         AcceptOrderDetailsControllerController *DistributionOrderDetailsVC = [[AcceptOrderDetailsControllerController alloc]init];
         DistributionOrderDetailsVC.isFinish = YES;
-        DistributionOrderDetailsVC.navTitle = @"受理工单";
+        DistributionOrderDetailsVC.navTitle = strongSelf.navTitle;
         DistributionOrderDetailsVC.yesRepairOrderModel = strongSelf.yesRepairData[indexPath.row];
         [strongSelf.navigationController pushViewController:DistributionOrderDetailsVC animated:YES];
     };
     
     //下拉刷新
     yesRepairView.refreshBlock = ^(){
-        [RepairOrderModel getAcceptFinishOrderListModelArray];
+        __strong AcceptOrderController *strongSelf = weakSelf;
+        if ([strongSelf.navTitle isEqualToString:@"受理工单"]) {
+            //获取数据
+            
+            [RepairOrderModel getAcceptFinishOrderListModelArray];
+        } else if ([strongSelf.navTitle isEqualToString:@"受理投诉单"]) {
+            
+            [RepairOrderModel getComplaintAcceptFinishOrderListModelArray];
+            
+        }
     };
     
     scrollToView.contentArray = @[noRepairView, acceptRepairView, yesRepairView];

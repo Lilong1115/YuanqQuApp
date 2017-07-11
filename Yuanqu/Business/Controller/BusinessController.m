@@ -77,25 +77,28 @@
             ToGuaranteeController *ToGuaranteeVC = [[ToGuaranteeController alloc]init];
             ToGuaranteeVC.navTitle = @"我要报修";
             ToGuaranteeVC.isPhoto = YES;
+            ToGuaranteeVC.isAppComplaints = NO;
             [strongSelf.navigationController pushViewController:ToGuaranteeVC animated:YES];
-            //报修处理
+            //工单管理
         } else if (type == RepairOrderType) {
         
-            RepairProcessController *RepairProcessVC = [[RepairProcessController alloc]init];
-            [strongSelf.navigationController pushViewController:RepairProcessVC animated:YES];
+            RepairProcessController *repairProcessVC = [[RepairProcessController alloc]init];
+            repairProcessVC.navTitle = model.name;
+            [strongSelf.navigationController pushViewController:repairProcessVC animated:YES];
             //投诉
-        } else if ([model.name isEqualToString:@"投诉"]) {
+        } else if (type == ToComplaintType) {
             
             ToGuaranteeController *ToGuaranteeVC = [[ToGuaranteeController alloc]init];
             ToGuaranteeVC.navTitle = @"我要投诉";
             ToGuaranteeVC.isPhoto = NO;
+            ToGuaranteeVC.isAppComplaints = YES;
             [strongSelf.navigationController pushViewController:ToGuaranteeVC animated:YES];
             //投诉处理
-        } else if ([model.name isEqualToString:@"投诉处理"]) {
+        } else if (type == ComplaintType) {
             
-            HandleController *handleVC = [[HandleController alloc]init];
-            handleVC.navTitle = model.name;
-            [strongSelf.navigationController pushViewController:handleVC animated:YES];
+            RepairProcessController *repairProcessVC = [[RepairProcessController alloc]init];
+            repairProcessVC.navTitle = model.name;
+            [strongSelf.navigationController pushViewController:repairProcessVC animated:YES];
         } else if ([model.name isEqualToString:@"任务"]) {
             
             HandleController *handleVC = [[HandleController alloc]init];
