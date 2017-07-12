@@ -25,6 +25,13 @@
 
 @implementation BusinessController
 
+
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    [HomeModel getMenuListModelArray];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

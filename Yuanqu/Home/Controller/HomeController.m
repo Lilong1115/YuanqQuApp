@@ -57,6 +57,18 @@
     self.scrollView = scrollView;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    
+    [HomeBaseModel getHomeBaseModelArray];
+    [CycleModel getCycleModelArray];
+
+    
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

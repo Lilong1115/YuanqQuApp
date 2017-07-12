@@ -73,7 +73,13 @@
     [self setupNav];
     [self setupScrollToSwitchView];
     [self setupScrollToView];
+    [self setupNotification];
     
+    
+}
+
+- (void)setupNotification {
+
     //注册通知
     //报修提交成功的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addRepairSuccessNotification:) name:AddRepairSuccessNotification object:nil];
@@ -87,6 +93,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(complaintListSuccessNotification:) name:ComplaintListSuccessNotification object:nil];
     //我要投诉列表获取成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(complaintListSuccessNotification:) name:AppComplainListSuccessNotification object:nil];
+    
 }
 
 //投诉列表获取成功
@@ -188,20 +195,32 @@
     writeGuaranteeView.uploadBlock = ^(NSDictionary *dict){
         __strong ToGuaranteeController *strongSelf = weakSelf;
         
-        if ([strongSelf.navTitle isEqualToString:@"我要报修"]) {
-            [strongSelf uploadDataWithDict:dict];
-        } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"]) {
-            if (strongSelf.isAppComplaints == YES) {
-                
+        if ([strongSelf judgeValuesWithDict:dict]) {
+            [ProgressHUD showError:@"请填写信息"];
+            return;
+        };
+        
+        JCAlertController *alert = [JCAlertController alertWithTitle:@"提交" message:@"确认提交?"];
+        
+        [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
+        [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
+        
+            if ([strongSelf.navTitle isEqualToString:@"我要报修"]) {
                 [strongSelf uploadDataWithDict:dict];
-            } else {
-                [strongSelf uploadComplaintsDataWithDict:dict];
+            } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"]) {
+                if (strongSelf.isAppComplaints == YES) {
+                    
+                    [strongSelf uploadDataWithDict:dict];
+                } else {
+                    [strongSelf uploadComplaintsDataWithDict:dict];
+                }
+                
             }
             
-        }
+        }];
         
-        
-//        [strongSelf clearData];
+        [strongSelf jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
+
     };
     
     //查询保修视图
@@ -272,6 +291,22 @@
     
 }
 
+//判断字典是否为空
+- (BOOL)judgeValuesWithDict:(NSDictionary *)dict {
+
+    __block BOOL judge = NO;
+    
+    [dict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL * _Nonnull stop) {
+        
+        if ([obj isEqualToString:@""]) {
+            judge = YES;
+        }
+    }];
+    
+    
+    return judge;
+}
+
 //提交投诉数据
 - (void)uploadComplaintsDataWithDict:(NSDictionary *)dict {
     
@@ -294,46 +329,33 @@
 //提交报修数据
 - (void)uploadDataWithDict:(NSDictionary *)dict {
     
+        
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:dict];
     
-    JCAlertController *alert = [JCAlertController alertWithTitle:@"提交" message:@"确认提交?"];
+    //用户姓名 admin
+    dictM[@"USERNAME"] = [UserInfo account].dsoa_user_name;
+    //用户ID 9E8E79216D9A4F8BB696FA4E3499E57
+    dictM[@"UUID"] = [UserInfo account].dsoa_user_code;
+    //用户所属编号 01
+    dictM[@"SSBM"] = [UserInfo account].dsoa_user_suoscode;
+    //所属公司名称：DEPTNAME
+    dictM[@"DEPTNAME"] = [UserInfo account].dsoa_dept_name;
     
-    [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
-    [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
-        
-        NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:dict];
-        
-        //用户姓名 admin
-        dictM[@"USERNAME"] = [UserInfo account].dsoa_user_name;
-        //用户ID 9E8E79216D9A4F8BB696FA4E3499E57
-        dictM[@"UUID"] = [UserInfo account].dsoa_user_code;
-        //用户所属编号 01
-        dictM[@"SSBM"] = [UserInfo account].dsoa_user_suoscode;
-        //所属公司名称：DEPTNAME
-        dictM[@"DEPTNAME"] = [UserInfo account].dsoa_dept_name;
-        
-        // UIImage图片转成Base64字符串：
-        if (self.guaranteeImage) {
-            NSData *imgData = UIImageJPEGRepresentation(self.guaranteeImage, 1.0f);
-            NSString *encodedImgStr = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-            dictM[@"imgStr"] = encodedImgStr;
-        }
-        
-        GuaranteeDetailsModel *model = [GuaranteeDetailsModel mj_objectWithKeyValues:dictM.copy];
-        
-        if (self.isAppComplaints == YES) {
-            [model uploadAppComplaintsInformation];
-        } else {
-            [model uploadInformation];
-        }
-        
-        
-        
-    }];
+    // UIImage图片转成Base64字符串：
+    if (self.guaranteeImage) {
+        NSData *imgData = UIImageJPEGRepresentation(self.guaranteeImage, 1.0f);
+        NSString *encodedImgStr = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+        dictM[@"imgStr"] = encodedImgStr;
+    }
     
-    [self jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
+    GuaranteeDetailsModel *model = [GuaranteeDetailsModel mj_objectWithKeyValues:dictM.copy];
     
-    
-    
+    if (self.isAppComplaints == YES) {
+        [model uploadAppComplaintsInformation];
+    } else {
+        [model uploadInformation];
+    }
+
 }
 
 
