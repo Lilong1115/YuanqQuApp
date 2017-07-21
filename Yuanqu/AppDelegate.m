@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TabBarController.h"
 #import "LoginController.h"
+#import <OpenShareHeader.h>
 
 
 @interface AppDelegate ()
@@ -21,9 +22,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    // 启动图片延时: 1秒
-//    [NSThread sleepForTimeInterval:1];
     
+    //全局注册appId，别忘了#import "OpenShareHeader.h"
+    [OpenShare connectQQWithAppId:@"1103194207"];
+    [OpenShare connectWeiboWithAppKey:@"1371606722"];
+    [OpenShare connectWeixinWithAppId:@"wxd930ea5d5a258f4f"];
+    [OpenShare connectRenrenWithAppId:@"228525" AndAppKey:@"1dd8cba4215d4d4ab96a49d3058c1d7f"];
     
     //设置baseurl
     YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
@@ -44,6 +48,16 @@
     
     [self.window makeKeyAndVisible];
     
+    return YES;
+}
+
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    //第二步：添加回调
+    if ([OpenShare handleOpenURL:url]) {
+        return YES;
+    }
+    //这里可以写上其他OpenShare不支持的客户端的回调，比如支付宝等。
     return YES;
 }
 

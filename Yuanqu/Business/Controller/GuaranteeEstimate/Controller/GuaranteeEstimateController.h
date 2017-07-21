@@ -17,4 +17,6 @@
 //model
 @property (nonatomic, strong) GuaranteeListModel *model;
 
+@property (nonatomic, assign) BOOL isComplaints;
+
 @end

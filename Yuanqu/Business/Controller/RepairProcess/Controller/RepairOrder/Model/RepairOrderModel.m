@@ -30,7 +30,8 @@
     
     //字典
     NSDictionary *parameters = @{
-                                 @"ssbm": [UserInfo account].dsoa_user_suoscode
+                                 @"ssbm": [UserInfo account].dsoa_user_suoscode,
+                                 @"userId": [UserInfo account].dsoa_user_code
                                  };
     NSString *json = [NSString ObjectTojsonString:parameters];
     
@@ -74,7 +75,8 @@
 
     //字典
     NSDictionary *parameters = @{
-                                 @"ssbm": [UserInfo account].dsoa_user_suoscode
+                                 @"ssbm": [UserInfo account].dsoa_user_suoscode,
+                                 @"userId": [UserInfo account].dsoa_user_code
                                  };
     NSString *json = [NSString ObjectTojsonString:parameters];
     
@@ -117,7 +119,8 @@
 
     //字典
     NSDictionary *parameters = @{
-                                 @"ssbm": [UserInfo account].dsoa_user_suoscode
+                                 @"ssbm": [UserInfo account].dsoa_user_suoscode,
+                                 @"userId": [UserInfo account].dsoa_user_code
                                  };
     NSString *json = [NSString ObjectTojsonString:parameters];
     
@@ -161,7 +164,8 @@
 
     //字典
     NSDictionary *parameters = @{
-                                 @"ssbm": [UserInfo account].dsoa_user_suoscode
+                                 @"ssbm": [UserInfo account].dsoa_user_suoscode,
+                                 @"userId": [UserInfo account].dsoa_user_code
                                  };
     NSString *json = [NSString ObjectTojsonString:parameters];
     
@@ -208,7 +212,7 @@
     //字典
     NSDictionary *parameters = @{
                                  @"ssbm": [UserInfo account].dsoa_user_suoscode,
-                                 @"userid": [UserInfo account].dsoa_user_code
+                                 @"userId": [UserInfo account].dsoa_user_code
                                  };
     NSString *json = [NSString ObjectTojsonString:parameters];
     
@@ -252,7 +256,7 @@
     //字典
     NSDictionary *parameters = @{
                                  @"ssbm": [UserInfo account].dsoa_user_suoscode,
-                                 @"userid": [UserInfo account].dsoa_user_code
+                                 @"userId": [UserInfo account].dsoa_user_code
                                  };
     NSString *json = [NSString ObjectTojsonString:parameters];
     
@@ -296,7 +300,8 @@
 
     //字典
     NSDictionary *parameters = @{
-                                 @"ssbm": [UserInfo account].dsoa_user_suoscode
+                                 @"ssbm": [UserInfo account].dsoa_user_suoscode,
+                                 @"userId": [UserInfo account].dsoa_user_code
                                  };
     NSString *json = [NSString ObjectTojsonString:parameters];
     
@@ -339,7 +344,8 @@
 
     //字典
     NSDictionary *parameters = @{
-                                 @"ssbm": [UserInfo account].dsoa_user_suoscode
+                                 @"ssbm": [UserInfo account].dsoa_user_suoscode,
+                                 @"userId": [UserInfo account].dsoa_user_code
                                  };
     NSString *json = [NSString ObjectTojsonString:parameters];
     

@@ -95,9 +95,15 @@
     GuaranteeDetailsView *guaranteeDetailsView = [[GuaranteeDetailsView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH - FooterViewHeight) style:UITableViewStylePlain];
     guaranteeDetailsView.isComplaints = self.isComplaints;
     
-    [LogBaseModel getLogModelArrayWithDict:@{
-                                         @"SYSID": self.model.sysid
-                                         }];
+    if (self.isComplaints == YES) {
+        [LogBaseModel getComplaintLogModelArrayWithDict:@{@"SYSID": self.model.sysid}];
+    } else {
+        [LogBaseModel getLogModelArrayWithDict:@{
+                                                 @"SYSID": self.model.sysid
+                                                 }];
+    }
+    
+    
     
     //回调
     __weak GuaranteeDetailsController *weakSelf = self;
@@ -196,7 +202,11 @@
                                @"RD_CLBJ": self.model.rd_CLBJ
                                };
         
-        [GuaranteeListModel repairSubmitWithDict:dict];
+        if (self.isComplaints == YES) {
+            [GuaranteeListModel complainSubmitWithDict:dict];
+        } else {
+            [GuaranteeListModel repairSubmitWithDict:dict];
+        }
         return;
     }
     
@@ -207,10 +217,13 @@
         
         guaranteeEstimateVC.navTitle = @"报修评价";
         guaranteeEstimateVC.model = self.model;
+        guaranteeEstimateVC.isComplaints = NO;
         
     } else if ([self.navTitle isEqualToString:@"投诉详情"]) {
         
         guaranteeEstimateVC.navTitle = @"投诉评价";
+        guaranteeEstimateVC.model = self.model;
+        guaranteeEstimateVC.isComplaints = YES;
     }
     
     [self.navigationController pushViewController:guaranteeEstimateVC animated:YES];

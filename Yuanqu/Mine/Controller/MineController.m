@@ -14,6 +14,7 @@
 #import "PersonalController.h"
 #import "QRCodeReaderViewController.h"
 #import "ScanController.h"
+#import "ShareController.h"
 
 #pragma mark --宏定义
 //头视图高度
@@ -22,7 +23,7 @@
 //cellid
 static NSString * const kMineCellID = @"kMineCellID";
 
-@interface MineController ()<QRCodeReaderDelegate>
+@interface MineController ()<QRCodeReaderDelegate, ShareDismissDelegate>
 
 //我的头视图
 @property (nonatomic, weak) MineHeaderView *headerView;
@@ -155,8 +156,19 @@ static NSString * const kMineCellID = @"kMineCellID";
         
     } else if (indexPath.section == 1 && indexPath.row == 1) {
     
+        ShareController *shareVC = [[ShareController alloc]init];
+        shareVC.delegate = self;
+        shareVC.blurStyle = UIBlurEffectStyleDark;
+        [self presentViewController:shareVC animated:YES completion:nil];
+
     }
 }
+
+//设置主控制器去dismiss弹出的视图，而不是弹出的视图自己dismiss自己
+-(void)didDismissKYShareVC:(ShareController *)viewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 
 

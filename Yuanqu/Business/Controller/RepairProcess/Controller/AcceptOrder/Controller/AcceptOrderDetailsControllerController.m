@@ -114,46 +114,74 @@ static NSString * const kDistributionDetailsCellID = @"kDistributionDetailsCellI
 //完成按钮
 - (void)clickCompleteButton {
 
-    NSDictionary *dict = @{
-                           @"MR_GDBH": self.yesRepairOrderModel.wd_BYE,
-                           @"USERNAME": [UserInfo account].dsoa_user_name,
-                           @"USERID": [UserInfo account].dsoa_user_code,
-                           @"MR_WXBZ": self.textView.text,
-                           @"SSBM": [UserInfo account].dsoa_user_suoscode,
-                           @"DEPTNAME": [UserInfo account].dsoa_dept_name,
-                           @"WD_BXBT": self.yesRepairOrderModel.wd_BXBT
-                           };
     
+    JCAlertController *alert = [JCAlertController alertWithTitle:@"完成" message:@"确认完成?"];
     
-    if ([self.navTitle isEqualToString:@"受理工单"])  {
-        [RepairOrderModel acceptFinishOrderSubmitWithDict:dict];
-    } else if ([self.navTitle isEqualToString:@"受理投诉单"]) {
+    [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
+    [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
         
-        [RepairOrderModel complaintAcceptFinishOrderSubmitWithDict:dict];
-    }
+        NSDictionary *dict = @{
+                               @"MR_GDBH": self.yesRepairOrderModel.wd_BYE,
+                               @"USERNAME": [UserInfo account].dsoa_user_name,
+                               @"USERID": [UserInfo account].dsoa_user_code,
+                               @"MR_WXBZ": self.textView.text,
+                               @"SSBM": [UserInfo account].dsoa_user_suoscode,
+                               @"DEPTNAME": [UserInfo account].dsoa_dept_name,
+                               @"WD_BXBT": self.yesRepairOrderModel.wd_BXBT
+                               };
+        
+        
+        if ([self.navTitle isEqualToString:@"受理工单"])  {
+            [RepairOrderModel acceptFinishOrderSubmitWithDict:dict];
+        } else if ([self.navTitle isEqualToString:@"受理投诉单"]) {
+            
+            [RepairOrderModel complaintAcceptFinishOrderSubmitWithDict:dict];
+        }
+        
+        
+        
+        
+    }];
+    
+    [self jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
+    
+    
+    
     
     
 }
 
 //提交按钮
 - (void)clickRepairButton {
+    
+    JCAlertController *alert = [JCAlertController alertWithTitle:@"提交" message:@"确认提交?"];
+    
+    [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
+    [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
+        
+        NSDictionary *dict = @{
+                               @"MR_GDBH": self.yesRepairOrderModel.wd_BYE,
+                               @"USERNAME": [UserInfo account].dsoa_user_name,
+                               @"USERID": [UserInfo account].dsoa_user_code,
+                               @"MR_WXBZ": self.textView.text,
+                               @"SSBM": [UserInfo account].dsoa_user_suoscode,
+                               @"DEPTNAME": [UserInfo account].dsoa_dept_name,
+                               @"WD_BXBT": self.yesRepairOrderModel.wd_BXBT
+                               };
+        
+        if ([self.navTitle isEqualToString:@"受理工单"])  {
+            [RepairOrderModel acceptingOrderSubmitWithDict:dict];
+        } else if ([self.navTitle isEqualToString:@"受理投诉单"]) {
+            
+            [RepairOrderModel complaintAcceptingOrderSubmitWithDict:dict];
+        }
+        
 
-    NSDictionary *dict = @{
-                           @"MR_GDBH": self.yesRepairOrderModel.wd_BYE,
-                           @"USERNAME": [UserInfo account].dsoa_user_name,
-                           @"USERID": [UserInfo account].dsoa_user_code,
-                           @"MR_WXBZ": self.textView.text,
-                           @"SSBM": [UserInfo account].dsoa_user_suoscode,
-                           @"DEPTNAME": [UserInfo account].dsoa_dept_name,
-                           @"WD_BXBT": self.yesRepairOrderModel.wd_BXBT
-                           };
+    }];
     
-    if ([self.navTitle isEqualToString:@"受理工单"])  {
-        [RepairOrderModel acceptingOrderSubmitWithDict:dict];
-    } else if ([self.navTitle isEqualToString:@"受理投诉单"]) {
+    [self jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
+
     
-        [RepairOrderModel complaintAcceptingOrderSubmitWithDict:dict];
-    }
     
     
     

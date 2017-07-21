@@ -22,7 +22,7 @@
 
 - (NSString *)requestUrl {
     // “http://www.yuantiku.com” 在 YTKNetworkConfig 中设置，这里只填除去域名剩余的网址信息
-    return AppFinishComplainLogs_URL;
+    return AddFinishComplainLogs_URL;
 }
 
 - (YTKRequestMethod)requestMethod {

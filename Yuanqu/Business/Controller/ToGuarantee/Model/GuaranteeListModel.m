@@ -15,6 +15,7 @@
 #import "NoComplaintOrderRegister.h"
 #import "ComplaintSubmitRegister.h"
 #import "AppComplaintsListRegister.h"
+#import "ComplaintEstimateRegister.h"
 
 @implementation GuaranteeListModel
 
@@ -157,7 +158,8 @@
 
     //字典
     NSDictionary *parameters = @{
-                                 @"ssbm": [UserInfo account].dsoa_user_suoscode
+                                 @"ssbm": [UserInfo account].dsoa_user_suoscode,
+                                 @"userId": [UserInfo account].dsoa_user_code
                                  };
     NSString *json = [NSString ObjectTojsonString:parameters];
     
@@ -200,7 +202,8 @@
 
     //字典
     NSDictionary *parameters = @{
-                                 @"ssbm": [UserInfo account].dsoa_user_suoscode
+                                 @"ssbm": [UserInfo account].dsoa_user_suoscode,
+                                 @"userId": [UserInfo account].dsoa_user_code
                                  };
     NSString *json = [NSString ObjectTojsonString:parameters];
     
@@ -319,6 +322,38 @@
     
     //请求
     GuaranteeEstimateRegister *workOrderRegister = [[GuaranteeEstimateRegister alloc]initWithDict:basic];
+    [workOrderRegister startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+        
+        NSDictionary *response = (NSDictionary *)workOrderRegister.responseObject;
+        
+        
+        
+        NSInteger ret = [response[@"ret"] integerValue];
+        if (ret == Success_Code) {
+            
+            //主线程发送通知,更新界面
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:RepairOrderSuccessNotification object:nil];
+            }];
+        }
+        
+    } failure:^(YTKBaseRequest *request) {
+        // 你可以直接在这里使用 self
+        [ProgressHUD showError:@"网络请求错误"];
+    }];
+}
+
+
+//投诉我要确认
++ (void)complainSubmitWithDict:(NSDictionary *)dict {
+    
+    NSString *json = [NSString ObjectTojsonString:dict];
+    
+    //转为basic
+    NSDictionary *basic = @{@"basic": json};
+    
+    //请求
+    ComplaintEstimateRegister *workOrderRegister = [[ComplaintEstimateRegister alloc]initWithDict:basic];
     [workOrderRegister startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
         
         NSDictionary *response = (NSDictionary *)workOrderRegister.responseObject;

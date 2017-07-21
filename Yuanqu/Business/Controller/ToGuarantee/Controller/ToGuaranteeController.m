@@ -249,12 +249,17 @@
         guaranteeDetailsVC.model = strongSelf.dataArray[indexPath.row];
         
         //设置不同内容
-        if ([self.navTitle isEqualToString:@"我要报修"]) {
+        if ([strongSelf.navTitle isEqualToString:@"我要报修"]) {
             guaranteeDetailsVC.navTitle = @"报修详情";
             guaranteeDetailsVC.isComplaints = NO;
-        } else if ([self.navTitle isEqualToString:@"我要投诉"]) {
+        } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"] && strongSelf.isAppComplaints == YES) {
             guaranteeDetailsVC.navTitle = @"投诉详情";
             guaranteeDetailsVC.isComplaints = YES;
+        } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"] && strongSelf.isAppComplaints == NO) {
+        
+            guaranteeDetailsVC.navTitle = @"投诉详情";
+            guaranteeDetailsVC.isComplaints = NO;
+            
         }
         
         [strongSelf.navigationController pushViewController:guaranteeDetailsVC animated:YES];

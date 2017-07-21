@@ -14,6 +14,7 @@
 #import "NavigationController.h"
 #import "QRCodeReaderViewController.h"
 
+
 #pragma mark --宏
 #define TextHeight 50
 #define Margin 20
@@ -63,15 +64,19 @@
 //设置logo
 - (void)setupLogo {
 
-    UIImageView *logoView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH / 2)];
-    logoView.image = [UIImage imageNamed:@"meinv"];
+    UIImageView *logoView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH)];
+    logoView.image = [UIImage imageNamed:@"loginbj"];
     [self.view addSubview:logoView];
+    
+    UIView *backgView = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenH / 2 - 50, ScreenW, ScreenH / 2 + 50)];
+    backgView.backgroundColor = [UIColor colorWithHexString:@"#03AEFD"];
+    [self.view addSubview:backgView];
 }
 
 //设置账户密码框
 - (void)setupText {
 
-    UITextField *username = [self creatTextWithPlaceholder:@"账户" frame:CGRectMake(Margin, ScreenH / 2 + Margin, ScreenW - Margin * 2, TextHeight) keyboardType:UIKeyboardTypeNumberPad secureTextEntry:NO];
+    UITextField *username = [self creatTextWithPlaceholder:@"用户名" frame:CGRectMake(Margin, ScreenH / 2 + Margin, ScreenW - Margin * 2, TextHeight) keyboardType:UIKeyboardTypeNumberPad secureTextEntry:NO];
     self.username = username;
     UITextField *password = [self creatTextWithPlaceholder:@"密码" frame:CGRectMake(Margin, ScreenH / 2 + Margin * 2 + TextHeight, ScreenW - Margin * 2, TextHeight) keyboardType:UIKeyboardTypeASCIICapable secureTextEntry:YES];
     self.password = password;
@@ -91,13 +96,15 @@
     UITextField *text = [[UITextField alloc]initWithFrame:frame];
     //首字母是否大写
     text.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    text.backgroundColor = [UIColor colorWithHexString:@"#4DC6FD"];
     text.keyboardType = keyboardType;
     text.secureTextEntry = secureTextEntry;
     text.borderStyle = UITextBorderStyleRoundedRect;
     text.placeholder = placeholder;
+    [text setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     text.layer.cornerRadius = 5;
     text.layer.masksToBounds = YES;
-    text.layer.borderColor = [UIColor blackColor].CGColor;
+    text.layer.borderColor = [UIColor whiteColor].CGColor;
     text.layer.borderWidth = 1;
     [self.view addSubview:text];
     return text;
@@ -120,7 +127,7 @@
     loginButton.layer.cornerRadius = 5;
     loginButton.layer.masksToBounds = YES;
     [loginButton setTitle:@"登录" forState:UIControlStateNormal];
-    [loginButton setBackgroundColor:[UIColor colorWithHexString:@"#00BFFF"]];
+    [loginButton setBackgroundColor:[UIColor colorWithHexString:@"#0B49FC"]];
     [self.view addSubview:loginButton];
     [loginButton addTarget:self action:@selector(clickLoginButton) forControlEvents:UIControlEventTouchUpInside];
     
@@ -142,13 +149,25 @@
 //注册用户
 - (void)clickRegisterButton {
 
-    RegisterController *registerVC = [[RegisterController alloc]init];
-    registerVC.navTitle = @"注册";
-    registerVC.url = AppRegister_URL;
-    NavigationController *registerNav = [[NavigationController alloc]initWithRootViewController:registerVC];
+    QRCodeReaderViewController *reader = [QRCodeReaderViewController new];
+    reader.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    reader.navigationItem.rightBarButtonItem = nil;
+    reader.navigationItem.title = @"扫一扫";
+    reader.modalPresentationStyle = UIModalPresentationFormSheet;
+    reader.delegate = self;
+    
+    NavigationController *nav = [[NavigationController alloc]initWithRootViewController:reader];
+    self.nav = nav;
+    [self presentViewController:nav animated:YES completion:nil];
     
     
-    [self presentViewController:registerNav animated:YES completion:nil];
+//    RegisterController *registerVC = [[RegisterController alloc]init];
+//    registerVC.navTitle = @"注册";
+//    registerVC.url = AppRegister_URL;
+//    NavigationController *registerNav = [[NavigationController alloc]initWithRootViewController:registerVC];
+//    
+//    
+//    [self presentViewController:registerNav animated:YES completion:nil];
     
 
 }
@@ -160,24 +179,23 @@
 {
 
     NSLog(@"%@", result);
+    RegisterController *registerVC = [[RegisterController alloc]init];
+    registerVC.navTitle = @"注册";
+    registerVC.url = result;
+    NavigationController *registerNav = [[NavigationController alloc]initWithRootViewController:registerVC];
+    
+    
+    [self presentViewController:registerNav animated:YES completion:nil];
 }
 
 
 //忘记密码
 - (void)clickForgotButton {
 
-    QRCodeReaderViewController *reader = [QRCodeReaderViewController new];
-    reader.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-    reader.navigationItem.rightBarButtonItem = nil;
-    reader.navigationItem.title = @"扫一扫";
-    reader.modalPresentationStyle = UIModalPresentationFormSheet;
-    reader.delegate = self;
     
-    NavigationController *nav = [[NavigationController alloc]initWithRootViewController:reader];
-    self.nav = nav;
-    [self presentViewController:nav animated:YES completion:nil];
-
 }
+
+
 
 //返回按钮
 - (void)back {
@@ -209,7 +227,7 @@
 
     UIButton *button = [[UIButton alloc]init];
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     return button;
 }
@@ -224,6 +242,11 @@
 - (void)dealloc {
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+
+    return UIStatusBarStyleLightContent;
 }
 
 @end

@@ -17,4 +17,5 @@ pod 'MBProgressHUD'
 pod 'ProgressHUD'
 pod 'OpenShare'
 pod 'JCAlertController'
+pod 'VVBlurPresentation'
 end

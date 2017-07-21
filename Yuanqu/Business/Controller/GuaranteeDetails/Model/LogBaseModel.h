@@ -17,4 +17,6 @@
 
 + (void)getLogModelArrayWithDict:(NSDictionary *)dict;
 
++ (void)getComplaintLogModelArrayWithDict:(NSDictionary *)dict;
+
 @end

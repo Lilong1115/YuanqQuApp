@@ -22,6 +22,12 @@
 //高德地图key
 #define AMapKey @"83334748e8bb105128708bbb51dca7bc"
 
+//URLScheme
+#define WeixinURLScheme @"weixin"
+#define QQURLScheme @"mqq"
+#define SinaURLScheme @"sinaweibo"
+
+
 /******************通知*******************/
 //首页业务通知
 #define HomeBusinessNotification @"HomeBusinessNotification"

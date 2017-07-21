@@ -80,6 +80,8 @@
 
 //我要确认
 + (void)repairSubmitWithDict:(NSDictionary *)dict;
+//投诉
++ (void)complainSubmitWithDict:(NSDictionary *)dict;
 
 @end
 

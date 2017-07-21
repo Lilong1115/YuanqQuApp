@@ -12,6 +12,7 @@
 /*******************URL******************/
 //baseUrl
 #define BaseUrl @"http://192.168.100.186:8080/Apps/"
+//#define BaseUrl @"http://222.35.27.156:8080/SMP/"
 //cdnUrl
 #define CDNUrl @""
 //扫一扫baseUrl
@@ -352,7 +353,7 @@ URL：addComplainLogs.do
 
 /*
 受理中处理投诉（完成）
-URL：appFinishComplainLogs.do
+URL：addFinishComplainLogs.do
 参数：
 报修单系统编号：  MR_GDBH
 当前用户名：		USERNAME
@@ -363,7 +364,7 @@ URL：appFinishComplainLogs.do
 报修单系统编号：WD_BYE
 报修单标题：	WD_BXBT
 */
-#define AppFinishComplainLogs_URL @"appFinishComplainLogs.do"
+#define AddFinishComplainLogs_URL @"addFinishComplainLogs.do"
 
 
 
@@ -386,7 +387,7 @@ URL：appFinishComplainLogs.do
 报修单系统编号     WD_BYE
 工单生成时间       SYSDATE
 */
-#define AppFinishComplainLogs_URL @"appFinishComplainLogs.do"
+#define AppFinishComplainManagement_URL @"appFinishComplainManagement.do"
 
 
 
@@ -399,6 +400,55 @@ URL:appComplainLogsIOS.do
 日志时间：SHIJIAN
 日志内容：NEIRONG
 */
+#define AppComplainLogsIOS_URL @"appComplainLogsIOS.do"
+
+
+
+/*
+ 投诉单详细信息
+ 我要确认    0
+ 我要评价    1
+ 我要投诉 	  2
+ URL：ComplainOrder.do
+ 参数：
+ RD_CLBJ
+ ITEMID
+ CC_LXBH
+ USERNAME
+ CC_WXZT
+ CC_WXFS
+ CC_SYCL
+ CC_WCBZ
+ SYSDATE
+ USERNAME
+ USERID
+ SSBM
+ DISPOSE
+ DELSIGN
+ SENDSIGN
+ RESTORESIGN
+ EAASIGN
+ DELDATE
+ SENDDATE
+ RESTOREDATE
+ EAADATE
+ OBJID
+ OBJNAME
+ READSIGN
+ READDATE
+ */
+#define ComplainOrder_URL @"ComplainOrder.do"
+
+
+/*
+ 投诉日志列表 IOS
+ URL:appComplainLogsIOS.do
+ 参数：
+ 报修单系统编号：SYSID
+ 返回值：
+ 日志时间：SHIJIAN
+ 日志内容：NEIRONG
+ */
 #define AppComplainLogsIOS_URL @"appComplainLogsIOS.do"
 
 /*--------------投诉----------------*/

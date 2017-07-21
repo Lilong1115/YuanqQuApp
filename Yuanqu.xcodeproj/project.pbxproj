@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A0B1CE61ED6A76A00179C8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0B1CE51ED6A76A00179C8C /* main.m */; };
+		5A0B1CE61ED6A76A00179C8C /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A0B1CE51ED6A76A00179C8C /* main.mm */; };
 		5A0B1CE91ED6A76A00179C8C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0B1CE81ED6A76A00179C8C /* AppDelegate.m */; };
 		5A0B1CF11ED6A76A00179C8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A0B1CF01ED6A76A00179C8C /* Assets.xcassets */; };
 		5A0B1CF41ED6A76A00179C8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A0B1CF21ED6A76A00179C8C /* LaunchScreen.storyboard */; };
@@ -38,6 +38,11 @@
 		5A981A391F137CE7001784BC /* ComplaintAcceptFinishRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A981A381F137CE7001784BC /* ComplaintAcceptFinishRegister.m */; };
 		5A981A3C1F1460D6001784BC /* AppComplaintsListRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A981A3B1F1460D6001784BC /* AppComplaintsListRegister.m */; };
 		5A981A3F1F1465DB001784BC /* AppComplaintsRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A981A3E1F1465DB001784BC /* AppComplaintsRegister.m */; };
+		5A981A421F170366001784BC /* ComplaintEstimateRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A981A411F170366001784BC /* ComplaintEstimateRegister.m */; };
+		5A981A451F1707A1001784BC /* ComplaintLogRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A981A441F1707A1001784BC /* ComplaintLogRegister.m */; };
+		5AABCFE31F20B2690005DF7E /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AABCFE21F20B2690005DF7E /* ShareController.m */; };
+		5AABCFE91F20B2BF0005DF7E /* UIControl+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AABCFE61F20B2BF0005DF7E /* UIControl+Blocks.m */; };
+		5AABCFEA1F20B2BF0005DF7E /* XHShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AABCFE81F20B2BF0005DF7E /* XHShareView.m */; };
 		5AE7ECCE1EF0D2170096062F /* GuaranteeDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECCD1EF0D2170096062F /* GuaranteeDetailsModel.m */; };
 		5AE7ECD11EF2173B0096062F /* HomeRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECD01EF2173B0096062F /* HomeRegister.m */; };
 		5AE7ECD41EF2226F0096062F /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7ECD31EF2226F0096062F /* NSString+Extension.m */; };
@@ -145,7 +150,7 @@
 /* Begin PBXFileReference section */
 		212B5CD437FD4A9C01410AEF /* Pods-Yuanqu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yuanqu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yuanqu/Pods-Yuanqu.debug.xcconfig"; sourceTree = "<group>"; };
 		5A0B1CE11ED6A76A00179C8C /* Yuanqu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yuanqu.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5A0B1CE51ED6A76A00179C8C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5A0B1CE51ED6A76A00179C8C /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		5A0B1CE71ED6A76A00179C8C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5A0B1CE81ED6A76A00179C8C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5A0B1CF01ED6A76A00179C8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,6 +212,16 @@
 		5A981A3B1F1460D6001784BC /* AppComplaintsListRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppComplaintsListRegister.m; sourceTree = "<group>"; };
 		5A981A3D1F1465DB001784BC /* AppComplaintsRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppComplaintsRegister.h; sourceTree = "<group>"; };
 		5A981A3E1F1465DB001784BC /* AppComplaintsRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppComplaintsRegister.m; sourceTree = "<group>"; };
+		5A981A401F170366001784BC /* ComplaintEstimateRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintEstimateRegister.h; sourceTree = "<group>"; };
+		5A981A411F170366001784BC /* ComplaintEstimateRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintEstimateRegister.m; sourceTree = "<group>"; };
+		5A981A431F1707A1001784BC /* ComplaintLogRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintLogRegister.h; sourceTree = "<group>"; };
+		5A981A441F1707A1001784BC /* ComplaintLogRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintLogRegister.m; sourceTree = "<group>"; };
+		5AABCFE11F20B2690005DF7E /* ShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareController.h; sourceTree = "<group>"; };
+		5AABCFE21F20B2690005DF7E /* ShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareController.m; sourceTree = "<group>"; };
+		5AABCFE51F20B2BF0005DF7E /* UIControl+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+Blocks.h"; sourceTree = "<group>"; };
+		5AABCFE61F20B2BF0005DF7E /* UIControl+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Blocks.m"; sourceTree = "<group>"; };
+		5AABCFE71F20B2BF0005DF7E /* XHShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHShareView.h; sourceTree = "<group>"; };
+		5AABCFE81F20B2BF0005DF7E /* XHShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHShareView.m; sourceTree = "<group>"; };
 		5AE7ECCC1EF0D2160096062F /* GuaranteeDetailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuaranteeDetailsModel.h; sourceTree = "<group>"; };
 		5AE7ECCD1EF0D2170096062F /* GuaranteeDetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuaranteeDetailsModel.m; sourceTree = "<group>"; };
 		5AE7ECCF1EF2173B0096062F /* HomeRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeRegister.h; sourceTree = "<group>"; };
@@ -471,7 +486,7 @@
 				5A0B1CF01ED6A76A00179C8C /* Assets.xcassets */,
 				5A0B1CF21ED6A76A00179C8C /* LaunchScreen.storyboard */,
 				5A0B1CF51ED6A76A00179C8C /* Info.plist */,
-				5A0B1CE51ED6A76A00179C8C /* main.m */,
+				5A0B1CE51ED6A76A00179C8C /* main.mm */,
 				5A0B1D0B1ED6BA4C00179C8C /* PrefixHeader.pch */,
 				5A0B1D1B1ED6E07A00179C8C /* Define.h */,
 				5AE7ECE51EF4CB630096062F /* NetPort.h */,
@@ -635,6 +650,8 @@
 			children = (
 				5A0B1D181ED6DFF000179C8C /* MineController.h */,
 				5A0B1D191ED6DFF000179C8C /* MineController.m */,
+				5AABCFE11F20B2690005DF7E /* ShareController.h */,
+				5AABCFE21F20B2690005DF7E /* ShareController.m */,
 				5AEBC7411F0392C900F93818 /* ScanController.h */,
 				5AEBC7421F0392C900F93818 /* ScanController.m */,
 				5AE7ECEC1EF770390096062F /* Personal */,
@@ -654,6 +671,7 @@
 		5A0B1D0A1ED6B38000179C8C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5AABCFE41F20B2BF0005DF7E /* XHShare */,
 				5A0B1D1C1ED6E47F00179C8C /* MineHeaderView.h */,
 				5A0B1D1D1ED6E47F00179C8C /* MineHeaderView.m */,
 			);
@@ -725,6 +743,17 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5AABCFE41F20B2BF0005DF7E /* XHShare */ = {
+			isa = PBXGroup;
+			children = (
+				5AABCFE51F20B2BF0005DF7E /* UIControl+Blocks.h */,
+				5AABCFE61F20B2BF0005DF7E /* UIControl+Blocks.m */,
+				5AABCFE71F20B2BF0005DF7E /* XHShareView.h */,
+				5AABCFE81F20B2BF0005DF7E /* XHShareView.m */,
+			);
+			path = XHShare;
 			sourceTree = "<group>";
 		};
 		5AE7ECEC1EF770390096062F /* Personal */ = {
@@ -1060,6 +1089,8 @@
 			children = (
 				5AE7ED721EFD148D0096062F /* LogRegister.h */,
 				5AE7ED731EFD148D0096062F /* LogRegister.m */,
+				5A981A431F1707A1001784BC /* ComplaintLogRegister.h */,
+				5A981A441F1707A1001784BC /* ComplaintLogRegister.m */,
 				5AE7ED751EFD15790096062F /* LogModel.h */,
 				5AE7ED761EFD15790096062F /* LogModel.m */,
 				5AE7ED781EFE00940096062F /* LogBaseModel.h */,
@@ -1105,6 +1136,8 @@
 			children = (
 				5AE7ED6F1EFCBDDB0096062F /* GuaranteeEstimateRegister.h */,
 				5AE7ED701EFCBDDB0096062F /* GuaranteeEstimateRegister.m */,
+				5A981A401F170366001784BC /* ComplaintEstimateRegister.h */,
+				5A981A411F170366001784BC /* ComplaintEstimateRegister.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1588,6 +1621,7 @@
 				5AE7ECF51EF7708B0096062F /* PersonalCell.m in Sources */,
 				5AE7ED621EFB96230096062F /* AcceptOrderDetailsControllerController.m in Sources */,
 				5AEADFB61EEA9B70004EB475 /* WebViewController.m in Sources */,
+				5A981A421F170366001784BC /* ComplaintEstimateRegister.m in Sources */,
 				5A0B1D1E1ED6E47F00179C8C /* MineHeaderView.m in Sources */,
 				5AEADF5A1EE63A49004EB475 /* LeaseController.m in Sources */,
 				5AE7ED531EFA3E6F0096062F /* AcceptOrderController.m in Sources */,
@@ -1627,6 +1661,7 @@
 				5AE7ED7A1EFE00940096062F /* LogBaseModel.m in Sources */,
 				5AE7ECCE1EF0D2170096062F /* GuaranteeDetailsModel.m in Sources */,
 				5AEADF6E1EE69229004EB475 /* BLDatePickerView.m in Sources */,
+				5AABCFE91F20B2BF0005DF7E /* UIControl+Blocks.m in Sources */,
 				5AE7ED181EF8C9380096062F /* RepairTitleModel.m in Sources */,
 				5AE7ED681EFBA5870096062F /* AcceptFinishRegister.m in Sources */,
 				5A981A3C1F1460D6001784BC /* AppComplaintsListRegister.m in Sources */,
@@ -1643,8 +1678,10 @@
 				5AE7ED831F02009E0096062F /* RegisterController.m in Sources */,
 				5AE7ED801F00EEC90096062F /* ComplaintsListRegister.m in Sources */,
 				5A981A241F13605B001784BC /* ComplaintSubmitRegister.m in Sources */,
+				5A981A451F1707A1001784BC /* ComplaintLogRegister.m in Sources */,
 				5AEADF5D1EE64199004EB475 /* SearchBar.m in Sources */,
 				5AE7ED8D1F020D6E0096062F /* QRCodeReaderView.m in Sources */,
+				5AABCFEA1F20B2BF0005DF7E /* XHShareView.m in Sources */,
 				5AEBC7431F0392C900F93818 /* ScanController.m in Sources */,
 				5AE7ED341EF917300096062F /* DistributionOrderDetailsController.m in Sources */,
 				5AEADF0B1EE28E21004EB475 /* UIImage+Extension.m in Sources */,
@@ -1661,9 +1698,10 @@
 				5A0B1D2E1ED929AC00179C8C /* BusinessFlowLayout.m in Sources */,
 				5AE7ED5F1EFB76F50096062F /* AcceptSubmitRegister.m in Sources */,
 				5AE7ED461EFA1A980096062F /* ReceiveCell.m in Sources */,
+				5AABCFE31F20B2690005DF7E /* ShareController.m in Sources */,
 				5AE7ED401EFA03830096062F /* DistributionTitleModel.m in Sources */,
 				5AEADEA11EDE7040004EB475 /* ToGuaranteeController.m in Sources */,
-				5A0B1CE61ED6A76A00179C8C /* main.m in Sources */,
+				5A0B1CE61ED6A76A00179C8C /* main.mm in Sources */,
 				5AEADF081EDFEBEE004EB475 /* SurroundingController.m in Sources */,
 				5AE7ED8E1F020D6E0096062F /* QRCodeReaderViewController.m in Sources */,
 				5AEADF2C1EE4E8B8004EB475 /* HandleCell.m in Sources */,
@@ -1828,6 +1866,7 @@
 				INFOPLIST_FILE = Yuanqu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = bozhanwuye.Yuanqu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1846,6 +1885,7 @@
 				INFOPLIST_FILE = Yuanqu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = bozhanwuye.Yuanqu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

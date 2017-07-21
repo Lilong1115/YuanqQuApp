@@ -72,7 +72,12 @@
                                @"USERID": [UserInfo account].dsoa_user_code
                                };
         
-        [GuaranteeListModel repairSubmitWithDict:dict];
+        if (strongSelf.isComplaints == YES) {
+            [GuaranteeListModel complainSubmitWithDict:dict];
+        } else {
+        
+           [GuaranteeListModel repairSubmitWithDict:dict];
+        }
         
     };
     
