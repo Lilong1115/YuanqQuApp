@@ -176,7 +176,7 @@
         } else if (type == CellType) {
         
             WebViewController *webViewVC = [[WebViewController alloc]init];
-            webViewVC.url = model.url;
+            webViewVC.url = [NSString stringWithFormat:@"%@%@", BaseUrl, model.url];
             webViewVC.navTitle = model.name;
             [strongSelf.navigationController pushViewController:webViewVC animated:YES];
         }

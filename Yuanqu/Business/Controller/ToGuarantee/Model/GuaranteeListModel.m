@@ -37,8 +37,7 @@
     [guaranteeListRegister startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
         
         NSDictionary *response = (NSDictionary *)guaranteeListRegister.responseObject;
-        
-        
+                
         NSInteger ret = [response[@"ret"] integerValue];
         if (ret == Success_Code) {
             NSArray *data = (NSArray *)response[@"data"];
@@ -83,6 +82,7 @@
         
         NSDictionary *response = (NSDictionary *)guaranteeListRegister.responseObject;
         
+        NSLog(@"%@", response);
         
         NSInteger ret = [response[@"ret"] integerValue];
         if (ret == Success_Code) {

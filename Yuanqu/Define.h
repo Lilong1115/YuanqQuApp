@@ -35,6 +35,10 @@
 #define AppShowMenuListNotification @"AppShowMenuListNotification"
 //首页轮播图通知
 #define HomeCycleNotification @"HomeCycleNotification"
+
+
+
+
 //报修上传成功通知
 #define AddRepairSuccessNotification @"AddRepairSuccessNotification"
 //投诉上传成功通知
@@ -53,6 +57,12 @@
 #define EstimateSuccessNotification @"EstimateSuccessNotification"
 //投诉成功
 #define ComplaintsSuccessNotification @"ComplaintsSuccessNotification"
+
+
+
+
+
+
 //未制定工单报修处理列表获取成功通知
 #define AppWorkOrderListSuccessNotification @"AppWorkOrderListSuccessNotification"
 //未制定投诉单报修处理列表获取成功通知
@@ -99,6 +109,10 @@
 #define AppFinishListSuccessNotification @"AppFinishListSuccessNotification"
 //受理完成投诉列表
 #define AppFinishComplainLogsSuccessNotification @"AppFinishComplainLogsSuccessNotification"
+
+
+
+
 //登录成功通知
 #define AppLoginSuccessNotification @"AppLoginSuccessNotification"
 /****************************************/

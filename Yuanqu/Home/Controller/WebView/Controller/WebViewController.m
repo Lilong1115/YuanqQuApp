@@ -63,9 +63,9 @@
 // 加载h5
 - (void)loadExamplePage:(WKWebView*)webView {
     
-    NSLog(@"%@", [NSString stringWithFormat:@"%@%@", BaseUrl, self.url]);
+    NSLog(@"%@", self.url);
     
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BaseUrl, self.url]]]];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
 
 @end

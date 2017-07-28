@@ -205,6 +205,8 @@
         [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
         [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
         
+            [ProgressHUD show:@"正在提交..."];
+            
             if ([strongSelf.navTitle isEqualToString:@"我要报修"]) {
                 [strongSelf uploadDataWithDict:dict];
             } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"]) {

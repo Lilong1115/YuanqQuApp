@@ -178,14 +178,15 @@
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
 {
 
-    NSLog(@"%@", result);
+    NSLog(@"%@", [NSString stringWithFormat:@"%@%@", BaseUrl, result]);
     RegisterController *registerVC = [[RegisterController alloc]init];
     registerVC.navTitle = @"注册";
-    registerVC.url = result;
+    registerVC.url = [NSString stringWithFormat:@"http://222.35.27.156:8080/SMP/%@", result];
     NavigationController *registerNav = [[NavigationController alloc]initWithRootViewController:registerVC];
     
+    [self.nav presentViewController:registerNav animated:YES completion:nil];
     
-    [self presentViewController:registerNav animated:YES completion:nil];
+//    [self presentViewController:registerVC animated:YES completion:nil];
 }
 
 

@@ -35,8 +35,11 @@
 //设置logo
 - (void)setupLogo {
 
+    
+    NSLog(@"%@", [UserInfo account].dsoa_user_suoscode);
+    
     UIImageView *logo = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, ScreenW, 250)];
-    logo.image = [UIImage imageNamed:@"meinv"];
+    [logo sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@vi/lanm/%@.png", BaseUrl, [UserInfo account].dsoa_user_suoscode]]];
     [self.view addSubview:logo];
     
 }

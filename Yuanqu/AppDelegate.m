@@ -24,9 +24,9 @@
     
     
     //全局注册appId，别忘了#import "OpenShareHeader.h"
-    [OpenShare connectQQWithAppId:@"1103194207"];
+    [OpenShare connectQQWithAppId:@"1106312750"];
     [OpenShare connectWeiboWithAppKey:@"1371606722"];
-    [OpenShare connectWeixinWithAppId:@"wxd930ea5d5a258f4f"];
+    [OpenShare connectWeixinWithAppId:@"wx5d8c202f5af8814d"];
     [OpenShare connectRenrenWithAppId:@"228525" AndAppKey:@"1dd8cba4215d4d4ab96a49d3058c1d7f"];
     
     //设置baseurl

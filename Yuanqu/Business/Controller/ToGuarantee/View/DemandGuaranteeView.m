@@ -257,7 +257,7 @@ static NSString * const kDemandGuaranteeCellID = @"kDemandGuaranteeCellID";
 
 
 - (void)setModel:(GuaranteeListModel *)model {
-
+    
     _model = model;
     if (model.itemid) {
         self.orderNumLabel.text = model.itemid;

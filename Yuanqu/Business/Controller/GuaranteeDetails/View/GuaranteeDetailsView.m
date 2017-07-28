@@ -158,9 +158,9 @@ static NSString * kLogCellID = @"kLogCellID";
 //设置每个section的headerView的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
-    if (self.isComplaints == YES && section == 1) {
-        return 0;
-    }
+//    if (self.isComplaints == NO && section == 1) {
+//        return 0;
+//    } 
     
     return 44;
 }

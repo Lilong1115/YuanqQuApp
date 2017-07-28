@@ -29,6 +29,10 @@ typedef NS_ENUM(NSUInteger, HomeType) {
 //url
 @property (nonatomic, copy) NSString *url;
 
+
+//会议预约ticket
+@property (nonatomic, copy) NSString *ticket;
+
 //区分是否为本地图片
 @property (nonatomic, assign) BOOL isLocal;
 

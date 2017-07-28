@@ -12,7 +12,9 @@
 /*******************URL******************/
 //baseUrl
 #define BaseUrl @"http://192.168.100.186:8080/Apps/"
+//#define BaseUrl @"http://192.168.100.224:8080/Apps/"
 //#define BaseUrl @"http://222.35.27.156:8080/SMP/"
+#define BaseQRCode_URL @"http://222.35.27.156:8080/SMP"
 //cdnUrl
 #define CDNUrl @""
 //扫一扫baseUrl
@@ -73,6 +75,7 @@ URL:appShowMenuList.do
  报修管理  ：      06
  我要投诉  :  12
  投诉管理     13
+ 会议预约  ：	14
 
 */
 
@@ -88,6 +91,8 @@ typedef NS_ENUM(NSUInteger, BusinessType) {
     ToComplaintType = 12,
     //投诉管理
     ComplaintType = 13,
+    //会议预约
+    ConferenceReservationType = 14,
     //设备管理
     EquipmentType = 15,
 };
@@ -403,7 +408,6 @@ URL:appComplainLogsIOS.do
 #define AppComplainLogsIOS_URL @"appComplainLogsIOS.do"
 
 
-
 /*
  投诉单详细信息
  我要确认    0
@@ -440,16 +444,6 @@ URL:appComplainLogsIOS.do
 #define ComplainOrder_URL @"ComplainOrder.do"
 
 
-/*
- 投诉日志列表 IOS
- URL:appComplainLogsIOS.do
- 参数：
- 报修单系统编号：SYSID
- 返回值：
- 日志时间：SHIJIAN
- 日志内容：NEIRONG
- */
-#define AppComplainLogsIOS_URL @"appComplainLogsIOS.do"
 
 /*--------------投诉----------------*/
 

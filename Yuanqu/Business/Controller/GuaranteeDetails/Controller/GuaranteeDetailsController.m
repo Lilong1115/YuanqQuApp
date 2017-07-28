@@ -95,9 +95,13 @@
     GuaranteeDetailsView *guaranteeDetailsView = [[GuaranteeDetailsView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH - FooterViewHeight) style:UITableViewStylePlain];
     guaranteeDetailsView.isComplaints = self.isComplaints;
     
-    if (self.isComplaints == YES) {
+    
+    if ([self.navTitle isEqualToString:@"投诉详情"] && self.isComplaints == YES) {
         [LogBaseModel getComplaintLogModelArrayWithDict:@{@"SYSID": self.model.sysid}];
+    } else if ([self.navTitle isEqualToString:@"投诉详情"] && self.isComplaints == NO) {
+        [LogBaseModel getComplaintLogModelArrayWithDict:@{@"SYSID": self.model.SYSID}];
     } else {
+    
         [LogBaseModel getLogModelArrayWithDict:@{
                                                  @"SYSID": self.model.sysid
                                                  }];
@@ -142,7 +146,7 @@
     CGFloat estimateButtonY = 0;
     NSString *estimateStr;
     
-    if ([self.navTitle isEqualToString:@"报修详情"] || self.isComplaints == YES) {
+//    if ([self.navTitle isEqualToString:@"报修详情"] || self.isComplaints == YES || self.isComplaints == NO) {
                 
         estimateButtonY += ScreenH - FooterViewHeight + FooterViewMargin;
         if ([self.model.rd_CLBJ integerValue] == 0) {
@@ -154,15 +158,17 @@
         }
         
         
-    } else if ([self.navTitle isEqualToString:@"投诉详情"] && self.isComplaints == NO) {
+//    } else if ([self.navTitle isEqualToString:@"任务详情"]) {
+//    
+//        estimateButtonY += 320;
+//        estimateStr = @"收取任务";
+//    }
     
-        estimateButtonY += 320;
-        estimateStr = @"我要评价";
-    } else if ([self.navTitle isEqualToString:@"任务详情"]) {
-    
-        estimateButtonY += 320;
-        estimateStr = @"收取任务";
-    }
+//    else if ([self.navTitle isEqualToString:@"投诉详情"] && self.isComplaints == NO) {
+//        //
+//        //        estimateButtonY += 320;
+//        //        estimateStr = @"我要评价";
+//    }
     
     //我要评价按钮
     UIButton *estimateButton = [[UIButton alloc]initWithFrame:CGRectMake(FooterViewMargin, estimateButtonY, ScreenW - FooterViewMargin * 2, FooterViewHeight - FooterViewMargin * 2)];

@@ -161,13 +161,25 @@
 - (void)setModel:(GuaranteeListModel *)model {
     
     _model = model;
-    self.orderNumLabel.text = model.itemid;
-    self.timeLabel.text = model.sysdate;
-    self.nameLabel.text = model.rd_BXXM;
-    self.phoneLabel.text = model.rd_BXDH;
-    self.addressLabel.text = model.rd_SFZB,
-    self.titleLabel.text = model.rd_BXBT;
-    self.contentLabel.text = model.rd_BXNR;
+    if (model.itemid) {
+        self.orderNumLabel.text = model.itemid;
+        self.timeLabel.text = model.sysdate;
+        self.nameLabel.text = model.rd_BXXM;
+        self.phoneLabel.text = model.rd_BXDH;
+        self.addressLabel.text = model.rd_SFZB,
+        self.titleLabel.text = model.rd_BXBT;
+        self.contentLabel.text = model.rd_BXNR;
+    } else {
+        self.orderNumLabel.text = model.ITEMID;
+        self.timeLabel.text = model.CJSJ;
+        self.nameLabel.text = model.CD_TSXM;
+        self.phoneLabel.text = model.CD_LXSJ;
+        self.addressLabel.text = model.CD_LXDZ,
+        self.titleLabel.text = model.CD_TSBT;
+        self.contentLabel.text = model.CD_NRMS;
+        
+    }
+    
 }
 
 ////点击图片
