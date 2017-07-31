@@ -120,6 +120,7 @@
         } else if (type == ConferenceReservationType) {
         
             WebViewController *conferenceReservationVC = [[WebViewController alloc]init];
+            
             conferenceReservationVC.navTitle = model.name;
             conferenceReservationVC.url = [NSString stringWithFormat:@"%@%@", model.url, model.ticket];
             [strongSelf.navigationController pushViewController:conferenceReservationVC animated:YES];

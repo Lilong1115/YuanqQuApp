@@ -11,9 +11,9 @@
 
 /*******************URL******************/
 //baseUrl
-#define BaseUrl @"http://192.168.100.186:8080/Apps/"
+//#define BaseUrl @"http://192.168.100.186:8080/Apps/"
 //#define BaseUrl @"http://192.168.100.224:8080/Apps/"
-//#define BaseUrl @"http://222.35.27.156:8080/SMP/"
+#define BaseUrl @"http://222.35.27.156:8080/SMP/"
 #define BaseQRCode_URL @"http://222.35.27.156:8080/SMP"
 //cdnUrl
 #define CDNUrl @""
