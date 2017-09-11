@@ -22,6 +22,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    //创建文件目录
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    // 创建目录
+    [fileManager createDirectoryAtPath:FilesPath withIntermediateDirectories:YES attributes:nil error:nil];
     
     //全局注册appId，别忘了#import "OpenShareHeader.h"
     [OpenShare connectQQWithAppId:@"1106312750"];

@@ -21,7 +21,7 @@
                            @"isLocal": @1
                            },
                        @{
-                           @"name": @"投诉单分配",
+                           @"name": @"分配投诉单",
                            @"icon": @"gdfp",
                            @"isLocal": @1
                            },
@@ -47,23 +47,43 @@
 
 //获取工单
 + (NSArray *)getOrderModelArray {
-    NSArray *array = @[
-                       @{
-                           @"name": @"制定工单",
-                           @"icon": @"zdgd",
-                           @"isLocal": @1
-                           },
-                       @{
-                           @"name": @"工单分配",
-                           @"icon": @"gdfp",
-                           @"isLocal": @1
-                           },
-                       @{
-                           @"name": @"受理工单",
-                           @"icon": @"slgd",
-                           @"isLocal": @1
-                           }
-                       ];
+    
+    NSArray *array;
+    
+    if ([[UserInfo account].dsoa_user_headship isEqualToString:@"0105"]) {
+        array = @[
+                  @{
+                      @"name": @"制定工单",
+                      @"icon": @"zdgd",
+                      @"isLocal": @1
+                      },
+                  @{
+                      @"name": @"分配工单",
+                      @"icon": @"gdfp",
+                      @"isLocal": @1
+                      },
+                  @{
+                      @"name": @"受理工单",
+                      @"icon": @"slgd",
+                      @"isLocal": @1
+                      }
+                  ];
+    } else {
+    
+        array = @[
+                  @{
+                      @"name": @"制定工单",
+                      @"icon": @"zdgd",
+                      @"isLocal": @1
+                      },
+                  @{
+                      @"name": @"分配工单",
+                      @"icon": @"gdfp",
+                      @"isLocal": @1
+                      }
+                  ];
+    }
+    
     
     NSMutableArray *arrayM = [NSMutableArray array];
     

@@ -26,6 +26,8 @@ static NSString * const kPersonalCellID = @"kPersonalCellID";
     [super viewDidLoad];
     self.title = @"个人资料";
     
+    NSLog(@"%@", [UserInfo account].dsoa_user_photo);
+    
     [self setupTable];
     
 }
@@ -81,7 +83,7 @@ static NSString * const kPersonalCellID = @"kPersonalCellID";
 
     if (_dataArray == nil) {
         _dataArray = [PersonalModel getPersonalModelArray];
-        [self.tableView reloadData];
+//        [self.tableView reloadData];
     }
     
     return _dataArray;

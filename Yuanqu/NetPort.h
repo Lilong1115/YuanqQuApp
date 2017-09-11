@@ -11,10 +11,14 @@
 
 /*******************URL******************/
 //baseUrl
-//#define BaseUrl @"http://192.168.100.186:8080/Apps/"
-//#define BaseUrl @"http://192.168.100.224:8080/Apps/"
-#define BaseUrl @"http://222.35.27.156:8080/SMP/"
-#define BaseQRCode_URL @"http://222.35.27.156:8080/SMP"
+#define BaseUrl [NSString stringWithFormat:@"%@/", BaseQRCode_URL]
+//@"http://192.168.100.186:8080/Apps/"
+//#define BaseUrl @"http://192.168.100.232:8080/Apps/"
+//#define BaseUrl @"http://222.35.27.156:8080/SMP/"
+
+#define BaseQRCode_URL @"http://192.168.100.232:8080/Apps"
+//#define BaseQRCode_URL @"http://222.35.27.156:8080/SMP"
+//#define BaseQRCode_URL @"http://192.168.100.186:8080/Apps"
 //cdnUrl
 #define CDNUrl @""
 //扫一扫baseUrl
@@ -81,20 +85,22 @@ URL:appShowMenuList.do
 
 //业务类型
 typedef NS_ENUM(NSUInteger, BusinessType) {
+    //装修申报
+    DecorateType = 2,
+    //设备管理
+    EquipmentType = 5,
     //报修管理
     RepairType = 6,
     //工单管理
     RepairOrderType = 7,
-    //装修申报
-    DecorateType = 2,
     //我要投诉
     ToComplaintType = 12,
     //投诉管理
     ComplaintType = 13,
     //会议预约
     ConferenceReservationType = 14,
-    //设备管理
-    EquipmentType = 15,
+    //申报审核
+    AuditDecorateType = 15,
 };
 
 #define AppShowMenuList_URL @"appShowMenuList.do"
@@ -727,6 +733,382 @@ URL：appFinishList.do
 
 
 
+
+
+/*--------------装修申报----------------*/
+
+/*
+装修上传文件列表
+URL：
+appGetRenovation.do
+参数：
+所属编码： ssbm
+用户编号： userid
+返回值:
+Map<String, Object>:
+上传文件名称：name
+数据格式：
+成功：{ret=1000, msg=success, data=[{name=装修承包商资料}, {name=监理公司资料}]}
+*/
+#define AppGetRenovation_URL @"appGetRenovation.do"
+
+
+/*
+装修申报待提交列表
+URL：
+appGetRenovationList.do
+参数：
+所属编码:	ssbm
+用户编号:	userid
+返回值：
+Data 系统ID:		SYSID；
+客户名称：	DEC_KHMC;
+单元名称：	DEC_DYMC;
+施工名称：	DEC_SGMC;
+位置面积：	DEC_WZMJ;
+客户联系：	DEC_KHLX;
+联系电话：	DEC_LXDH;
+内容描述：	DEC_NRMS;
+施工单位：	DEC_SGDW;
+单位电话：	DEC_DWDH;
+现场负责人：DEC_XCFZR;
+现场联系人电话：DEC_XCLXDH;
+施工人数：	DEC_SGRS;
+进场日期：	DEC_JCRQ;
+预计完成时间：DEC_YJWCSJ;
+延长期限：	DEC_YCQX;
+附件：		DEC_FUJIAN;
+附件地址：	DEC_FUJIAN_URL;
+附件名称：	DEC_FUJIAN_NAME;
+添加时间：	SYSDATE;
+用户名称：	USERNAME;
+成功：{ret=1000, msg=success, data=[{}, {}]}
+ */
+#define AppGetRenovationList_URL @"appGetRenovationList.do"
+
+/*
+装修申报已提交列表
+URL:
+appGetRenovationSubmitted.do
+参数：
+所属编码：ssbm
+用户编号：userid
+返回值：
+Data    系统ID:		SYSID；
+客户名称：	DEC_KHMC;
+单元名称：	DEC_DYMC;
+施工名称：	DEC_SGMC;
+位置面积：	DEC_WZMJ;
+客户联系：	DEC_KHLX;
+联系电话：	DEC_LXDH;
+内容描述：	DEC_NRMS;
+施工单位：	DEC_SGDW;
+单位电话：	DEC_DWDH;
+现场负责人：DEC_XCFZR;
+现场联系人电话：DEC_XCLXDH;
+施工人数：	DEC_SGRS;
+进场日期：	DEC_JCRQ;
+预计完成时间：DEC_YJWCSJ;
+延长期限：	DEC_YCQX;
+附件：		DEC_FUJIAN;
+附件地址：	DEC_FUJIAN_URL;
+附件名称：	DEC_FUJIAN_NAME;
+添加时间：	SYSDATE;
+用户名称：	USERNAME;
+成功：{ret=1000, msg=success, data=[{}, {}]}
+ */
+#define AppGetRenovationSubmitted_URL @"appGetRenovationSubmitted.do"
+
+/*
+ 装修申报待清除列表
+ URL:
+ appDeleteList.do
+ 参数：
+ 所属编码：ssbm
+ 用户编号：userid
+ 返回值：
+ Data    系统ID:		SYSID；
+ 客户名称：	DEC_KHMC;
+ 单元名称：	DEC_DYMC;
+ 施工名称：	DEC_SGMC;
+ 位置面积：	DEC_WZMJ;
+ 客户联系：	DEC_KHLX;
+ 联系电话：	DEC_LXDH;
+ 内容描述：	DEC_NRMS;
+ 施工单位：	DEC_SGDW;
+ 单位电话：	DEC_DWDH;
+ 现场负责人：DEC_XCFZR;
+ 现场联系人电话：DEC_XCLXDH;
+ 施工人数：	DEC_SGRS;
+ 进场日期：	DEC_JCRQ;
+ 预计完成时间：DEC_YJWCSJ;
+ 延长期限：	DEC_YCQX;
+ 附件：		DEC_FUJIAN;
+ 附件地址：	DEC_FUJIAN_URL;
+ 附件名称：	DEC_FUJIAN_NAME;
+ 添加时间：	SYSDATE;
+ 用户名称：	USERNAME;
+ 成功：{ret=1000, msg=success, data=[{}, {}]}
+*/
+#define AppDeleteList_URL @"appDeleteList.do"
+
+
+/*
+装修申报待审核列表
+URL：appDshList.do
+参数：
+所属编码：ssbm
+用户编号：userid
+返回值：
+Data    系统ID:		SYSID；
+客户名称：	DEC_KHMC;
+单元名称：	DEC_DYMC;
+施工名称：	DEC_SGMC;
+位置面积：	DEC_WZMJ;
+客户联系：	DEC_KHLX;
+联系电话：	DEC_LXDH;
+内容描述：	DEC_NRMS;
+施工单位：	DEC_SGDW;
+单位电话：	DEC_DWDH;
+现场负责人：DEC_XCFZR;
+现场联系人电话：DEC_XCLXDH;
+施工人数：	DEC_SGRS;
+进场日期：	DEC_JCRQ;
+预计完成时间：DEC_YJWCSJ;
+延长期限：	DEC_YCQX;
+附件：		DEC_FUJIAN;
+附件地址：	DEC_FUJIAN_URL;
+附件名称：	DEC_FUJIAN_NAME;
+添加时间：	SYSDATE;
+用户名称：	USERNAME;
+成功：{ret=1000, msg=success, data=[{}, {}]}
+ */
+#define AppDshList_URL @"appDshList.do"
+
+
+
+
+
+/*
+装修申报已审核列表
+URL：
+appYshList.do
+参数：
+所属编码：ssbm
+用户编号：userid
+返回值：
+Data    系统ID:		SYSID；
+客户名称：	DEC_KHMC;
+单元名称：	DEC_DYMC;
+施工名称：	DEC_SGMC;
+位置面积：	DEC_WZMJ;
+客户联系：	DEC_KHLX;
+联系电话：	DEC_LXDH;
+内容描述：	DEC_NRMS;
+施工单位：	DEC_SGDW;
+单位电话：	DEC_DWDH;
+现场负责人：DEC_XCFZR;
+现场联系人电话：DEC_XCLXDH;
+施工人数：	DEC_SGRS;
+进场日期：	DEC_JCRQ;
+预计完成时间：DEC_YJWCSJ;
+延长期限：	DEC_YCQX;
+附件：		DEC_FUJIAN;
+附件地址：	DEC_FUJIAN_URL;
+附件名称：	DEC_FUJIAN_NAME;
+添加时间：	SYSDATE;
+用户名称：	USERNAME;
+成功：{ret=1000, msg=success, data=[{}, {}]}
+*/
+#define AppYshList_URL @"appYshList.do"
+
+
+/*
+装修申报添加
+URL：addRenovation.do
+参数：
+所属编码：  ssbm
+用户ID：	userid
+当前用户名称：USERNAME
+客户名称：	DEC_KHMC;
+单元名称：	DEC_DYMC;
+施工名称：	DEC_SGMC;
+位置面积：	DEC_WZMJ;
+客户联系：	DEC_KHLX;
+联系电话：	DEC_LXDH;
+内容描述：	DEC_NRMS;
+施工单位：	DEC_SGDW;
+单位电话：	DEC_DWDH;
+现场负责人：DEC_XCFZR;
+现场联系人电话：DEC_XCLXDH;
+施工人数：	DEC_SGRS;
+进场日期：	DEC_JCRQ;
+预计完成时间：DEC_YJWCSJ;
+延长期限：	DEC_YCQX;
+附件：		DEC_FUJIAN;
+返回值：
+成功：{ret=1000, msg=success, data=[{1000}]}
+ */
+#define AddRenovation_URL @"addRenovation.do"
+
+
+
+/*
+装修申报提交功能
+URL：addRenovationSubmit.do
+参数：
+系统编号：	SYSID
+返回值：
+成功：{ret=1000, msg=success, data=[{1000}]}
+ */
+#define AddRenovationSubmit_URL @"addRenovationSubmit.do"
+
+
+/*
+装修申报删除功能
+URL：addRenovationDelete.do
+参数：
+系统编号：  SYSID
+返回值：
+成功：{ret=1000, msg=success, data=[{1000}]}
+ */
+#define AddRenovationDelete_URL @"addRenovationDelete.do"
+
+/*
+装修待清除列表彻底删除
+URL：appDeleteClean.do
+参数：
+系统编号：  SYSID
+返回值：
+成功：{ret=1000, msg=success, data=[{1000}]}
+失败：{ret=1001, msg=failure, data=[{1001]}
+ */
+#define AppDeleteClean_URL @"appDeleteClean.do"
+
+
+/*
+ 装修申报待删除列表还原功能
+ URL: 	addRestore.do
+ 参数：
+ 系统编号：SYSID
+ 返回值：
+ 成功：{ret=1000, msg=success, data=[{1000}]}
+ 失败：{ret=1001, msg=failure, data=[{1001]}
+ */
+#define AddRestore_URL @"addRestore.do"
+
+
+
+/*
+装修申报修改功能
+URL:		addModify.do
+参数：
+客户名称：	DEC_KHMC;
+单元名称：	DEC_DYMC;
+施工名称：	DEC_SGMC;
+位置面积：	DEC_WZMJ;
+客户联系：	DEC_KHLX;
+联系电话：	DEC_LXDH;
+内容描述：	DEC_NRMS;
+施工单位：	DEC_SGDW;
+单位电话：	DEC_DWDH;
+现场负责人：DEC_XCFZR;
+现场联系人电话：DEC_XCLXDH;
+施工人数：	DEC_SGRS;
+进场日期：	DEC_JCRQ;
+预计完成时间：DEC_YJWCSJ;
+延长期限：	DEC_YCQX;
+系统编号      SYSID
+返回值：
+成功：{ret=1000, msg=success, data=[{1000}]}
+失败：{ret=1001, msg=failure, data=[{1001]}
+*/
+#define AddModify_URL @"addModify.do"
+
+
+/*
+装修申报详细列表
+URL：appDetailedList.do
+参数：
+系统编号：  SYSID
+返回值：
+成功：{ret=1000, msg=success, data=[{}, {}]}
+ */
+#define AppDetailedList_URL @"appDetailedList.do"
+
+
+/*
+装修申报审核结果列表
+URL:  	appCheckList.do
+参数：
+系统编号 ： SYSID
+返回值：
+ 审核意见：APP_SHJG   1：通过 ，0 ：不通过
+ 审核人员：APP_SHRY
+ 审核理由：APP_SHYJ
+ 审核时间：APP_SHSJ
+ 审核部门：APP_SHBM
+
+成功：{ret=1000, msg=success, data=[{}, {}]}
+失败：{ret=1001, msg=failure, data=[{1001]}
+ */
+#define AppCheckList_URL @"appCheckList.do"
+
+
+
+
+/*
+装修申报审核功能按钮
+URL：	addAudit.do
+参数：
+ 审核意见：APP_SHJG    1：通过 ，0 ：不通过
+ 审核理由：APP_SHYJ
+ 审核用户名：USERNAME
+ 系统编号 ： SYSID
+ 审核部门：APP_SHBM
+ 当前用户ID ：USERID
+
+返回值：
+成功：{ret=1000, msg=success, data=[{1000}]}
+失败：{ret=1001, msg=failure, data=[{1001]}
+*/
+#define AddAudit_URL @"addAudit.do"
+
+
+/*
+装修申报巡检功能
+URL:	   addSearch.do
+参数：
+所属编号 		SSBM
+系统编号 		ITEMID
+巡检名称 		XJXMMC
+巡检时间		XJSJ
+巡检周期  		XJZQ
+巡检班次 		XJBC
+工作内容  		GZNR
+巡查施工人数 	XCSGRS
+违规事项   		WGSX
+巡检人员 		XJRY
+巡查负责人员	XCFZRY
+当前用户姓名  	USERNAME
+当前用户id    	USERID
+巡检图片  		imgStr
+返回值：
+成功：{ret=1000, msg=success, data=[{1000}]}
+失败：{ret=1001, msg=failure, data=[{1001]}
+*/
+#define AddSearch_URL @"addSearch.do"
+
+//装修巡检获取数据
+/*
+ 项目名称  DEC_SGMC
+ 工作内容  DEC_NRMS
+ 现场负责人  DEC_XCFZR
+ 负责人联系电话  DEC_XCLXDH
+ */
+#define PatrolList_URL @"PatrolList.do"
+
+/*--------------装修申报----------------*/
 
 
 

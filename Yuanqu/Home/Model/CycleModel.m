@@ -13,7 +13,18 @@
 
 + (void)getCycleModelArray {
 
-    CycleRegister *cycleRegister = [[CycleRegister alloc]init];
+    
+    //字典
+    NSDictionary *parameters = @{
+                                 @"ssbm": [UserInfo account].dsoa_user_suoscode,
+                                 @"userid": [UserInfo account].dsoa_user_code
+                                 };
+    NSString *json = [NSString ObjectTojsonString:parameters];
+    
+    //转为basic
+    NSDictionary *dict = @{@"basic": json};
+    
+    CycleRegister *cycleRegister = [[CycleRegister alloc]initWithDict:dict];
     [cycleRegister startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         
         NSDictionary *response = (NSDictionary *)cycleRegister.responseObject;

@@ -75,11 +75,23 @@
 }
 
 #pragma mark --delegate
+////设置不隐藏tabBar
+//- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+//
+//    if ([viewController isKindOfClass:[HomeController class]] || [viewController isKindOfClass:[MineController class]] || [viewController isKindOfClass:[BusinessController class]]) {
+//        [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
+//    }
+//    
+//}
+
 //设置不隐藏tabBar
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-
-    if ([viewController isKindOfClass:[HomeController class]] || [viewController isKindOfClass:[MineController class]] || [viewController isKindOfClass:[BusinessController class]]) {
+    
+    
+    if (viewController == self.viewControllers.firstObject) {
         [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
+    } else {
+        [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
     }
     
 }

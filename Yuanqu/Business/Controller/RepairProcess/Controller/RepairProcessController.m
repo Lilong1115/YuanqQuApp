@@ -36,10 +36,10 @@
 - (void)setupLogo {
 
     
-    NSLog(@"%@", [UserInfo account].dsoa_user_suoscode);
+    NSLog(@"-----%@", [UserInfo account].dsoa_user_suoscode);
     
     UIImageView *logo = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, ScreenW, 250)];
-    [logo sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@vi/lanm/%@.png", BaseUrl, [UserInfo account].dsoa_user_suoscode]]];
+    [logo sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@vi/lanm/%@.png", BaseUrl, [UserInfo account].dsoa_user_suoscode]] placeholderImage:[UIImage imageNamed:@"meinv"]];
     [self.view addSubview:logo];
     
 }

@@ -33,8 +33,8 @@
                                     @"keyboardType": @0
                                     },
                                 @{
-                                    @"name": @"描述:",
-                                    @"placeholder": @"请输入描述",
+                                    @"name": @"标题:",
+                                    @"placeholder": @"请输入标题",
                                     @"textType": @1,
                                     @"keyboardType": @0
                                     },

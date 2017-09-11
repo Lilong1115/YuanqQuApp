@@ -93,15 +93,23 @@
 
 // 加载h5
 - (void)loadExamplePage:(WKWebView*)webView {
-
     
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BaseUrl, self.url]]]];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
     
 //
     
     //@"http://192.168.100.232:8080/Apps/OpenTestPaper"
 }
 
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+
+    [ProgressHUD show:@"正在加载..."];
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+
+    [ProgressHUD dismiss];
+}
 
 
 

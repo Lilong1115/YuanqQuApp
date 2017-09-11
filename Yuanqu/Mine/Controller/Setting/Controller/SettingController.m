@@ -151,12 +151,9 @@ static NSString * const kSettingCellID = @"kSettingCellID";
 #pragma mark --delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    SuggestionController *suggestionVC = [[SuggestionController alloc]init];
-    
-    [self.navigationController pushViewController:suggestionVC animated:YES];
-    
+    [ProgressHUD showError:@"正在开发中..."];
 }
-    
+
 
 #pragma mark --lazy
 //table内容
@@ -165,7 +162,6 @@ static NSString * const kSettingCellID = @"kSettingCellID";
     if (_dataArray == nil) {
         
         NSArray *array = @[
-                           @"意见箱",
                            @"关于"
                            ];
         _dataArray = array.copy;

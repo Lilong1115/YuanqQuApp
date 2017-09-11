@@ -110,6 +110,11 @@ static NSString * const kWriteGuaranteeCellID = @"kWriteGuaranteeCellID";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
+    /**
+     *  如果没有数据的时候提示用户的信息
+     */
+    [tableView tableViewDisplayWitMsg:@"暂无数据" ifNecessaryForRowCount:self.contentArray.count];
+    
     return self.contentArray.count;
 }
 

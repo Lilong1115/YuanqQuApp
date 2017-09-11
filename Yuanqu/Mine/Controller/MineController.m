@@ -15,6 +15,7 @@
 #import "QRCodeReaderViewController.h"
 #import "ScanController.h"
 #import "ShareController.h"
+#import "FileManagementController.h"
 
 #pragma mark --宏定义
 //头视图高度
@@ -138,13 +139,15 @@ static NSString * const kMineCellID = @"kMineCellID";
 
     if (indexPath.section == 1 && indexPath.row == 0) {
         
-        MessageController *messageVC = [[MessageController alloc]initWithStyle:UITableViewStyleGrouped];
-        [self.navigationController pushViewController:messageVC animated:YES];
+        [ProgressHUD showError:@"正在开发中..."];
+        
+//        MessageController *messageVC = [[MessageController alloc]initWithStyle:UITableViewStyleGrouped];
+//        [self.navigationController pushViewController:messageVC animated:YES];
     } else if (indexPath.section == 0 && indexPath.row == 0) {
     
         PersonalController *personalVC = [[PersonalController alloc]init];
         [self.navigationController pushViewController:personalVC animated:YES];
-    } else if (indexPath.section == 1 && indexPath.row == 2) {
+    } else if (indexPath.section == 1 && indexPath.row == 1) {
     
         QRCodeReaderViewController *reader = [QRCodeReaderViewController new];
         reader.navigationItem.rightBarButtonItem = nil;
@@ -154,12 +157,13 @@ static NSString * const kMineCellID = @"kMineCellID";
         
         [self.navigationController pushViewController:reader animated:YES];
         
-    } else if (indexPath.section == 1 && indexPath.row == 1) {
-    
+    } else if (indexPath.section == 1 && indexPath.row == 2) {
+//    
         ShareController *shareVC = [[ShareController alloc]init];
         shareVC.delegate = self;
         shareVC.blurStyle = UIBlurEffectStyleDark;
         [self presentViewController:shareVC animated:YES completion:nil];
+        
 
     }
 }
@@ -175,6 +179,8 @@ static NSString * const kMineCellID = @"kMineCellID";
 #pragma mark --reader delegate
 //扫描信息
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result {
+    
+//    NSLog(@"%@", result);
     
     ScanController *scanVC = [[ScanController alloc]init];
     scanVC.url = result;
@@ -205,12 +211,12 @@ static NSString * const kMineCellID = @"kMineCellID";
                                  @"text": @"消息"
                                  },
                              @{
-                                 @"picture": @"share",
-                                 @"text": @"分享"
-                                 },
-                             @{
                                  @"picture": @"qe",
                                  @"text": @"扫一扫"
+                                 },
+                             @{
+                                 @"picture": @"share",
+                                 @"text": @"分享"
                                  }
                              ]
                            ];

@@ -62,6 +62,9 @@
             [GuaranteeListModel getComplaintsListModelArray];
         }
         
+    } else if ([self.navTitle isEqualToString:@"问题反馈"]) {
+    
+        [GuaranteeListModel getComplaintsListModelArray];
     }
 }
 
@@ -99,6 +102,7 @@
 //投诉列表获取成功
 - (void)complaintListSuccessNotification:(NSNotification *)noti {
 
+    
     self.dataArray = noti.object;
     
     //设置数据源
@@ -110,7 +114,7 @@
 - (void)complaintsSuccessNotification:(NSNotification *)noti {
 
     [ProgressHUD showSuccess:@"投诉成功"];
-    [self clearData];
+    [self clear];
 }
 
 //获取报修列表成功的通知
@@ -125,7 +129,7 @@
 //报修提交成功的通知
 - (void)addRepairSuccessNotification:(NSNotification *)noti {
 
-    [self clearData];
+    [self clear];
     
 }
 
@@ -148,6 +152,8 @@
         scrollToSwitchView.contentArray = @[@"填写报修", @"查询报修"];
     } else if ([self.navTitle isEqualToString:@"我要投诉"]) {
         scrollToSwitchView.contentArray = @[@"填写投诉", @"查询投诉"];
+    } else if ([self.navTitle isEqualToString:@"问题反馈"]) {
+        scrollToSwitchView.contentArray = @[@"填写问题", @"查询反馈"];
     }
     
     //滚动回调
@@ -177,7 +183,7 @@
     
     //填写报修视图
     WriteGuaranteeView *writeGuaranteeView = [[WriteGuaranteeView alloc]initWithFrame:CGRectMake(0, ScrollToSwitchViewHeight - 10, ScreenW, ScreenH - ScrollToSwitchViewHeight - 10 - 64)];
-    writeGuaranteeView.isPhoto = self.isPhoto;
+    writeGuaranteeView.isPhoto = NO;
     self.writeGuaranteeView = writeGuaranteeView;
     //防止循环引用
     __weak ToGuaranteeController *weakSelf = self;
@@ -207,17 +213,24 @@
         
             [ProgressHUD show:@"正在提交..."];
             
-            if ([strongSelf.navTitle isEqualToString:@"我要报修"]) {
-                [strongSelf uploadDataWithDict:dict];
-            } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"]) {
-                if (strongSelf.isAppComplaints == YES) {
-                    
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+                if ([strongSelf.navTitle isEqualToString:@"我要报修"]) {
                     [strongSelf uploadDataWithDict:dict];
-                } else {
+                } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"]) {
+                    if (strongSelf.isAppComplaints == YES) {
+                        
+                        [strongSelf uploadDataWithDict:dict];
+                    } else {
+                        [strongSelf uploadComplaintsDataWithDict:dict];
+                    }
+                    
+                } else if ([self.navTitle isEqualToString:@"问题反馈"]) {
                     [strongSelf uploadComplaintsDataWithDict:dict];
                 }
                 
-            }
+            });
+            
             
         }];
         
@@ -238,6 +251,8 @@
             [GuaranteeListModel getComplaintsListModelArray];
         }
         
+    } else if ([self.navTitle isEqualToString:@"问题反馈"]) {
+        [GuaranteeListModel getComplaintsListModelArray];
     }
     
     
@@ -257,9 +272,9 @@
         } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"] && strongSelf.isAppComplaints == YES) {
             guaranteeDetailsVC.navTitle = @"投诉详情";
             guaranteeDetailsVC.isComplaints = YES;
-        } else if ([strongSelf.navTitle isEqualToString:@"我要投诉"] && strongSelf.isAppComplaints == NO) {
+        } else if ([strongSelf.navTitle isEqualToString:@"问题反馈"] && strongSelf.isAppComplaints == NO) {
         
-            guaranteeDetailsVC.navTitle = @"投诉详情";
+            guaranteeDetailsVC.navTitle = @"反馈详情";
             guaranteeDetailsVC.isComplaints = NO;
             
         }
@@ -279,6 +294,9 @@
             } else {
                 [GuaranteeListModel getComplaintsListModelArray];
             }
+            
+        } else if ([strongSelf.navTitle isEqualToString:@"问题反馈"]) {
+            [GuaranteeListModel getComplaintsListModelArray];
             
         }
         
@@ -365,13 +383,33 @@
 
 }
 
+- (void)clear {
 
+    [self.writeGuaranteeView clearData];
+    self.guaranteeImage = nil;
+    
+}
 
 //清除数据
 - (void)clearData {
 
-    [self.writeGuaranteeView clearData];
-    self.guaranteeImage = nil;
+    JCAlertController *alert = [JCAlertController alertWithTitle:@"清除数据" message:@"您确认要清除数据吗?"];
+    
+    [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
+    [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
+        [ProgressHUD show:@"正在清除..."];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self.writeGuaranteeView clearData];
+            self.guaranteeImage = nil;
+            
+            [ProgressHUD showSuccess:@"清除成功"];
+            
+        });
+    }];
+    
+    [self jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
+    
 }
 
 #pragma mark --调取相册

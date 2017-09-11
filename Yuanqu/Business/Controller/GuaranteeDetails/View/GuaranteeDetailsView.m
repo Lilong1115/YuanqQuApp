@@ -55,7 +55,7 @@ static NSString * kLogCellID = @"kLogCellID";
 //设置详情头部视图
 - (void)setupGuaranteeDetailsHeaderView {
 
-    GuaranteeDetailsHeaderView *guaranteeDetailsHeaderView = [[GuaranteeDetailsHeaderView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 230)];
+    GuaranteeDetailsHeaderView *guaranteeDetailsHeaderView = [[GuaranteeDetailsHeaderView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 300)];
     
     self.tableHeaderView = guaranteeDetailsHeaderView;
     self.guaranteeDetailsHeaderView = guaranteeDetailsHeaderView;
@@ -137,15 +137,15 @@ static NSString * kLogCellID = @"kLogCellID";
     switch (section) {
         case 0:
             headerView.isHidden = YES;
-            headerView.groundColor = [UIColor colorWithHexString:@"#98FB98"];
+            headerView.groundColor = [UIColor colorWithHexString:@"#006400"];
             headerView.title = @"进度查询";
             headerView.buttonStr = @"";
             break;
         case 1:
             headerView.isHidden = NO;
-            headerView.groundColor = [UIColor colorWithHexString:@"#98FB98"];
-            headerView.title = @"投诉查询";
-            headerView.buttonStr = @"我要投诉";
+            headerView.groundColor = [UIColor colorWithHexString:@"#006400"];
+            headerView.title = @"问题查询";
+            headerView.buttonStr = @"问题反馈";
             break;
         default:
             break;

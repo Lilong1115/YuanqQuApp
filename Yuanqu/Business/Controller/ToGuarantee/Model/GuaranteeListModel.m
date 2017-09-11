@@ -100,11 +100,22 @@
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:ComplaintListSuccessNotification object:arrayM.copy];
             }];
+        } else {
+        
+            [ProgressHUD showError:@"获取失败"];
+//            //主线程发送通知,更新界面
+//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                [[NSNotificationCenter defaultCenter] postNotificationName:ComplaintListSuccessNotification object:nil];
+//            }];
         }
         
     } failure:^(YTKBaseRequest *request) {
         // 你可以直接在这里使用 self
         [ProgressHUD showError:@"网络请求错误"];
+//        //主线程发送通知,更新界面
+//        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//            [[NSNotificationCenter defaultCenter] postNotificationName:ComplaintListSuccessNotification object:nil];
+//        }];
     }];
     
     

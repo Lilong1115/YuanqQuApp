@@ -9,6 +9,10 @@
 #ifndef Define_h
 #define Define_h
 
+
+//文件目录
+#define FilesPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"files"]
+
 //随机颜色
 #define RandomColor [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0]
 
@@ -109,6 +113,48 @@
 #define AppFinishListSuccessNotification @"AppFinishListSuccessNotification"
 //受理完成投诉列表
 #define AppFinishComplainLogsSuccessNotification @"AppFinishComplainLogsSuccessNotification"
+
+
+
+/* 装修申报 */
+//装修上传文件列表
+#define AppGetRenovatioSuccessNotification @"AppGetRenovatioSuccessNotification"
+//装修申报待提交列表
+#define AppGetRenovationListSuccessNotification @"AppGetRenovationListSuccessNotification"
+//装修申报已提交列表
+#define AppGetRenovationSubmittedSuccessNotification @"AppGetRenovationSubmittedSuccessNotification"
+//装修申报待清除列表
+#define AppDeleteListSuccessNotification @"AppDeleteListSuccessNotification"
+//装修申报待审核列表
+#define AppDshListSuccessNotification @"AppDshListSuccessNotification"
+//装修申报已审核列表
+#define AppYshListSuccessNotification @"AppYshListSuccessNotification"
+//装修申报添加
+#define AddRenovationSuccessNotification @"AddRenovationSuccessNotification"
+//装修申报提交
+#define AddRenovationSubmitSuccessNotification @"AddRenovationSubmitSuccessNotification"
+//装修申报删除
+#define AddRenovationDeleteSuccessNotification @"AddRenovationDeleteSuccessNotification"
+//装修申报待清除彻底删除
+#define AppDeleteCleanSuccessNotification @"AppDeleteCleanSuccessNotification"
+//装修申报带清除还原
+#define AddRestoreSuccessNotification @"AddRestoreSuccessNotification"
+//修改
+#define AddModifySuccessNotification @"AddModifySuccessNotification"
+
+//审核结果列表
+#define AppCheckListSuccessNotification @"AppCheckListSuccessNotification"
+//审核
+#define AddAuditSuccessNotification @"AddAuditSuccessNotification"
+
+
+//装修申报巡检功能
+#define AddSearchSuccessNotification @"AddSearchSuccessNotification"
+//装修巡检获取信息
+#define PatrolListSuccessNotification @"PatrolListSuccessNotification"
+
+//文件选择
+#define FileSelectedSuccessNotification @"FileSelectedSuccessNotification"
 
 
 

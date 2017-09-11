@@ -11,8 +11,8 @@
 @interface RegisterController : UIViewController
 
 //webView的url
-@property (nonatomic, weak) NSString *url;
+@property (nonatomic, copy) NSString *url;
 //navTitle
-@property (nonatomic, weak) NSString *navTitle;
+@property (nonatomic, copy) NSString *navTitle;
 
 @end

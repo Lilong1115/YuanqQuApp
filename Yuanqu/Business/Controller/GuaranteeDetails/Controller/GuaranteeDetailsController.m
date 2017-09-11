@@ -78,7 +78,7 @@
 - (void)repairOrderSuccessNotification:(NSNotification *)noti {
     
     [ProgressHUD showSuccess:@"确认成功"];
-    [self.estimateButton setTitle:@"我要评价" forState:UIControlStateNormal];
+    [self.estimateButton setTitle:@"评价" forState:UIControlStateNormal];
     //变成1
     self.model.rd_CLBJ = @"1";
 }
@@ -96,15 +96,20 @@
     guaranteeDetailsView.isComplaints = self.isComplaints;
     
     
-    if ([self.navTitle isEqualToString:@"投诉详情"] && self.isComplaints == YES) {
+    if ([self.navTitle isEqualToString:@"投诉详情"]) {
         [LogBaseModel getComplaintLogModelArrayWithDict:@{@"SYSID": self.model.sysid}];
-    } else if ([self.navTitle isEqualToString:@"投诉详情"] && self.isComplaints == NO) {
-        [LogBaseModel getComplaintLogModelArrayWithDict:@{@"SYSID": self.model.SYSID}];
     } else {
     
-        [LogBaseModel getLogModelArrayWithDict:@{
-                                                 @"SYSID": self.model.sysid
-                                                 }];
+        if (self.model.sysid) {
+            [LogBaseModel getLogModelArrayWithDict:@{
+                                                     @"SYSID": self.model.sysid
+                                                     }];
+        } else {
+        
+//            [LogBaseModel getComplaintLogModelArrayWithDict:@{@"SYSID": self.model.SYSID}];
+        }
+        
+        
     }
     
     
@@ -114,7 +119,7 @@
     guaranteeDetailsView.complaintsBlock = ^(){
         __strong GuaranteeDetailsController *strongSelf = weakSelf;
         ToGuaranteeController *ToGuaranteeVC = [[ToGuaranteeController alloc]init];
-        ToGuaranteeVC.navTitle = @"我要投诉";
+        ToGuaranteeVC.navTitle = @"问题反馈";
         ToGuaranteeVC.model = strongSelf.model;
         ToGuaranteeVC.isPhoto = NO;
         ToGuaranteeVC.isAppComplaints = NO;
@@ -124,7 +129,7 @@
     //设置不同内容
     if ([self.navTitle isEqualToString:@"投诉详情"]) {
         guaranteeDetailsView.isTableData = NO;
-    } else if ([self.navTitle isEqualToString:@"任务详情"]) {
+    } else if ([self.navTitle isEqualToString:@"反馈详情"]) {
         guaranteeDetailsView.isTableData = NO;
     }
     [self.view addSubview:guaranteeDetailsView];
@@ -150,9 +155,9 @@
                 
         estimateButtonY += ScreenH - FooterViewHeight + FooterViewMargin;
         if ([self.model.rd_CLBJ integerValue] == 0) {
-            estimateStr = @"我要确认";
+            estimateStr = @"确认";
         } else if ([self.model.rd_CLBJ integerValue] == 1) {
-            estimateStr = @"我要评价";
+            estimateStr = @"评价";
         } else if ([self.model.rd_CLBJ integerValue] > 1) {
             return;
         }
@@ -181,6 +186,10 @@
     [self.view addSubview:estimateButton];
     self.estimateButton = estimateButton;
     
+    if ([self.title isEqualToString:@"反馈详情"]) {
+        self.estimateButton.hidden = YES;
+    }
+    
 }
 
 //我要评价/收取任务/任务确认
@@ -201,18 +210,32 @@
     
     if ([self.model.rd_CLBJ integerValue] == 0) {
         //ITEMID  ，USERID  ，USERNAME ，RD_CLBJ
-        NSDictionary *dict = @{
-                               @"ITEMID": self.model.sysid,
-                               @"USERID": [UserInfo account].dsoa_user_code,
-                               @"USERNAME": [UserInfo account].dsoa_user_name,
-                               @"RD_CLBJ": self.model.rd_CLBJ
-                               };
         
-        if (self.isComplaints == YES) {
-            [GuaranteeListModel complainSubmitWithDict:dict];
-        } else {
-            [GuaranteeListModel repairSubmitWithDict:dict];
-        }
+        JCAlertController *alert = [JCAlertController alertWithTitle:@"我要确认" message:@"确认数据?"];
+        
+        [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
+        [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
+            [ProgressHUD show:@"正在确认..."];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                NSDictionary *dict = @{
+                                       @"ITEMID": self.model.sysid,
+                                       @"USERID": [UserInfo account].dsoa_user_code,
+                                       @"USERNAME": [UserInfo account].dsoa_user_name,
+                                       @"RD_CLBJ": self.model.rd_CLBJ
+                                       };
+                
+                if (self.isComplaints == YES) {
+                    [GuaranteeListModel complainSubmitWithDict:dict];
+                } else {
+                    [GuaranteeListModel repairSubmitWithDict:dict];
+                }
+                
+            });
+        }];
+        
+        [self jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
+        
         return;
     }
     

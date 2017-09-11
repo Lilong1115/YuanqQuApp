@@ -61,23 +61,35 @@
     estimaeView.comfirmBlock = ^(){
         __strong GuaranteeEstimateController *strongSelf = weakSelf;
         
-//         ITEMID ，CE_PF， CE_MYD ， CE_PJNR ， RD_CLBJ，USERNAME ，USERID
-        NSDictionary *dict = @{
-                               @"ITEMID": strongSelf.model.sysid,
-                               @"CE_PF": strongSelf.estimateView.workAttitudeStr,
-                               @"CE_MYD": strongSelf.estimateView.maintenanceStr,
-                               @"CE_PJNR": strongSelf.estimateView.content,
-                               @"RD_CLBJ": strongSelf.model.rd_CLBJ,
-                               @"USERNAME": [UserInfo account].dsoa_user_name,
-                               @"USERID": [UserInfo account].dsoa_user_code
-                               };
+        JCAlertController *alert = [JCAlertController alertWithTitle:@"确认评价" message:@"您确认要评价吗?"];
         
-        if (strongSelf.isComplaints == YES) {
-            [GuaranteeListModel complainSubmitWithDict:dict];
-        } else {
+        [alert addButtonWithTitle:@"取消" type:JCButtonTypeWarning clicked:nil];
+        [alert addButtonWithTitle:@"确定" type:JCButtonTypeWarning clicked:^{
+            [ProgressHUD show:@"正在评价..."];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                //         ITEMID ，CE_PF， CE_MYD ， CE_PJNR ， RD_CLBJ，USERNAME ，USERID
+                NSDictionary *dict = @{
+                                       @"ITEMID": strongSelf.model.sysid,
+                                       @"CE_PF": strongSelf.estimateView.workAttitudeStr,
+                                       @"CE_MYD": strongSelf.estimateView.maintenanceStr,
+                                       @"CE_PJNR": strongSelf.estimateView.content,
+                                       @"RD_CLBJ": strongSelf.model.rd_CLBJ,
+                                       @"USERNAME": [UserInfo account].dsoa_user_name,
+                                       @"USERID": [UserInfo account].dsoa_user_code
+                                       };
+                
+                if (strongSelf.isComplaints == YES) {
+                    [GuaranteeListModel complainSubmitWithDict:dict];
+                } else {
+                    
+                    [GuaranteeListModel repairSubmitWithDict:dict];
+                }
+                
+                
+            });
+        }];
         
-           [GuaranteeListModel repairSubmitWithDict:dict];
-        }
+        [strongSelf jc_presentViewController:alert presentType:JCPresentTypeFIFO presentCompletion:nil dismissCompletion:nil];
         
     };
     

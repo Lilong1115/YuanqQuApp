@@ -17,13 +17,14 @@
 #import "HomeModel.h"
 #import "WebViewController.h"
 #import "CycleModel.h"
+#import "FileManagementController.h"
 
 #pragma mark --宏定义
 //轮播图高度
 #define CycleViewHeight 200
 
 
-@interface HomeController ()<UIScrollViewDelegate>
+@interface HomeController ()<UIScrollViewDelegate, SDCycleScrollViewDelegate>
 
 //首页
 @property (nonatomic, weak) HomeView *homeView;
@@ -130,8 +131,11 @@
 //                                  @"http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg"
 //                                  ];
     
+//    NSArray *imagesURLStrings = @[@"http://47.93.46.18:8080/antufile/Advert/20170410101603276_0.png"];
+    
     
     SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, ScreenW, CycleViewHeight) delegate:nil placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    cycleView.delegate = self;
     
     // 网络加载 --- 创建自定义图片的pageControlDot的图片轮播器
     cycleView.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
@@ -185,6 +189,22 @@
 
     [self.view addSubview:homeView];
     self.homeView = homeView;
+}
+
+
+#pragma mark --cycleDelegate
+/** 点击图片回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    
+    
+//    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
+//    flowLayout.minimumLineSpacing = 0;
+//    flowLayout.minimumInteritemSpacing = 0;
+//    flowLayout.itemSize = CGSizeMake(ScreenW, ScreenH);
+//    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+//
+//    FileManagementController *fileManagementVC = [[FileManagementController alloc]initWithCollectionViewLayout:flowLayout];
+//    [self.navigationController pushViewController:fileManagementVC animated:YES];
 }
 
 //移除通知

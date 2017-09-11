@@ -67,7 +67,7 @@
     if (model.isLocal == YES) {
         self.iconView.image = [UIImage imageNamed:model.icon];
     } else {
-        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BaseUrl, model.icon]]];
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BaseUrl, model.icon]] placeholderImage:[UIImage imageNamed:@"photo"]];
     }
     
 }

@@ -15,8 +15,13 @@
 #import "LeaseController.h"
 #import "RepairProcessController.h"
 #import "WebViewController.h"
+#import "DecorateController.h"
+#import "DecorateAuditController.h"
+#import "PolingController.h"
+#import "QRCodeReaderViewController.h"
+#import "PatrolListRegister.h"
 
-@interface BusinessController ()
+@interface BusinessController ()<QRCodeReaderDelegate>
 
 @property (nonatomic, copy) NSArray *dataArray;
 
@@ -124,12 +129,90 @@
             conferenceReservationVC.navTitle = model.name;
             conferenceReservationVC.url = [NSString stringWithFormat:@"%@%@", model.url, model.ticket];
             [strongSelf.navigationController pushViewController:conferenceReservationVC animated:YES];
+            //装修申报
+        } else if (type == DecorateType) {
+        
+            DecorateController *decorateVC = [[DecorateController alloc]init];
+            decorateVC.navTitle = model.name;
+            [strongSelf.navigationController pushViewController:decorateVC animated:YES];
+            
+        } else if (type == AuditDecorateType) {
+            
+            DecorateAuditController *decorateVC = [[DecorateAuditController alloc]init];
+            decorateVC.navTitle = model.name;
+            [strongSelf.navigationController pushViewController:decorateVC animated:YES];
+        } else if ([model.name isEqualToString:@"装修巡视"]) {
+        
+            QRCodeReaderViewController *reader = [QRCodeReaderViewController new];
+            reader.navigationItem.rightBarButtonItem = nil;
+            reader.navigationItem.title = @"扫一扫";
+            reader.modalPresentationStyle = UIModalPresentationFormSheet;
+            reader.delegate = self;
+            
+            [self.navigationController pushViewController:reader animated:YES];
+            
         }
         
     };
     
     [self.view addSubview:businessView];
     self.businessView = businessView;
+}
+
+
+#pragma mark --reader delegate
+//扫描信息
+- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result {
+    
+    NSData *jsonData = [result dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:nil];
+    
+    if (dict[@"itemId"] == nil) {
+        [ProgressHUD showError:@"请重新扫码"];
+        return;
+    }
+    
+    NSString *json = [NSString ObjectTojsonString:dict];
+    
+    PatrolListRegister *registe = [[PatrolListRegister alloc]initWithDict:@{@"basic": json}];
+    
+    [registe startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+        
+        NSDictionary *response = (NSDictionary *)registe.responseObject;
+
+//        NSLog(@"%@", response);
+        
+        NSInteger ret = [response[@"ret"] integerValue];
+        if (ret == Success_Code) {
+            //主线程发送通知,更新界面
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                
+                NSDictionary *dict = @{
+                                       @"DEC_SGMC": response[@"data"][@"dec_SGMC"],
+                                       @"DEC_NRMS": response[@"data"][@"dec_NRMS"],
+                                       @"DEC_XCFZR": response[@"data"][@"dec_XCFZR"],
+                                       @"DEC_XCLXDH": response[@"data"][@"dec_XCLXDH"],
+                                       @"itemid": response[@"data"][@"itemid"]
+                                       };
+                
+                PolingController *polingVC = [[PolingController alloc]init];
+                polingVC.itemID = dict[@"itemId"];
+                polingVC.dict = dict;
+                [self.navigationController pushViewController:polingVC animated:YES];
+                
+            }];
+        } else {
+            [ProgressHUD showSuccess:@"提交失败"];
+        }
+        
+        
+    } failure:^(YTKBaseRequest *request) {
+        // 你可以直接在这里使用 self
+        [ProgressHUD showError:@"网络请求失败"];
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

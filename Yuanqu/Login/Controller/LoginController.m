@@ -76,9 +76,9 @@
 //设置账户密码框
 - (void)setupText {
 
-    UITextField *username = [self creatTextWithPlaceholder:@"用户名" frame:CGRectMake(Margin, ScreenH / 2 + Margin, ScreenW - Margin * 2, TextHeight) keyboardType:UIKeyboardTypeNumberPad secureTextEntry:NO];
+    UITextField *username = [self creatTextWithPlaceholder:@"请输入手机号" frame:CGRectMake(Margin, ScreenH / 2 + Margin, ScreenW - Margin * 2, TextHeight) keyboardType:UIKeyboardTypeNumberPad secureTextEntry:NO];
     self.username = username;
-    UITextField *password = [self creatTextWithPlaceholder:@"密码" frame:CGRectMake(Margin, ScreenH / 2 + Margin * 2 + TextHeight, ScreenW - Margin * 2, TextHeight) keyboardType:UIKeyboardTypeASCIICapable secureTextEntry:YES];
+    UITextField *password = [self creatTextWithPlaceholder:@"请输入密码" frame:CGRectMake(Margin, ScreenH / 2 + Margin * 2 + TextHeight, ScreenW - Margin * 2, TextHeight) keyboardType:UIKeyboardTypeASCIICapable secureTextEntry:YES];
     self.password = password;
     
     //是否隐藏按钮
@@ -178,10 +178,11 @@
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
 {
 
-    NSLog(@"%@", [NSString stringWithFormat:@"%@%@", BaseUrl, result]);
+//    NSLog(@"------%@", [NSString stringWithFormat:@"%@%@", BaseQRCode_URL, result]);
+    
     RegisterController *registerVC = [[RegisterController alloc]init];
     registerVC.navTitle = @"注册";
-    registerVC.url = [NSString stringWithFormat:@"http://222.35.27.156:8080/SMP/%@", result];
+    registerVC.url = [NSString stringWithFormat:@"%@%@", BaseQRCode_URL, result];
     NavigationController *registerNav = [[NavigationController alloc]initWithRootViewController:registerVC];
     
     [self.nav presentViewController:registerNav animated:YES completion:nil];
@@ -192,7 +193,7 @@
 
 //忘记密码
 - (void)clickForgotButton {
-
+    
     
 }
 

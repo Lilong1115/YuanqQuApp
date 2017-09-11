@@ -61,6 +61,11 @@ static NSString * const kDemandGuaranteeCellID = @"kDemandGuaranteeCellID";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    /**
+     *  如果没有数据的时候提示用户的信息
+     */
+    [tableView tableViewDisplayWitMsg:@"暂无数据" ifNecessaryForRowCount:self.dataArray.count];
+    
     return self.dataArray.count;
 }
 

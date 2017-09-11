@@ -9,5 +9,5 @@
 #import <YTKNetwork/YTKNetwork.h>
 
 @interface CycleRegister : YTKRequest
-
+- (instancetype)initWithDict:(NSDictionary *)dict;
 @end
